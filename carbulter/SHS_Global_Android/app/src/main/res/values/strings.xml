@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SHS_Global_Android</string>
+    <string name="history">记录</string>
+    <string name="butler">管家</string>
+    <string name="next">下一步</string>
+    <string name="find_password">忘记密码</string>
+</resources>

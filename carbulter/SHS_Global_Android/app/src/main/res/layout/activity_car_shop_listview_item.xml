@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="@dimen/activity_vertical_padin"
+    android:paddingRight="@dimen/activity_horizontal_pading"
+    android:paddingLeft="@dimen/activity_horizontal_pading"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+     <ImageView
+         android:id="@+id/shop_cover_image"
+         android:src="@drawable/kingong"
+         android:layout_width="79dp"
+         android:layout_height="79dp" />
+        <RelativeLayout
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/shop_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/shop_name"
+                android:text="车商店名"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="8dp"
+                android:id="@+id/shop_address"
+                android:layout_below="@id/shop_name"
+                android:text="地址"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/distance"
+                android:layout_below="@id/shop_address"
+                android:layout_marginTop="8dp"
+                android:text="距离"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

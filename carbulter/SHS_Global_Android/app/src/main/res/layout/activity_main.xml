@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.MainActivity">
+
+   <LinearLayout
+       android:background="#333333"
+       android:id="@+id/bottom_bar"
+       android:layout_alignParentBottom="true"
+       android:layout_width="match_parent"
+       android:layout_height="50dp">
+       <TextView
+           android:clickable="true"
+           android:id="@+id/privilege"
+           android:gravity="center"
+           android:textSize="16sp"
+           android:text="@string/privilege"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+       <TextView
+           android:clickable="true"
+           android:id="@+id/history"
+           android:gravity="center"
+           android:textSize="16sp"
+           android:text="@string/history"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+       <TextView
+           android:clickable="true"
+           android:id="@+id/menbers"
+           android:gravity="center"
+           android:textSize="16sp"
+           android:text="@string/menbers"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+       <TextView
+           android:clickable="true"
+           android:id="@+id/butler"
+           android:gravity="center"
+           android:textSize="16sp"
+           android:text="@string/butler"
+           android:layout_weight="1"
+           android:layout_width="0dp"
+           android:layout_height="match_parent" />
+   </LinearLayout>
+    <FrameLayout
+        android:id="@+id/contain_layout"
+        android:layout_above="@id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+</RelativeLayout>

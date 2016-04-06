@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.shs.global"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    sourceSets.main {
+        jniLibs.srcDirs = [ 'libs' ]  // <- - Set your folder here!
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.jiechic.library:xUtils:2.6.14'
+    compile files('libs/jpush-android-2.1.0.jar.jar')
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile files('libs/libammsdk.jar')
+    compile files('libs/fastjson-1.1.34.android.jar')
+    compile 'com.android.support:appcompat-v7:22.0.0'
+}
