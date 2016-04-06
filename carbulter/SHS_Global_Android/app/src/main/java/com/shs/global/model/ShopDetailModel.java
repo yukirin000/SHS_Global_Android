@@ -1,6 +1,11 @@
 package com.shs.global.model;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
 import com.alibaba.fastjson.JSONObject;
+import com.shs.global.utils.DistanceUtil;
 
 /**
  * Created by wenhai on 2016/4/5.
@@ -94,4 +99,5 @@ public class ShopDetailModel {
            setShopPhone(object.getString("shop_phone"));
         }
     }
+
 }

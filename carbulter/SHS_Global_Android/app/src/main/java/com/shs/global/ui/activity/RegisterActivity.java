@@ -149,6 +149,7 @@ public class RegisterActivity extends BaseActivityWithTopBar {
             RequestParams params = new RequestParams();
             params.addBodyParameter("username", userPhoneNumber);
             params.addBodyParameter("password", Md5Utils.encode(password));
+            params.addBodyParameter("code", verifyCodeEditTextValue);
             HttpManager.post(SHSConst.FINDPWDUSER, params,
                     new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
 
@@ -165,12 +166,11 @@ public class RegisterActivity extends BaseActivityWithTopBar {
                                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-                                // 数据持久化
 
                             }
                             if (status == SHSConst.STATUS_FAIL) {
                                 hideLoading();
-                                ToastUtil.show(RegisterActivity.this, getString(R.string.net_error));
+                                ToastUtil.show(RegisterActivity.this, "找回密码出错");
                             }
                         }
 
@@ -284,6 +284,7 @@ public class RegisterActivity extends BaseActivityWithTopBar {
         } else {
             path = SHSConst.REGISTERSMS;
         }
+        Log.i("wx",path);
         HttpManager.post(path, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {

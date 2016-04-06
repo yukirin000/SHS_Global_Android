@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
@@ -27,12 +28,16 @@ import java.util.regex.Pattern;
  */
 public class BindNumActivity extends BaseActivity {
     public final static String INTENT_KEY = "userName";
+    private boolean isFindPwd=false;
     @ViewInject(R.id.edit_phone)
     private EditText editText;
     @ViewInject(R.id.next)
     private Button nextButton;
-
-    @OnClick(value = {R.id.next,R.id.wechat_login})
+    @ViewInject(R.id.find_pwd)
+    private TextView findPwdText;
+    @ViewInject(R.id.wechat_login)
+    private TextView wxLoginText;
+    @OnClick(value = {R.id.next,R.id.wechat_login,R.id.find_pwd})
     public void viewCickListener(View view) {
         switch (view.getId()) {
             case R.id.next:
@@ -41,9 +46,23 @@ public class BindNumActivity extends BaseActivity {
             case R.id.wechat_login:
                 wechatLoginClick();
                 break;
+            case R.id.find_pwd:
+                findPwd();
+                break;
             default:
                 break;
         }
+    }
+
+    private void findPwd() {
+        isFindPwd=true;
+        findPwdText.setVisibility(View.GONE);
+        wxLoginText.setVisibility(View.GONE);
+//        String userphone = editText.getText().toString().trim();
+//        Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);
+//        intent.putExtra(INTENT_KEY, userphone);
+//        intent.putExtra("isFindPwd", isFindPwd);
+//        startActivity(intent);
     }
 
     private void wechatLoginClick() {
@@ -97,11 +116,17 @@ public class BindNumActivity extends BaseActivity {
                             intent.putExtra(INTENT_KEY, userphone);
                             startActivity(intent);
                         } else {
-
-                            Intent intent=new Intent(BindNumActivity.this,SecondLoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.putExtra(INTENT_KEY, userphone);
-                            startActivity(intent);
+                            if (isFindPwd){
+                                Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);
+                                intent.putExtra(INTENT_KEY, userphone);
+                                intent.putExtra("isFindPwd", isFindPwd);
+                                startActivity(intent);
+                            }else {
+                                Intent intent = new Intent(BindNumActivity.this, SecondLoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.putExtra(INTENT_KEY, userphone);
+                                startActivity(intent);
+                            }
                         }
                         break;
                     case SHSConst.STATUS_FAIL:

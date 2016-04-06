@@ -1,6 +1,9 @@
 package com.shs.global.ui.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +21,7 @@ import com.shs.global.helper.JsonRequestCallBack;
 import com.shs.global.helper.LoadDataHandler;
 import com.shs.global.model.ShopDetailModel;
 import com.shs.global.model.ShopServicesModel;
+import com.shs.global.utils.DistanceUtil;
 import com.shs.global.utils.SHSConst;
 import com.shs.global.utils.ToastUtil;
 
@@ -25,12 +29,19 @@ import com.shs.global.utils.ToastUtil;
  * Created by wenhai on 2016/3/28.
  */
 public class ShopHomePageActivity extends BaseActivityWithTopBar {
+    //是否定位成功
+    private boolean isLocation=false;
+    //当前定位纬度
+    private double currentlat;
+    //当前定位经度
+    private double currentlong;
     private String id;
     //商店详情
     private ShopDetailModel model;
     //服务项目
     private ShopServicesModel servicesModel;
-
+    //距离
+    private String distance;
     @ViewInject(R.id.shop_cover)
     private ImageView coverImage;
 
@@ -50,6 +61,9 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
     private TextView originalpriceText;
     @ViewInject(R.id.discount_price)
     private TextView discountpriceText;
+    private IntentFilter intentFilter;
+    private AddressBroadcastReceiver broadcastReceiver;
+
     @OnClick({R.id.call_butler})
     public void click(View view) {
         switch (view.getId()) {
@@ -72,7 +86,11 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
     @Override
     protected void setUpView() {
         setBarText("店内");
+        distance=getIntent().getStringExtra("distance");
         id = getIntent().getStringExtra("shopID");
+        intentFilter = new IntentFilter("locationAction");
+        broadcastReceiver = new AddressBroadcastReceiver();
+        registerReceiver(broadcastReceiver, intentFilter);
         getData();
 
     }
@@ -85,6 +103,9 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
         servicesText.setText(servicesModel.getServieceName());
         discountpriceText.setText(servicesModel.getDiscountPrice());
         originalpriceText.setText(servicesModel.getOriginalPrice());
+        if (!isLocation) {
+            distanceText.setText(distance);
+        }
     }
 
     private void getData() {
@@ -123,4 +144,25 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
         }, null));
     }
 
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(broadcastReceiver);
+        super.onDestroy();
+    }
+
+    public class AddressBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals("locationAction")) {
+                currentlat = intent.getDoubleExtra("lat", 0.00);
+                currentlong = intent.getDoubleExtra("long", 0.00);
+                //  initlistview();
+                isLocation=true;
+                if (isLocation) {
+                    distanceText.setText(DistanceUtil.gps2m(model.getLatitude(), model.getLongitude(), currentlat, currentlong) + "m");
+                }
+            }
+        }
+    }
 }

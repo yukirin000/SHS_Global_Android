@@ -14,6 +14,15 @@ public class CarShopModel {
     private double longitude;
     //维度
     private double latitude;
+    private  String distance;
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
 
     public String getShopName() {
         return shopName;

@@ -43,6 +43,8 @@ public class PrivilegeFragment extends BaseFragment {
         data.add("豪车美容");
         data.add("在线问诊");
         data.add("保险咨询");
+        data.add("道路救援");
+        data.add("车辆维修");
         initListView();
     }
 

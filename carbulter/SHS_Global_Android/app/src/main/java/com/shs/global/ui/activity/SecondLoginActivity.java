@@ -23,7 +23,7 @@ import com.shs.global.utils.ToastUtil;
 /**
  * Created by wenhai on 2016/2/24.
  */
-public class SecondLoginActivity extends BaseActivity {
+public class SecondLoginActivity extends BaseActivityWithTopBar {
     //用户名
     private String username;
     private String token;
@@ -94,10 +94,6 @@ public class SecondLoginActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected void loadLayout(View v) {
-
-    }
 
     @Override
     protected void setUpView() {

@@ -4,8 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -34,12 +36,16 @@ import java.util.List;
  * Created by wenhai on 2016/3/25.
  */
 public class CarShopActivity extends BaseActivityWithTopBar {
+    //是否定位成功
+    private boolean isLocation = false;
     // 当前数据的页
     private int pageIndex = 1;
     // 是否是最后一页数据
     private boolean lastPage = false;
     @ViewInject(R.id.car_shop_listview)
     private ListView shopListview;
+    @ViewInject(R.id.refresh_layout)
+    private SwipeRefreshLayout swipeRefreshLayout;
     private IntentFilter intentFilter;
     //当前定位纬度
     private double currentlat;
@@ -47,6 +53,7 @@ public class CarShopActivity extends BaseActivityWithTopBar {
     private double currentlong;
     private AddressBroadcastReceiver broadcastReceiver;
     private List<CarShopModel> list;
+    private SHSGlobalAdapter shopAdapter;
 
     @Override
     public int setLayoutId() {
@@ -61,20 +68,31 @@ public class CarShopActivity extends BaseActivityWithTopBar {
         setBarText("车店");
         list = new ArrayList<CarShopModel>();
         getListdata();
-
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getListdata();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     private void initlistview() {
-        Log.i("wx",list.size()+"");
-        final SHSGlobalAdapter shopAdapter = new SHSGlobalAdapter<CarShopModel>(CarShopActivity.this, R.layout.activity_car_shop_listview_item) {
+        Log.i("wx", list.size() + "");
+        shopAdapter = new SHSGlobalAdapter<CarShopModel>(CarShopActivity.this, R.layout.activity_car_shop_listview_item) {
             @Override
             protected void convert(SHSGlobalBaseAdapterHelper helper, CarShopModel item) {
                 helper.setText(R.id.shop_name, item.getShopName());
-                 ImageView image= helper.getView(R.id.shop_cover_image);
+                ImageView image = helper.getView(R.id.shop_cover_image);
                 //加载图片
                 Glide.with(CarShopActivity.this).load(item.getShopImage()).into(image);
-                helper.setText(R.id.shop_address,item.getShopAddress());
-               // helper.setText(R.id.distance, DistanceUtil.gps2m(item.getLatitude(),item.getLongitude(),currentlat,currentlong)+"");
+                helper.setText(R.id.shop_address, item.getShopAddress());
+                if (isLocation) {
+                    helper.setText(R.id.distance, item.getDistance() + "m");
+
+                } else {
+                    helper.setText(R.id.distance, "正在定位...");
+                }
             }
         };
         shopAdapter.addAll(list);
@@ -84,13 +102,29 @@ public class CarShopActivity extends BaseActivityWithTopBar {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CarShopActivity.this, ShopHomePageActivity.class);
                 intent.putExtra("shopID", ((CarShopModel) shopAdapter.getItem(position)).getShopID());
+                intent.putExtra("distance", ((CarShopModel) shopAdapter.getItem(position)).getDistance());
                 startActivity(intent);
+            }
+        });
+        shopListview.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                Log.i("wx",firstVisibleItem+":"+visibleItemCount+":"+totalItemCount+":");
+                      if ((firstVisibleItem+visibleItemCount)==totalItemCount){
+                          if (!lastPage) {
+                              getListdata();
+                          }
+                      }
             }
         });
     }
 
     private void getListdata() {
-        String path=SHSConst.GETSHOPLIST+"?page="+pageIndex+"&size=10";
+        String path = SHSConst.GETSHOPLIST + "?page=" + pageIndex + "&size=3";
         HttpManager.get(path, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
@@ -100,7 +134,7 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                 int status = jsonResponse.getInteger(SHSConst.HTTP_STATUS);
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
-                        JSONObject jsonObject=jsonResponse.getJSONObject(SHSConst.HTTP_RESULT);
+                        JSONObject jsonObject = jsonResponse.getJSONObject(SHSConst.HTTP_RESULT);
                         JSONArray jsonList = jsonObject.getJSONArray(SHSConst.HTTP_LSIT);
                         for (int i = 0; i < jsonList.size(); i++) {
                             CarShopModel model = new CarShopModel();
@@ -146,7 +180,13 @@ public class CarShopActivity extends BaseActivityWithTopBar {
             if (intent.getAction().equals("locationAction")) {
                 currentlat = intent.getDoubleExtra("lat", 0.00);
                 currentlong = intent.getDoubleExtra("long", 0.00);
-             //   initlistview();
+                isLocation = true;
+                for (CarShopModel model : list) {
+                    model.setDistance(DistanceUtil.gps2m(model.getLatitude(), model.getLongitude(), currentlat, currentlong) + "");
+                }
+                shopAdapter.notifyDataSetChanged();
+                //  initlistview();
+
             }
         }
     }
