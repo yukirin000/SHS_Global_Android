@@ -36,12 +36,19 @@ import java.util.List;
  * Created by wenhai on 2016/3/25.
  */
 public class CarShopActivity extends BaseActivityWithTopBar {
+    //是否是下拉刷新
+    private boolean isFresh = true;
+    //是否是下拉加载
+    private boolean isMore = false;
     //是否定位成功
     private boolean isLocation = false;
     // 当前数据的页
     private int pageIndex = 1;
     // 是否是最后一页数据
+    private int listSize;
+    private boolean isLoad = false;
     private boolean lastPage = false;
+    private int lastItem;
     @ViewInject(R.id.car_shop_listview)
     private ListView shopListview;
     @ViewInject(R.id.refresh_layout)
@@ -71,6 +78,11 @@ public class CarShopActivity extends BaseActivityWithTopBar {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                pageIndex = 0;
+                isFresh = true;
+                lastPage = false;
+                list.clear();
+                shopAdapter.clear();
                 getListdata();
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -78,7 +90,6 @@ public class CarShopActivity extends BaseActivityWithTopBar {
     }
 
     private void initlistview() {
-        Log.i("wx", list.size() + "");
         shopAdapter = new SHSGlobalAdapter<CarShopModel>(CarShopActivity.this, R.layout.activity_car_shop_listview_item) {
             @Override
             protected void convert(SHSGlobalBaseAdapterHelper helper, CarShopModel item) {
@@ -88,14 +99,29 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                 Glide.with(CarShopActivity.this).load(item.getShopImage()).into(image);
                 helper.setText(R.id.shop_address, item.getShopAddress());
                 if (isLocation) {
-                    helper.setText(R.id.distance, item.getDistance() + "m");
+                    if (item.getDistance() != null) {
+                        helper.setText(R.id.distance, item.getDistance() + "m");
+                    } else if (currentlong != 0) {
+                        helper.setText(R.id.distance, DistanceUtil.gps2m(item.getLatitude(), item.getLongitude(), currentlat, currentlong) + "");
+                    }else {
+                        helper.setText(R.id.distance, "正在定位...");
+                    }
 
                 } else {
                     helper.setText(R.id.distance, "正在定位...");
                 }
             }
         };
-        shopAdapter.addAll(list);
+        if (isFresh) {
+            shopAdapter.addAll(list);
+            isFresh = false;
+        }
+        if (isMore) {
+            shopAdapter.addAll(list);
+            isMore = false;
+            shopListview.setSelection(lastItem);
+        }
+
         shopListview.setAdapter(shopAdapter);
         shopListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -109,28 +135,40 @@ public class CarShopActivity extends BaseActivityWithTopBar {
         shopListview.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+                if (lastItem == listSize && scrollState == this.SCROLL_STATE_IDLE) {
+                    isMore = true;
+                    if (isLoad) {
+                        Log.i("wx", lastPage + "");
+                        if (!lastPage) {
+                            getListdata();
+                        }
+                    }
+                }
             }
+
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                Log.i("wx",firstVisibleItem+":"+visibleItemCount+":"+totalItemCount+":");
-                      if ((firstVisibleItem+visibleItemCount)==totalItemCount){
-                          if (!lastPage) {
-                              getListdata();
-                          }
-                      }
+                lastItem = totalItemCount;
+                listSize = firstVisibleItem + visibleItemCount;
+
+//                if ((firstVisibleItem + visibleItemCount) == totalItemCount) {
+//                    isMore=true;
+//                    if (!lastPage) {
+//                        getListdata();
+//                    }
+//                }
             }
         });
     }
 
     private void getListdata() {
-        String path = SHSConst.GETSHOPLIST + "?page=" + pageIndex + "&size=3";
+
+        String path = SHSConst.GETSHOPLIST + "?page=" + pageIndex + "&size=7";
         HttpManager.get(path, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
                 // TODO Auto-generated method stub
                 super.onSuccess(jsonResponse, flag);
-                Log.i("wx", jsonResponse.toJSONString() + "");
                 int status = jsonResponse.getInteger(SHSConst.HTTP_STATUS);
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
@@ -142,6 +180,7 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                             model.setContentWithJson(object);
                             list.add(model);
                         }
+
                         initlistview();
                         if (jsonObject.getString("is_last").equals("0")) {
                             lastPage = false;
@@ -149,6 +188,7 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                         } else {
                             lastPage = true;
                         }
+                        isLoad = false;
                         break;
                     case SHSConst.STATUS_FAIL:
                         hideLoading();

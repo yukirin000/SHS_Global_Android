@@ -24,6 +24,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.shs.global.R;
 import com.shs.global.control.HttpManager;
+import com.shs.global.control.UserManager;
 import com.shs.global.helper.JsonRequestCallBack;
 import com.shs.global.helper.LoadDataHandler;
 import com.shs.global.utils.Md5Utils;
@@ -144,45 +145,48 @@ public class RegisterActivity extends BaseActivityWithTopBar {
 
 
     }
-        // 找回密码
-        private void finishPwd() {
-            RequestParams params = new RequestParams();
-            params.addBodyParameter("username", userPhoneNumber);
-            params.addBodyParameter("password", Md5Utils.encode(password));
-            params.addBodyParameter("code", verifyCodeEditTextValue);
-            HttpManager.post(SHSConst.FINDPWDUSER, params,
-                    new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
 
-                        @Override
-                        public void onSuccess(JSONObject jsonResponse, String flag) {
-                            super.onSuccess(jsonResponse, flag);
-                            int status = jsonResponse
-                                    .getInteger(SHSConst.HTTP_STATUS);
-                            if (status == SHSConst.STATUS_SUCCESS) {
-                                hideLoading();
-                                JSONObject result = jsonResponse
-                                        .getJSONObject(SHSConst.HTTP_RESULT);
-                                // 设置用户实例
-                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-
-                            }
-                            if (status == SHSConst.STATUS_FAIL) {
-                                hideLoading();
-                                ToastUtil.show(RegisterActivity.this, "找回密码出错");
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(HttpException arg0, String arg1,
-                                              String flag) {
-                            super.onFailure(arg0, arg1, flag);
+    // 找回密码
+    private void finishPwd() {
+        RequestParams params = new RequestParams();
+        params.addBodyParameter("username", userPhoneNumber);
+        params.addBodyParameter("password", Md5Utils.encode(password));
+        params.addBodyParameter("code", verifyCodeEditTextValue);
+        HttpManager.post(SHSConst.FINDPWDUSER, params,
+                new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
+                    @Override
+                    public void onSuccess(JSONObject jsonResponse, String flag) {
+                        super.onSuccess(jsonResponse, flag);
+                        int status = jsonResponse
+                                .getInteger(SHSConst.HTTP_STATUS);
+                        if (status == SHSConst.STATUS_SUCCESS) {
                             hideLoading();
-                            ToastUtil.show(RegisterActivity.this, getString(R.string.net_error));
+                            JSONObject result = jsonResponse
+                                    .getJSONObject(SHSConst.HTTP_RESULT);
+                            userID = result.getIntValue("id");
+                            token = result.getString("login_token");
+                            // 设置用户实例
+                            saveLoginInfo();
+                            // 设置用户实例
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         }
-                    }, null));
-        }
+                        if (status == SHSConst.STATUS_FAIL) {
+                            hideLoading();
+                            ToastUtil.show(RegisterActivity.this, "找回密码出错");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(HttpException arg0, String arg1,
+                                          String flag) {
+                        super.onFailure(arg0, arg1, flag);
+                        hideLoading();
+                        ToastUtil.show(RegisterActivity.this, getString(R.string.net_error));
+                    }
+                }, null));
+    }
 
     // 开始注册
     private void startRegister() {
@@ -284,7 +288,7 @@ public class RegisterActivity extends BaseActivityWithTopBar {
         } else {
             path = SHSConst.REGISTERSMS;
         }
-        Log.i("wx",path);
+        Log.i("wx", path);
         HttpManager.post(path, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
@@ -333,7 +337,10 @@ public class RegisterActivity extends BaseActivityWithTopBar {
                             hideLoading();
                             JSONObject result = jsonResponse
                                     .getJSONObject(SHSConst.HTTP_RESULT);
+                            userID = result.getIntValue("id");
+                            token = result.getString("login_token");
                             // 设置用户实例
+                            saveLoginInfo();
                             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
@@ -354,6 +361,15 @@ public class RegisterActivity extends BaseActivityWithTopBar {
                     }
 
                 }, null));
+    }
+
+    private void saveLoginInfo() {
+        UserManager userManager = UserManager.getInstance();
+        userManager.setToken(token);
+        userManager.setUserName(userPhoneNumber);
+        userManager.setUserID(userID);
+        userManager.setPassoword( Md5Utils.encode(password));
+        userManager.saveInfo();
     }
 
     /**

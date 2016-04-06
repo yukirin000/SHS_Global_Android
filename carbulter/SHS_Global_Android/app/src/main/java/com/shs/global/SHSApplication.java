@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 
+import com.shs.global.control.UserManager;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +27,7 @@ public class SHSApplication extends Application {
         super.onCreate();
         applicationContext=this;
         application = (SHSApplication) getApplicationContext();
+        UserManager.init(application);
         initJpush();
     }
 

@@ -15,6 +15,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.shs.global.R;
 import com.shs.global.control.HttpManager;
+import com.shs.global.control.UserManager;
 import com.shs.global.helper.JsonRequestCallBack;
 import com.shs.global.helper.LoadDataHandler;
 import com.shs.global.utils.SHSConst;
@@ -116,7 +117,11 @@ public class BindNumActivity extends BaseActivity {
                             intent.putExtra(INTENT_KEY, userphone);
                             startActivity(intent);
                         } else {
-                            if (isFindPwd){
+                            if(UserManager.getInstance().beforeSaveContacts()){
+                                Intent intent = new Intent(BindNumActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            } else  if (isFindPwd){
                                 Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);
                                 intent.putExtra(INTENT_KEY, userphone);
                                 intent.putExtra("isFindPwd", isFindPwd);

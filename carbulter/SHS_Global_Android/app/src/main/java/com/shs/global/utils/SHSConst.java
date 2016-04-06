@@ -7,6 +7,7 @@ public class SHSConst {
     /*
     *     测试接口
     * */
+    public static  final  String TAG="Global";
     public static final int STATUS_SUCCESS = 1;// 接口返回成功
     public static final int STATUS_FAIL = 0;// 接口返回失败;
     public static final String HTTP_MESSAGE = "message"; // 返回值信息

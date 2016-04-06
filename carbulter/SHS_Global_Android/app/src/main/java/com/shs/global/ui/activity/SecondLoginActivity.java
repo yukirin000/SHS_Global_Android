@@ -14,6 +14,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.shs.global.R;
 import com.shs.global.control.HttpManager;
+import com.shs.global.control.UserManager;
 import com.shs.global.helper.JsonRequestCallBack;
 import com.shs.global.helper.LoadDataHandler;
 import com.shs.global.utils.Md5Utils;
@@ -37,6 +38,7 @@ public class SecondLoginActivity extends BaseActivityWithTopBar {
     //找回密码按钮
     @ViewInject(R.id.find_password)
     private TextView findPwdTextView;
+    private String pwd;
 
     @OnClick({R.id.find_password, R.id.login})
     public void viewCickListener(View view) {
@@ -59,7 +61,7 @@ public class SecondLoginActivity extends BaseActivityWithTopBar {
     }
 
     private void jumpMainPage() {
-        String pwd = editPassword.getText().toString().trim();
+        pwd = editPassword.getText().toString().trim();
         RequestParams params = new RequestParams();
         params.addBodyParameter("username", username);
         params.addBodyParameter("password", Md5Utils.encode(pwd));
@@ -75,12 +77,13 @@ public class SecondLoginActivity extends BaseActivityWithTopBar {
                         userID = result.getInteger("user_id");
                         token = result.getString("login_token");
                         // 设置用户实例
+                        saveLoginInfo();
                         Intent intent = new Intent(SecondLoginActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         break;
                     case SHSConst.STATUS_FAIL:
-                        ToastUtil.show(SecondLoginActivity.this, "登陆失败");
+                        ToastUtil.show(SecondLoginActivity.this, "用户或密码错误");
                         break;
                 }
             }
@@ -93,7 +96,14 @@ public class SecondLoginActivity extends BaseActivityWithTopBar {
         }, null));
     }
 
-
+    private void saveLoginInfo() {
+        UserManager userManager = UserManager.getInstance();
+        userManager.setToken(token);
+        userManager.setUserName(username);
+        userManager.setUserID(userID);
+        userManager.setPassoword( Md5Utils.encode(pwd));
+        userManager.saveInfo();
+    }
 
     @Override
     protected void setUpView() {
