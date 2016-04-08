@@ -44,6 +44,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:background="@color/main_white"
             android:id="@+id/detail_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +73,6 @@
                     android:layout_marginLeft="15dp"
                     android:layout_toRightOf="@+id/lable_adress"
                     android:gravity="center_vertical"
-                    android:text="深圳市南山区海的一道中州控股金融中心"
                     android:textSize="14sp" />
 
                 <View
@@ -96,11 +96,11 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:layout_alignParentRight="true"
                     android:id="@+id/shop_telephone_num"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
-                    android:layout_toRightOf="@+id/lable_call"
                     android:gravity="center_vertical"
                     android:text="暂无信息"
                     android:textSize="14sp" />
@@ -153,7 +153,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="原价：125"
                     android:textSize="14sp" />
                 <TextView
                     android:layout_centerHorizontal="true"
@@ -161,7 +160,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="会员价：20"
                     android:textSize="14sp" />
                 <TextView
                   android:layout_alignParentRight="true"
@@ -193,7 +191,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="原价：125"
                     android:textSize="14sp" />
 
                 <TextView
@@ -203,7 +200,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="会员价：20"
                     android:textSize="14sp" />
             </RelativeLayout>
 

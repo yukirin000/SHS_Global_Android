@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:paddingLeft="15dp"
+    android:background="@color/main_white"
     android:layout_height="match_parent"
     android:orientation="vertical">
     <RelativeLayout
@@ -13,18 +14,15 @@
         <com.shs.global.ui.view.RoundImageView
             android:id="@+id/service_head_image"
             app:rect_adius="28dp"
-            android:src="@drawable/kingong"
             android:layout_width="40dp"
             android:layout_height="40dp" />
         <TextView
-
             android:id="@+id/service_name"
             android:textColor="#323232"
             android:layout_marginLeft="20dp"
             android:textSize="15sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/service_head_image"
-            android:text="豪车精洗"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView

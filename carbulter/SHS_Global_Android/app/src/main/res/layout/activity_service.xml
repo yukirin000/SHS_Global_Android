@@ -1,57 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
-  <include layout="@layout/layout_title_bar"></include>
+    android:layout_height="match_parent"
+   >
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/layout_title_bar"></include>
     <!--<RelativeLayout-->
     <!--android:layout_width=""-->
     <!--android:layout_height=""></RelativeLayout>-->
     <LinearLayout
+        android:layout_below="@id/title_bar"
+        android:background="@color/main_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
-        android:paddingLeft="10dp"
-        android:gravity="center_vertical|left"
-        android:text="1、精洗车辆"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-        <TextView
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical|left"
-            android:text="2、内饰清洁"
+        android:paddingLeft="15dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
-        <TextView
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical|left"
-            android:text="3、漆面抛光，打蜡"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/list" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="豪车精洗  "
+                android:textColor="#272636"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
-        <TextView
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical|left"
-            android:text="4、漆面镀膜，镀晶"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/list" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="内饰清洁 "
+                android:textColor="#272636"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
-        <TextView
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical|left"
-            android:text="5、汽车隔热膜"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/list" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="漆面抛光，打蜡 "
+                android:textColor="#272636"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
-        <TextView
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical|left"
-            android:text="6、改色贴膜"
+            android:layout_height="wrap_content"
+          >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/list" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="漆面镀膜，镀晶 "
+                android:textColor="#272636"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
-        <TextView
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical|left"
-            android:text="7、汽车表面透明膜"
+            android:layout_height="wrap_content"
+           >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/list" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="汽车隔热膜 "
+                android:textColor="#272636"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="wrap_content"
+           >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/list" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="改色贴膜"
+                android:textColor="#272636"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/last"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/list" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="汽车表面透明膜 "
+                android:textColor="#272636"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/call_telephone"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:background="@drawable/round_call_button">
+        <ImageView
+            android:layout_marginLeft="30dp"
+            android:id="@+id/call_image"
+            android:src="@drawable/telephone"
+            android:layout_width="23dp"
+            android:layout_height="25dp" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="呼叫管家"
+            android:textColor="@color/main_gold"
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>
