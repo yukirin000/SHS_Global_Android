@@ -14,9 +14,9 @@ import com.shs.global.R;
  */
 public class ButlerFragment extends BaseFragment {
     @ViewInject(R.id.call_butler)
-    RelativeLayout callButler;
+    private RelativeLayout callButler;
     @ViewInject(R.id.call_number)
-    TextView callnumber;
+    private TextView callnumber;
 
     @Override
     public int setLayoutId() {

@@ -34,11 +34,11 @@ public class BindNumActivity extends BaseActivity {
     private EditText editText;
     @ViewInject(R.id.next)
     private Button nextButton;
-    @ViewInject(R.id.find_pwd)
-    private TextView findPwdText;
+//    @ViewInject(R.id.find_pwd)
+//    private TextView findPwdText;
     @ViewInject(R.id.wechat_login)
     private TextView wxLoginText;
-    @OnClick(value = {R.id.next,R.id.wechat_login,R.id.find_pwd})
+    @OnClick(value = {R.id.next,R.id.wechat_login})
     public void viewCickListener(View view) {
         switch (view.getId()) {
             case R.id.next:
@@ -47,9 +47,9 @@ public class BindNumActivity extends BaseActivity {
             case R.id.wechat_login:
                 wechatLoginClick();
                 break;
-            case R.id.find_pwd:
-                findPwd();
-                break;
+//            case R.id.find_pwd:
+//                findPwd();
+//                break;
             default:
                 break;
         }
@@ -57,7 +57,7 @@ public class BindNumActivity extends BaseActivity {
 
     private void findPwd() {
         isFindPwd=true;
-        findPwdText.setVisibility(View.GONE);
+//        findPwdText.setVisibility(View.GONE);
         wxLoginText.setVisibility(View.GONE);
 //        String userphone = editText.getText().toString().trim();
 //        Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);

@@ -55,8 +55,8 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
     private TextView addressText;
     @ViewInject(R.id.shop_telephone_num)
     private TextView telephoneText;
-    @ViewInject(R.id.services)
-    private TextView servicesText;
+//    @ViewInject(R.id.services)
+//    private TextView servicesText;
     @ViewInject(R.id.original_price)
     private TextView originalpriceText;
     @ViewInject(R.id.discount_price)
@@ -100,9 +100,13 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
         shopNameText.setText(model.getShopName());
         addressText.setText(model.getAddress());
         telephoneText.setText(model.getShopPhone());
-        servicesText.setText(servicesModel.getServieceName());
-        discountpriceText.setText(servicesModel.getDiscountPrice());
-        originalpriceText.setText(servicesModel.getOriginalPrice());
+
+        if (servicesModel!=null) {
+//            servicesText.setText(servicesModel.getServieceName());
+            discountpriceText.setText(servicesModel.getDiscountPrice());
+            originalpriceText.setText(servicesModel.getOriginalPrice());
+        }
+
         if (!isLocation) {
             distanceText.setText(distance);
         }
@@ -125,9 +129,11 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
                         model = new ShopDetailModel();
                         model.setContentWithJson(shopDetail);
                         //服务项目
-                        JSONObject services = result.getJSONObject("good");
-                        servicesModel = new ShopServicesModel();
-                        servicesModel.setContentWithJson(services);
+                        if(result.containsKey("good")) {
+                            JSONObject services = result.getJSONObject("good");
+                            servicesModel = new ShopServicesModel();
+                            servicesModel.setContentWithJson(services);
+                        }
                         init();
                         break;
                     case SHSConst.STATUS_FAIL:

@@ -47,7 +47,7 @@
                 android:layout_height="45dp"
                 android:background="@drawable/round_lable_border"
                 android:text="登陆"
-                android:textColor="@color/main_black"
+                android:textColor="@color/main_gold"
                 android:textSize="17sp" />
 
             <TextView

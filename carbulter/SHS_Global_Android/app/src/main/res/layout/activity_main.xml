@@ -6,43 +6,51 @@
     tools:context=".ui.activity.MainActivity">
 
    <LinearLayout
-       android:background="#333333"
+       android:background="@drawable/button_bar"
        android:id="@+id/bottom_bar"
        android:layout_alignParentBottom="true"
        android:layout_width="match_parent"
        android:layout_height="50dp">
        <TextView
+           android:paddingTop="8dp"
+           android:drawableTop="@drawable/libertyn"
            android:clickable="true"
            android:id="@+id/privilege"
            android:gravity="center"
-           android:textSize="16sp"
+           android:textSize="12sp"
            android:text="@string/privilege"
            android:layout_weight="1"
            android:layout_width="0dp"
            android:layout_height="match_parent" />
        <TextView
+           android:paddingTop="8dp"
+           android:drawableTop="@drawable/recordn"
            android:clickable="true"
            android:id="@+id/history"
            android:gravity="center"
-           android:textSize="16sp"
+           android:textSize="12sp"
            android:text="@string/history"
            android:layout_weight="1"
            android:layout_width="0dp"
            android:layout_height="match_parent" />
        <TextView
+           android:paddingTop="8dp"
+           android:drawableTop="@drawable/vipn"
            android:clickable="true"
            android:id="@+id/menbers"
            android:gravity="center"
-           android:textSize="16sp"
+           android:textSize="12sp"
            android:text="@string/menbers"
            android:layout_weight="1"
            android:layout_width="0dp"
            android:layout_height="match_parent" />
        <TextView
+           android:paddingTop="8dp"
+           android:drawableTop="@drawable/libertyn"
            android:clickable="true"
            android:id="@+id/butler"
            android:gravity="center"
-           android:textSize="16sp"
+           android:textSize="12sp"
            android:text="@string/butler"
            android:layout_weight="1"
            android:layout_width="0dp"

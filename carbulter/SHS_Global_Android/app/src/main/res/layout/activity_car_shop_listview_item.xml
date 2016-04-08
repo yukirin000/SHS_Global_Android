@@ -1,45 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:paddingTop="@dimen/activity_vertical_padin"
-    android:paddingRight="@dimen/activity_horizontal_pading"
-    android:paddingLeft="@dimen/activity_horizontal_pading"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_pading"
+    android:paddingRight="@dimen/activity_horizontal_pading"
+    android:paddingTop="@dimen/activity_vertical_padin">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-     <ImageView
-         android:id="@+id/shop_cover_image"
-         android:src="@drawable/kingong"
-         android:layout_width="79dp"
-         android:layout_height="79dp" />
+        <com.shs.global.ui.view.RoundImageView
+            android:scaleType="center"
+            android:id="@+id/shop_cover_image"
+            android:layout_width="100dp"
+            android:layout_height="79dp"
+            android:src="@drawable/kingong"
+            app:rect_adius="2dp" />
+
         <RelativeLayout
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/shop_cover_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/shop_cover_image">
+
             <TextView
-                android:layout_marginTop="5dp"
                 android:id="@+id/shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
                 android:text="车商店名"
+                android:textColor="@color/main_black"
+                android:textSize="15sp" />
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_marginTop="8dp"
-                android:id="@+id/shop_address"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/shop_name"
-                android:text="地址"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/distance"
-                android:layout_below="@id/shop_address"
-                android:layout_marginTop="8dp"
-                android:text="距离"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_marginTop="14dp">
+                <TextView
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/shallow_font"
+                    android:id="@+id/shop_address"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/address"
+                    android:text="地址"
+                    android:textSize="12sp" />
+                <TextView
+                    android:textColor="@color/shallow_font"
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="距离"
+                    android:textSize="12sp" />
+            </RelativeLayout>
         </RelativeLayout>
+
+        <View
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/shop_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e3e3e3" />
     </RelativeLayout>
 </LinearLayout>

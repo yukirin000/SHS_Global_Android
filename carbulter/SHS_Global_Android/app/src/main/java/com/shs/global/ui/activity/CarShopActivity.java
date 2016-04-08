@@ -78,13 +78,16 @@ public class CarShopActivity extends BaseActivityWithTopBar {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                pageIndex = 0;
+                pageIndex = 1;
                 isFresh = true;
                 lastPage = false;
+                Log.i("wea", isLoad + "");
                 list.clear();
-                shopAdapter.clear();
+//                if (!isLoad) {
+//                    isLoad = true;
                 getListdata();
                 swipeRefreshLayout.setRefreshing(false);
+//                }
             }
         });
     }
@@ -103,17 +106,16 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                         helper.setText(R.id.distance, item.getDistance() + "m");
                     } else if (currentlong != 0) {
                         helper.setText(R.id.distance, DistanceUtil.gps2m(item.getLatitude(), item.getLongitude(), currentlat, currentlong) + "");
-                    }else {
+                    } else {
                         helper.setText(R.id.distance, "正在定位...");
                     }
-
                 } else {
                     helper.setText(R.id.distance, "正在定位...");
                 }
             }
         };
         if (isFresh) {
-            shopAdapter.addAll(list);
+            shopAdapter.replaceAll(list);
             isFresh = false;
         }
         if (isMore) {
@@ -121,7 +123,6 @@ public class CarShopActivity extends BaseActivityWithTopBar {
             isMore = false;
             shopListview.setSelection(lastItem);
         }
-
         shopListview.setAdapter(shopAdapter);
         shopListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -137,7 +138,8 @@ public class CarShopActivity extends BaseActivityWithTopBar {
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (lastItem == listSize && scrollState == this.SCROLL_STATE_IDLE) {
                     isMore = true;
-                    if (isLoad) {
+                    if (!isLoad) {
+                        isLoad = true;
                         Log.i("wx", lastPage + "");
                         if (!lastPage) {
                             getListdata();
@@ -150,7 +152,6 @@ public class CarShopActivity extends BaseActivityWithTopBar {
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 lastItem = totalItemCount;
                 listSize = firstVisibleItem + visibleItemCount;
-
 //                if ((firstVisibleItem + visibleItemCount) == totalItemCount) {
 //                    isMore=true;
 //                    if (!lastPage) {
@@ -162,8 +163,8 @@ public class CarShopActivity extends BaseActivityWithTopBar {
     }
 
     private void getListdata() {
-
-        String path = SHSConst.GETSHOPLIST + "?page=" + pageIndex + "&size=7";
+        String path = SHSConst.GETSHOPLIST + "?page=" + pageIndex + "&size=5";
+        Log.i("wea", path);
         HttpManager.get(path, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
@@ -180,14 +181,13 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                             model.setContentWithJson(object);
                             list.add(model);
                         }
-
-                        initlistview();
                         if (jsonObject.getString("is_last").equals("0")) {
                             lastPage = false;
                             pageIndex++;
                         } else {
                             lastPage = true;
                         }
+                        initlistview();
                         isLoad = false;
                         break;
                     case SHSConst.STATUS_FAIL:
@@ -214,7 +214,6 @@ public class CarShopActivity extends BaseActivityWithTopBar {
     }
 
     public class AddressBroadcastReceiver extends BroadcastReceiver {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals("locationAction")) {
@@ -224,9 +223,9 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                 for (CarShopModel model : list) {
                     model.setDistance(DistanceUtil.gps2m(model.getLatitude(), model.getLongitude(), currentlat, currentlong) + "");
                 }
-                shopAdapter.notifyDataSetChanged();
+                if (shopAdapter != null)
+                    shopAdapter.notifyDataSetChanged();
                 //  initlistview();
-
             }
         }
     }

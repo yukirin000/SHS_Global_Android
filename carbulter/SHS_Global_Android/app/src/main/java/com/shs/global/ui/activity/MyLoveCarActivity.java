@@ -1,14 +1,9 @@
 package com.shs.global.ui.activity;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.shs.global.R;
@@ -18,7 +13,7 @@ import com.shs.global.R;
  */
 public class MyLoveCarActivity extends BaseActivityWithTopBar {
     @ViewInject(R.id.call_telephone)
-    private TextView button;
+    private LinearLayout button;
 
     @Override
     public int setLayoutId() {

@@ -8,7 +8,7 @@
     <!-- 深白色 -->
     <color name="main_white">#ffffff</color>
     <!--根布局背景色-->
-    <color name="backgroup_gary">#fafafa</color>
+    <color name="backgroup_gary">#f3f3f3</color>
     <!--分割线颜色-->
     <color name="main_light_gary">#e3e3e3</color>
     <!--提示语颜色-->
@@ -17,6 +17,14 @@
     <color name="main_black">#000000</color>
     <!--按钮颜色-->
     <color name="main_bnt_gary">#b2b2b2</color>
-
-
+    <!-- 主金色-->
+    <color name="main_gold">#d6a41d</color>
+    <!-- 主字体颜色-->
+    <color name="main_font">#646464</color>
+    <!-- 浅色字体-->
+    <color name="shallow_font">#949494</color>
+    <!-- 分割线颜色-->
+    <color name="cut_off_colcors">#e3e3e3</color>
+    <!--字体黑-->
+    <color name="back_font">#323232</color>
 </resources>

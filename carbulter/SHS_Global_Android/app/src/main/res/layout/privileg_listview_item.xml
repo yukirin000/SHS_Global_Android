@@ -1,31 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
-    android:paddingRight="10dp"
-    android:paddingLeft="10dp"
+    android:paddingLeft="15dp"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <RelativeLayout
+        android:paddingTop="12dp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="65dp">
         <com.shs.global.ui.view.RoundImageView
             android:id="@+id/service_head_image"
             app:rect_adius="28dp"
             android:src="@drawable/kingong"
-            android:layout_width="56dp"
-            android:layout_height="56dp" />
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
         <TextView
+
             android:id="@+id/service_name"
-            android:textColor="@color/main_black"
-            android:layout_margin="15dp"
+            android:textColor="#323232"
+            android:layout_marginLeft="20dp"
+            android:textSize="15sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/service_head_image"
             android:text="豪车精洗"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="12sp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/specification"
+            android:textColor="#949494"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/service_name"
+            android:text="（特权仅限于产品内部）"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <View
+            android:background="#e3e3e3"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
     </RelativeLayout>
 </LinearLayout>
