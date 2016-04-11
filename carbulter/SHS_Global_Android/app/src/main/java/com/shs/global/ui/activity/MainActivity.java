@@ -86,6 +86,10 @@ public class MainActivity extends BaseActivity {
         transaction.hide(menbersFragment);
         transaction.show(privilegeFragment);
         transaction.commit();
+        viewList.get(0).setTextColor(getResources().getColor(R.color.main_gold));
+        Drawable drawable = getResources().getDrawable(drawablelist[1][0]);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        viewList.get(0).setCompoundDrawables(null, drawable, null, null);
     }
 
     @OnClick(value = {R.id.butler, R.id.menbers, R.id.history, R.id.privilege})

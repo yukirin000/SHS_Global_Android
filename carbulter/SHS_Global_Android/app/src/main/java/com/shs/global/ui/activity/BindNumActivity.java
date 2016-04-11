@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class BindNumActivity extends BaseActivity {
 //    @ViewInject(R.id.find_pwd)
 //    private TextView findPwdText;
     @ViewInject(R.id.wechat_login)
-    private TextView wxLoginText;
+    private ImageView wxLoginImage;
     @OnClick(value = {R.id.next,R.id.wechat_login})
     public void viewCickListener(View view) {
         switch (view.getId()) {
