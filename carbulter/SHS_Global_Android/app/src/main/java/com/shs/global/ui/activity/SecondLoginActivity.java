@@ -25,6 +25,8 @@ import com.shs.global.utils.ToastUtil;
  * Created by wenhai on 2016/2/24.
  */
 public class SecondLoginActivity extends BaseActivityWithTopBar {
+    public final static String INTENT_KEY = "userName";
+    private boolean isFindPwd=false;
     //用户名
     private String username;
     private String token;
@@ -47,11 +49,19 @@ public class SecondLoginActivity extends BaseActivityWithTopBar {
                 jumpMainPage();
                 break;
             case R.id.find_password:
-
+                jumpFindPasswrod();
                 break;
             default:
                 break;
         }
+    }
+
+    private void jumpFindPasswrod() {
+        isFindPwd=true;
+        Intent intent = new Intent(SecondLoginActivity.this, RegisterActivity.class);
+        intent.putExtra(INTENT_KEY, username);
+        intent.putExtra("isFindPwd", isFindPwd);
+        startActivity(intent);
     }
 
 

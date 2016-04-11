@@ -103,9 +103,9 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                 helper.setText(R.id.shop_address, item.getShopAddress());
                 if (isLocation) {
                     if (item.getDistance() != null) {
-                        helper.setText(R.id.distance, item.getDistance() + "m");
+                        helper.setText(R.id.distance, item.getDistance() + "km");
                     } else if (currentlong != 0) {
-                        helper.setText(R.id.distance, DistanceUtil.gps2m(item.getLatitude(), item.getLongitude(), currentlat, currentlong) + "");
+                        helper.setText(R.id.distance, DistanceUtil.gps2m(item.getLatitude(), item.getLongitude(), currentlat, currentlong) + "km");
                     } else {
                         helper.setText(R.id.distance, "正在定位...");
                     }

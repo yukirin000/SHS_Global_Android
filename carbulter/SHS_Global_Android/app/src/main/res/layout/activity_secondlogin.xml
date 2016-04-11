@@ -58,9 +58,9 @@
                 android:layout_below="@id/login"
                 android:layout_marginTop="15dp"
                 android:text="忘记密码？"
-                android:textColor="@color/main_black"
+                android:textColor="@color/main_font"
                 android:textSize="13sp"
-                android:visibility="gone" />
+                />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

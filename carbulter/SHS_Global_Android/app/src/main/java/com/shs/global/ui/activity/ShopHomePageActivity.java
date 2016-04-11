@@ -85,14 +85,13 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
 
     @Override
     protected void setUpView() {
-        setBarText("店内");
+        setBarText(getString(R.string.shop_home));
         distance=getIntent().getStringExtra("distance");
         id = getIntent().getStringExtra("shopID");
         intentFilter = new IntentFilter("locationAction");
         broadcastReceiver = new AddressBroadcastReceiver();
         registerReceiver(broadcastReceiver, intentFilter);
         getData();
-
     }
 
     private void init() {
@@ -106,9 +105,12 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
             discountpriceText.setText(servicesModel.getDiscountPrice());
             originalpriceText.setText(servicesModel.getOriginalPrice());
         }
-
         if (!isLocation) {
-            distanceText.setText(distance);
+            if (distance!=null) {
+                distanceText.setText(distance + "km");
+            }else {
+                distanceText.setText("正在定位...");
+            }
         }
     }
 
@@ -166,7 +168,7 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
                 //  initlistview();
                 isLocation=true;
                 if (isLocation) {
-                    distanceText.setText(DistanceUtil.gps2m(model.getLatitude(), model.getLongitude(), currentlat, currentlong) + "m");
+                    distanceText.setText(DistanceUtil.gps2m(model.getLatitude(), model.getLongitude(), currentlat, currentlong) + "km");
                 }
             }
         }

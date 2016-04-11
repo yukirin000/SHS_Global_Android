@@ -127,10 +127,10 @@ public class UserManager {
         setPassoword(share.getString("password", ""));
     }
 
-    public boolean beforeSaveContacts() {
+    public boolean beforeLogin() {
         SharedPreferences share = context.getSharedPreferences(SHSConst.TAG, context.MODE_PRIVATE);
         if ("".equals(share.getString("token", "")))
-            return true;
-        return false;
+            return false;
+        return true;
     }
 }

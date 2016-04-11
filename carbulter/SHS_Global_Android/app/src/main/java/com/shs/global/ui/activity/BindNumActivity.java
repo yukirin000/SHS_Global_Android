@@ -58,7 +58,7 @@ public class BindNumActivity extends BaseActivity {
     private void findPwd() {
         isFindPwd=true;
 //        findPwdText.setVisibility(View.GONE);
-        wxLoginText.setVisibility(View.GONE);
+ //       wxLoginText.setVisibility(View.GONE);
 //        String userphone = editText.getText().toString().trim();
 //        Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);
 //        intent.putExtra(INTENT_KEY, userphone);
@@ -117,7 +117,7 @@ public class BindNumActivity extends BaseActivity {
                             intent.putExtra(INTENT_KEY, userphone);
                             startActivity(intent);
                         } else {
-                            if(UserManager.getInstance().beforeSaveContacts()){
+                            if(UserManager.getInstance().beforeLogin()){
                                 Intent intent = new Intent(BindNumActivity.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -144,5 +145,16 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
         Intent intent = new Intent(this, LocationService.class);
         stopService(intent);
+    }
+    /**
+     * 重写返回操作
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(true);
+            return true;
+        } else
+            return super.onKeyDown(keyCode, event);
     }
 }

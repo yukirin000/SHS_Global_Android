@@ -99,9 +99,7 @@
                 android:textColor="#272636"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="“豪车管家”——专为中高端车辆车主提供全方位车管家服务的商务管家平台、
-                从洗车、保养、维修、线上诊断到保险业务等，我们都将有专人为您提供服务。
-                现已开通4008693911官方服务电话，期待您的来电。" />
+                android:text="“豪车管家”——专为中高端车辆车主提供全方位车管家服务的商务管家平台、从洗车、保养、维修、线上诊断到保险业务等，我们都将有专人为您提供服务。现已开通4008693911官方服务电话，期待您的来电。" />
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

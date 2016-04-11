@@ -229,7 +229,7 @@ public class RegisterActivity extends BaseActivityWithTopBar {
             public void afterTextChanged(Editable s) {
                 if (verifycodeEditText.getText().toString().length() > 0 && passwdeEditText.getText().toString().length() > 0) {
                     nextButton.setClickable(true);
-                    nextButton.setTextColor(Color.WHITE);
+                    nextButton.setTextColor(getResources().getColor(R.color.main_gold));
                 } else {
                     nextButton.setClickable(false);
                     nextButton.setTextColor(Color.GRAY);

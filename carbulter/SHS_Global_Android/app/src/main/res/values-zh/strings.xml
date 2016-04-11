@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">车管家</string>
+    <string name="app_name">品位环球</string>
     <string name="confirm">确定</string>
     <string name="please_input_phone_num">请填写手机号</string>
     <string name="bind_title">绑定手机号</string>
@@ -17,4 +17,6 @@
     <string name="login_password_length_six">密码长度至少六位</string>
     <string name="please_input_phonenum">请输入手机号码</string>
     <string name="net_error">网络错误</string>
+    <string name="shop_home">店内</string>
+    <string name="original_price">原价</string>
 </resources>

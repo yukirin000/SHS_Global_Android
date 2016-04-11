@@ -6,238 +6,257 @@
 
     <include layout="@layout/layout_title_bar" />
 
-    <ImageView
-        android:id="@+id/shop_cover"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/logo" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="-50dp"
-        android:background="#59323222"
-        android:paddingLeft="@dimen/activity_horizontal_pading"
-        android:paddingRight="@dimen/activity_horizontal_pading">
-
-        <TextView
-            android:id="@+id/shop_name"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="福田星河汽车店"
-            android:textColor="@color/main_white" />
-
-        <TextView
-            android:id="@+id/distance"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:text="409m"
-            android:textColor="@color/main_white" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
-            android:background="@color/main_white"
-            android:id="@+id/detail_root"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/activity_horizontal_pading"
-            android:paddingRight="@dimen/activity_horizontal_pading">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <TextView
-                    android:textColor="@color/back_font"
-                    android:id="@+id/lable_adress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="地址"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:textColor="@color/main_font"
-                    android:id="@+id/shop_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toRightOf="@+id/lable_adress"
-                    android:gravity="center_vertical"
-                    android:textSize="14sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="#e3e3e3" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <TextView
-                    android:textColor="@color/back_font"
-                    android:id="@+id/lable_call"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="电话"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/shop_telephone_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:gravity="center_vertical"
-                    android:text="暂无信息"
-                    android:textSize="14sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="#e3e3e3" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-                <TextView
-                    android:textColor="@color/back_font"
-                    android:gravity="center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="服务项目"
-                    android:textSize="15sp" />
-                <TextView
-                    android:textColor="@color/main_font"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="洗车"
-                    android:textSize="14sp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="#e3e3e3" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-              >
-
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:text="精洗"-->
-                    <!--android:textSize="16sp" />-->
-                <TextView
-                    android:textColor="@color/back_font"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textSize="14sp" />
-                <TextView
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@color/back_font"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textSize="14sp" />
-                <TextView
-                  android:layout_alignParentRight="true"
-                    android:textColor="@color/main_gold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="即将开放"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/listroot"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <!--<TextView-->
-                    <!--android:id="@+id/services"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:text="精洗"-->
-                    <!--android:textSize="16sp" />-->
-
-                <TextView
-                    android:textColor="@color/back_font"
-                    android:id="@+id/original_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@color/back_font"
-                    android:id="@+id/discount_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/detail_root"
-            android:layout_marginBottom="30dp"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/call_butler"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_width="200dp"
-            android:layout_height="45dp"
-            android:background="@drawable/round_call_button">
             <ImageView
-                android:layout_marginLeft="30dp"
-                android:id="@+id/call_image"
-                android:src="@drawable/telephone"
-                android:layout_width="23dp"
-                android:layout_height="25dp" />
-            <TextView
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="呼叫管家"
-                android:textColor="@color/main_gold"
-                android:textSize="14sp" />
+                android:id="@+id/shop_cover"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="-50dp"
+                android:background="#59323222"
+                android:paddingLeft="@dimen/activity_horizontal_pading"
+                android:paddingRight="@dimen/activity_horizontal_pading">
+
+                <TextView
+                    android:id="@+id/shop_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="福田星河汽车店"
+                    android:textColor="@color/main_white" />
+
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/main_white" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/detail_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/activity_horizontal_pading"
+                    android:paddingRight="@dimen/activity_horizontal_pading">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <TextView
+                            android:id="@+id/lable_adress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="地址"
+                            android:textColor="@color/back_font"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/shop_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/lable_adress"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/main_font"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#e3e3e3" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <TextView
+                            android:id="@+id/lable_call"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="电话"
+                            android:textColor="@color/back_font"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/shop_telephone_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="15dp"
+                            android:gravity="center_vertical"
+                            android:text="暂无信息"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#e3e3e3" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="服务项目"
+                            android:textColor="@color/back_font"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical"
+                            android:text="洗车"
+                            android:textColor="@color/main_font"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#e3e3e3" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:text="精洗"-->
+                        <!--android:textSize="16sp" />-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="@string/original_price"
+                            android:textColor="@color/back_font"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_vertical"
+                            android:text="会员价"
+                            android:textColor="@color/back_font"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical"
+                            android:text="即将开放"
+                            android:textColor="@color/main_gold"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/listroot"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <!--<TextView-->
+                        <!--android:id="@+id/services"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:text="精洗"-->
+                        <!--android:textSize="16sp" />-->
+
+                        <TextView
+                            android:id="@+id/original_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/back_font"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/discount_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/back_font"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/call_butler"
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/detail_root"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/round_call_button"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/call_image"
+                        android:layout_width="23dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/telephone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="呼叫管家"
+                        android:textColor="@color/main_gold"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <!--<Button-->
+                <!--android:id="@+id/call_butler"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!-- -->
+                <!--android:background="@drawable/round_lable_border"-->
+                <!--android:gravity="center"-->
+                <!--android:text="一件呼叫管家" />-->
+            </RelativeLayout>
         </LinearLayout>
-        <!--<Button-->
-            <!--android:id="@+id/call_butler"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="40dp"-->
-           <!-- -->
-            <!--android:background="@drawable/round_lable_border"-->
-            <!--android:gravity="center"-->
-            <!--android:text="一件呼叫管家" />-->
-    </RelativeLayout>
+    </ScrollView>
 </LinearLayout>
