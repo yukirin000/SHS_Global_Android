@@ -59,9 +59,8 @@ public class CarShopActivity extends BaseActivityWithTopBar {
     //当前定位经度
     private double currentlong;
     private AddressBroadcastReceiver broadcastReceiver;
-    private List<CarShopModel> list;
     private SHSGlobalAdapter shopAdapter;
-
+    private  List<CarShopModel> list = null;
     @Override
     public int setLayoutId() {
         return R.layout.activity_car_shop;
@@ -74,15 +73,17 @@ public class CarShopActivity extends BaseActivityWithTopBar {
         registerReceiver(broadcastReceiver, intentFilter);
         setBarText("车店");
         list = new ArrayList<CarShopModel>();
+        initlistview();
         getListdata();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 pageIndex = 1;
                 isFresh = true;
+                isMore=false;
                 lastPage = false;
                 Log.i("wea", isLoad + "");
-                list.clear();
+
 //                if (!isLoad) {
 //                    isLoad = true;
                 getListdata();
@@ -114,16 +115,7 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                 }
             }
         };
-        if (isFresh) {
-            shopAdapter.replaceAll(list);
-            isFresh = false;
-        }
-        if (isMore) {
-            shopAdapter.addAll(list);
-            isMore = false;
-            shopListview.setSelection(lastItem);
-        }
-        shopListview.setAdapter(shopAdapter);
+
         shopListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -173,8 +165,10 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                 int status = jsonResponse.getInteger(SHSConst.HTTP_STATUS);
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
+
                         JSONObject jsonObject = jsonResponse.getJSONObject(SHSConst.HTTP_RESULT);
                         JSONArray jsonList = jsonObject.getJSONArray(SHSConst.HTTP_LSIT);
+                        list.clear();
                         for (int i = 0; i < jsonList.size(); i++) {
                             CarShopModel model = new CarShopModel();
                             JSONObject object = jsonList.getJSONObject(i);
@@ -187,7 +181,16 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                         } else {
                             lastPage = true;
                         }
-                        initlistview();
+                        if (isFresh) {
+                            shopAdapter.replaceAll(list);
+                            isFresh = false;
+                        }
+                        if (isMore) {
+                            shopAdapter.addAll(list);
+                            isMore = false;
+                            shopListview.setSelection(lastItem);
+                        }
+                        shopListview.setAdapter(shopAdapter);
                         isLoad = false;
                         break;
                     case SHSConst.STATUS_FAIL:
