@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
-
-
     //fragment的容器
     @ViewInject(R.id.contain_layout)
     private FrameLayout containLayout;

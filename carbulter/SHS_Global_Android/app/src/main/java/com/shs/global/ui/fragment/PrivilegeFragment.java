@@ -71,10 +71,10 @@ public class PrivilegeFragment extends BaseFragment {
             @Override
             protected void convert(SHSGlobalBaseAdapterHelper helper, PrivilegeModel item) {
                 helper.setText(R.id.service_name, item.getPrivilegeName());
-                if (helper.getPosition()<1){
-                    helper.setVisible(R.id.specification,true);
-                }else {
-                    helper.setVisible(R.id.specification,false);
+                if (helper.getPosition() < 1) {
+                    helper.setVisible(R.id.specification, true);
+                } else {
+                    helper.setVisible(R.id.specification, false);
                 }
                 ImageView image = helper.getView(R.id.service_head_image);
                 try {
@@ -102,11 +102,12 @@ public class PrivilegeFragment extends BaseFragment {
             }
         });
     }
-    private  int getDrawableId(String name) throws NoSuchFieldException {
-        int id=0;
-        Class cls=R.drawable.class;
+
+    private int getDrawableId(String name) throws NoSuchFieldException {
+        int id = 0;
+        Class cls = R.drawable.class;
         try {
-            id=cls.getField(name).getInt(name);
+            id = cls.getField(name).getInt(name);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

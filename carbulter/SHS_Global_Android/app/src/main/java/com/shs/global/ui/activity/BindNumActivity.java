@@ -30,16 +30,17 @@ import java.util.regex.Pattern;
  */
 public class BindNumActivity extends BaseActivity {
     public final static String INTENT_KEY = "userName";
-    private boolean isFindPwd=false;
+    private boolean isFindPwd = false;
     @ViewInject(R.id.edit_phone)
     private EditText editText;
     @ViewInject(R.id.next)
     private Button nextButton;
-//    @ViewInject(R.id.find_pwd)
+    //    @ViewInject(R.id.find_pwd)
 //    private TextView findPwdText;
     @ViewInject(R.id.wechat_login)
     private ImageView wxLoginImage;
-    @OnClick(value = {R.id.next,R.id.wechat_login})
+
+    @OnClick(value = {R.id.next, R.id.wechat_login})
     public void viewCickListener(View view) {
         switch (view.getId()) {
             case R.id.next:
@@ -57,9 +58,9 @@ public class BindNumActivity extends BaseActivity {
     }
 
     private void findPwd() {
-        isFindPwd=true;
+        isFindPwd = true;
 //        findPwdText.setVisibility(View.GONE);
- //       wxLoginText.setVisibility(View.GONE);
+        //       wxLoginText.setVisibility(View.GONE);
 //        String userphone = editText.getText().toString().trim();
 //        Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);
 //        intent.putExtra(INTENT_KEY, userphone);
@@ -73,11 +74,11 @@ public class BindNumActivity extends BaseActivity {
 
     private void loginClick() {
         String userphone = editText.getText().toString().trim();
-        Pattern p=Pattern.compile(SHSConst.PHONENUMBER_PATTERN);
-        Matcher m=p.matcher(userphone);
+        Pattern p = Pattern.compile(SHSConst.PHONENUMBER_PATTERN);
+        Matcher m = p.matcher(userphone);
         if (m.matches()) {
             judgeRegister(userphone);
-        }else {
+        } else {
             ToastUtil.show(this, "请输入合法的手机号码");
         }
     }
@@ -97,6 +98,7 @@ public class BindNumActivity extends BaseActivity {
     protected void setUpView() {
 
     }
+
     private void judgeRegister(final String userphone) {
         RequestParams params = new RequestParams();
         params.addBodyParameter("username", userphone);
@@ -112,27 +114,24 @@ public class BindNumActivity extends BaseActivity {
                     case SHSConst.STATUS_SUCCESS:
                         JSONObject result = jsonResponse.getJSONObject(SHSConst.HTTP_RESULT);
                         String direction = result.getString("direction");
-                        Log.i("wx",direction);
+                        Log.i("wx", direction);
                         if ("2".equals(direction)) {
                             Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);
                             intent.putExtra(INTENT_KEY, userphone);
                             startActivity(intent);
                         } else {
-                            if(UserManager.getInstance().beforeLogin()){
-                                Intent intent = new Intent(BindNumActivity.this, MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                            } else  if (isFindPwd){
-                                Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);
-                                intent.putExtra(INTENT_KEY, userphone);
-                                intent.putExtra("isFindPwd", isFindPwd);
-                                startActivity(intent);
-                            }else {
+
                                 Intent intent = new Intent(BindNumActivity.this, SecondLoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 intent.putExtra(INTENT_KEY, userphone);
                                 startActivity(intent);
-                            }
+// else  if (isFindPwd){
+//                                Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);
+//                                intent.putExtra(INTENT_KEY, userphone);
+//                                intent.putExtra("isFindPwd", isFindPwd);
+//                                startActivity(intent);
+//                            }
+
                         }
                         break;
                     case SHSConst.STATUS_FAIL:
