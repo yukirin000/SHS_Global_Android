@@ -102,8 +102,8 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
 
         if (servicesModel!=null) {
 //            servicesText.setText(servicesModel.getServieceName());
-            discountpriceText.setText(servicesModel.getDiscountPrice());
-            originalpriceText.setText(servicesModel.getOriginalPrice());
+//            discountpriceText.setText(servicesModel.getDiscountPrice());
+//            originalpriceText.setText(servicesModel.getOriginalPrice());
         }
         if (!isLocation) {
             if (distance!=null) {

@@ -45,8 +45,8 @@ public class MainActivity extends BaseActivity {
     private MenbersFragment menbersFragment;
     private PrivilegeFragment privilegeFragment;
     private List<TextView> viewList;
-    private int[][] drawablelist = {{R.drawable.libertyn, R.drawable.recordn, R.drawable.vipn, R.drawable.managern},
-            {R.drawable.liberty, R.drawable.record, R.drawable.vip, R.drawable.manager}};
+    private int[][] drawablelist = {{R.drawable.libertyn, R.drawable.tab_note, R.drawable.tab_vip, R.drawable.managern},
+            {R.drawable.liberty, R.drawable.tab_note_pre, R.drawable.tab_vip_pre, R.drawable.manager}};
 
     @Override
     public int setLayoutId() {

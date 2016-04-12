@@ -24,7 +24,7 @@
            android:layout_height="match_parent" />
        <TextView
            android:paddingTop="8dp"
-           android:drawableTop="@drawable/recordn"
+           android:drawableTop="@drawable/tab_note"
            android:clickable="true"
            android:id="@+id/history"
            android:gravity="center"
@@ -35,7 +35,7 @@
            android:layout_height="match_parent" />
        <TextView
            android:paddingTop="8dp"
-           android:drawableTop="@drawable/vipn"
+           android:drawableTop="@drawable/tab_vip"
            android:clickable="true"
            android:id="@+id/menbers"
            android:gravity="center"

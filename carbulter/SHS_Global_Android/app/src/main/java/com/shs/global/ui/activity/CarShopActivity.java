@@ -165,7 +165,6 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                 int status = jsonResponse.getInteger(SHSConst.HTTP_STATUS);
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
-
                         JSONObject jsonObject = jsonResponse.getJSONObject(SHSConst.HTTP_RESULT);
                         JSONArray jsonList = jsonObject.getJSONArray(SHSConst.HTTP_LSIT);
                         list.clear();

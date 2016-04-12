@@ -163,7 +163,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/original_price"
+                            android:text="原价：***"
                             android:textColor="@color/back_font"
                             android:textSize="14sp" />
 
@@ -172,7 +172,7 @@
                             android:layout_height="match_parent"
                             android:layout_centerHorizontal="true"
                             android:gravity="center_vertical"
-                            android:text="会员价"
+                            android:text="会员价：***"
                             android:textColor="@color/back_font"
                             android:textSize="14sp" />
 
@@ -187,6 +187,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:id="@+id/listroot"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -201,6 +202,7 @@
                         <!--android:textSize="16sp" />-->
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/original_price"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -209,6 +211,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/discount_price"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
