@@ -25,16 +25,16 @@
             android:layout_toRightOf="@id/service_head_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
-            android:textSize="12sp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/specification"
-            android:textColor="#949494"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/service_name"
-            android:text="（特权仅限于产品内部）"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <!--<TextView-->
+            <!--android:textSize="12sp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:id="@+id/specification"-->
+            <!--android:textColor="#949494"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_toRightOf="@id/service_name"-->
+            <!--android:text="（特权仅限于产品内部）"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
         <View
             android:background="#e3e3e3"
             android:layout_alignParentBottom="true"

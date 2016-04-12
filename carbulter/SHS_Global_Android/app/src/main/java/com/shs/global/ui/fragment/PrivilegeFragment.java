@@ -71,11 +71,11 @@ public class PrivilegeFragment extends BaseFragment {
             @Override
             protected void convert(SHSGlobalBaseAdapterHelper helper, PrivilegeModel item) {
                 helper.setText(R.id.service_name, item.getPrivilegeName());
-                if (helper.getPosition() < 1) {
-                    helper.setVisible(R.id.specification, true);
-                } else {
-                    helper.setVisible(R.id.specification, false);
-                }
+//                if (helper.getPosition() < 1) {
+//                    helper.setVisible(R.id.specification, true);
+//                } else {
+//                    helper.setVisible(R.id.specification, false);
+//                }
                 ImageView image = helper.getView(R.id.service_head_image);
                 try {
                     Glide.with(PrivilegeFragment.this).load(getDrawableId(item.getHeadImage())).into(image);
