@@ -155,7 +155,7 @@ public class CarShopActivity extends BaseActivityWithTopBar {
     }
 
     private void getListdata() {
-        String path = SHSConst.GETSHOPLIST + "?page=" + pageIndex + "&size=5";
+        String path = SHSConst.GETSHOPLIST + "?page=" + pageIndex + "&size=10";
         Log.i("wea", path);
         HttpManager.get(path, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
