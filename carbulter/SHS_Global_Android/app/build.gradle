@@ -8,8 +8,8 @@ android {
         applicationId "com.shs.global"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 1
-        versionName "0.5"
+        versionCode 2
+        versionName "0.51"
     }
     sourceSets.main {
         jniLibs.srcDirs = [ 'libs' ]  // <- - Set your folder here!
