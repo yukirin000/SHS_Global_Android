@@ -12,6 +12,7 @@ import com.shs.global.control.UserManager;
  */
 public class LaunchActivity extends BaseActivity {
     private static final int sleepTime = 1000;
+
     @Override
     public int setLayoutId() {
         return R.layout.activity_launcher;
@@ -37,7 +38,7 @@ public class LaunchActivity extends BaseActivity {
                     Intent intent = new Intent(LaunchActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                }else {
+                } else {
                     Intent intent = new Intent(LaunchActivity.this, BindNumActivity.class);
                     startActivity(intent);
                 }

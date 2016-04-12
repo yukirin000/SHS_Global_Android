@@ -20,12 +20,10 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
     <!-- 位置相关权限，不是必须添加 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <!--打电话-->
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
@@ -37,7 +35,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.MainActivity">
-
         </activity>
         <activity android:name=".ui.activity.BindNumActivity"></activity>
         <activity android:name=".ui.activity.MyLoveCarActivity"></activity>
