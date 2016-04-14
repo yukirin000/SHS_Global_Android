@@ -13,4 +13,20 @@
     <style name="my_edittext_style" parent="@android:style/Widget.EditText">
     <item name="android:background">@drawable/round_edittext</item>
     </style>
+    <!-- 自定alertDialog的样式 -->
+    <style name="alert_dialog" parent="android:style/Theme.Dialog">
+
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 </resources>

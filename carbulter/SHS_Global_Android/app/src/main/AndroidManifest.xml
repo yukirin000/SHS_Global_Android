@@ -26,7 +26,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!--打电话-->
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <application
         android:name=".SHSApplication"
         android:allowBackup="true"
@@ -34,21 +33,29 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
-        </activity>
-        <activity android:name=".ui.activity.BindNumActivity"></activity>
-        <activity android:name=".ui.activity.MyLoveCarActivity"></activity>
-        <activity android:name=".ui.activity.CarShopActivity"></activity>
-        <activity android:name=".ui.activity.ShopHomePageActivity"></activity>
-        <activity android:name=".ui.activity.RegisterActivity"></activity>
-        <activity android:name=".ui.activity.SecondLoginActivity"></activity>
-        <activity android:name=".ui.activity.ServiceActivity"></activity>
+        <activity android:name=".ui.activity.MainActivity"></activity>
+        <!--Login-->
         <activity android:name=".ui.activity.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.RegisterActivity"></activity>
+        <activity android:name=".ui.activity.SecondLoginActivity"></activity>
+        <activity android:name=".ui.activity.BindNumActivity"></activity>
+        <!-- Members-->
+        <activity android:name=".ui.activity.AddMyCarActivity"></activity>
+        <activity android:name=".ui.activity.MyLoveCarActivity"></activity>
+        <activity android:name=".ui.activity.CarTypeActivity"></activity>
+        <activity android:name=".ui.activity.CarTypeSubActivity"></activity>
+        <!-- Privilege-->
+        <activity android:name=".ui.activity.CarShopActivity"></activity>
+        <activity android:name=".ui.activity.ShopHomePageActivity"></activity>
+        <activity android:name=".ui.activity.ServiceActivity"></activity>
+        <!-- others-->
+        <activity android:name=".ui.view.gallery.imageloader.GalleyActivity"></activity>
+
         <!-- 微信登录回调-->
         <!--微信分享回调 -->
         <activity

@@ -27,4 +27,5 @@
     <color name="cut_off_colcors">#e3e3e3</color>
     <!--字体黑-->
     <color name="back_font">#323232</color>
+    <color name="transparent">#00000000</color>
 </resources>

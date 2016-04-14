@@ -45,7 +45,7 @@
         <LinearLayout
             android:id="@+id/base_ll_right_btns"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"></LinearLayout>

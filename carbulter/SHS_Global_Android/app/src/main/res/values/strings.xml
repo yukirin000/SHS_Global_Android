@@ -8,9 +8,14 @@
     <string name="butler">管家</string>
     <string name="history">记录</string>
     <string name="next">下一步</string>
+    <string name="no_pictures">没有扫描到任何图片</string>
+    <string name="no_external_storage">暂无外部存储</string>
+    <string name="camera">相机</string>
+    <string name="gallery">相册</string>
+    <string name="select_picture">选取照片</string>
     <string name="find_password">忘记密码</string>
     <string name="loading">正在加载。。。</string>
-
+    <string name="all_picture">全部图片</string>
     <!-- Login -->
     <string name="login_login_title">登录</string>
     <string name="resend">重发</string>
