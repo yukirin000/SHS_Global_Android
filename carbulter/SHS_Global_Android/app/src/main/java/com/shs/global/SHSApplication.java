@@ -28,6 +28,8 @@ public class SHSApplication extends Application {
         applicationContext=this;
         application = (SHSApplication) getApplicationContext();
         UserManager.init(application);
+        //获取保存的本地数据
+        UserManager.getInstance().find();
         initJpush();
     }
 

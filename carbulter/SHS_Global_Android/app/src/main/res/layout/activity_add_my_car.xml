@@ -51,6 +51,8 @@
                 android:textColor="@color/main_black" />
 
             <EditText
+                android:maxLength="11"
+                android:inputType="number"
                 android:id="@+id/edit_phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -74,6 +76,8 @@
                 android:textColor="@color/main_black" />
 
             <EditText
+                android:maxLength="5"
+                android:digits="0123456789abcdefghigklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM"
                 android:id="@+id/edit_car_num"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -95,7 +99,7 @@
                 android:gravity="center_vertical"
                 android:text="车型"
                 android:textColor="@color/main_black" />
-            <EditText
+            <TextView
                 android:id="@+id/edit_car"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -117,8 +121,13 @@
                 android:gravity="center_vertical"
                 android:text="行驶证"
                 android:textColor="@color/main_black" />
-
+           <ImageView
+               android:layout_alignParentRight="true"
+               android:id="@+id/driving_license"
+               android:layout_width="46dp"
+               android:layout_height="46dp" />
             <TextView
+                android:id="@+id/upload"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"

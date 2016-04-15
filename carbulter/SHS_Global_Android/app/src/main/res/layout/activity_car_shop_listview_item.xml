@@ -17,7 +17,6 @@
             android:id="@+id/shop_cover_image"
             android:layout_width="100dp"
             android:layout_height="79dp"
-            android:src="@drawable/kingong"
             app:rect_adius="2dp" />
 
         <RelativeLayout

@@ -1,5 +1,7 @@
 package com.shs.global.control;
 
+import android.util.Log;
+
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
@@ -13,10 +15,10 @@ import java.util.List;
 
 public class HttpManager {
 
-	private static HttpUtils http = new HttpUtils();
+    private static HttpUtils http = new HttpUtils();
 
-	private HttpManager() {
-	}
+    private HttpManager() {
+    }
 
 //	/**
 //	 * 请求（Get方式）
@@ -64,71 +66,73 @@ public class HttpManager {
 //		}
 //	}
 
-	/**
-	 * 请求（Get方式）
-	 * 
-	 * @param <T>
-	 * @param <T>
-	 * 
-	 * @param url
-	 * @param callBack
-	 */
-	public static <T> void get(String url, JsonRequestCallBack<T> callBack) {
-		http.configCurrentHttpCacheExpiry(0);
-		http.configDefaultHttpCacheExpiry(0);
-		if (null != callBack) {
-			callBack.setAbsoluteUrl(url);
-		}
-		http.send(HttpMethod.GET, url, callBack);
-	}
+    /**
+     * 请求（Get方式）
+     *
+     * @param <T>
+     * @param <T>
+     * @param url
+     * @param callBack
+     */
+    public static <T> void get(String url, JsonRequestCallBack<T> callBack) {
+        http.configCurrentHttpCacheExpiry(0);
+        http.configDefaultHttpCacheExpiry(0);
+        if (null != callBack) {
+            callBack.setAbsoluteUrl(url);
+        }
+        String path = url + "?login_token=" + UserManager.getInstance().getToken() + "&login_user=" + UserManager.getInstance().getUserID();
+        Log.i("http",path);
+        http.send(HttpMethod.GET, path, callBack);
+    }
 
-	/**
-	 * 上传（Post方式）
-	 * 
-	 * @param <T>
-	 * @param <T>
-	 * 
-	 * @param url
-	 * @param params
-	 * @param callBack
-	 */
-	public static <T> void post(String url, RequestParams params, JsonRequestCallBack<T> callBack) {
+    /**
+     * 上传（Post方式）
+     *
+     * @param <T>
+     * @param <T>
+     * @param url
+     * @param params
+     * @param callBack
+     */
+    public static <T> void post(String url, RequestParams params, JsonRequestCallBack<T> callBack) {
 //		User user = CacheManager.getInstance().getCurrLoginUser();
 //		if (user != null && params != null) {
 //			params.addBodyParameter("ubaby_user_id", user.getName());
 //			params.addBodyParameter("device", "android");
 //		}
+        params.addBodyParameter("login_token", UserManager.getInstance().getToken());
+        params.addBodyParameter("login_user", UserManager.getInstance().getUserID()+"");
+        Log.i("http", UserManager.getInstance().getUserID() + ""+UserManager.getInstance().getToken());
+        http.configCurrentHttpCacheExpiry(0);
+        http.configDefaultHttpCacheExpiry(0);
+        http.send(HttpMethod.POST, url, params, callBack);
+    }
 
-		http.configCurrentHttpCacheExpiry(0);
-		http.configDefaultHttpCacheExpiry(0);
-		http.send(HttpMethod.POST, url, params, callBack);
-	}
+    public static HttpUtils getHttpUtils() {
+        return http;
+    }
 
-	public static HttpUtils getHttpUtils() {
-		return http;
-	}
+    /**
+     * 拼装Url
+     *
+     * @param url
+     * @param params
+     * @return
+     */
+    private static String getAbsoluteUrl(String url, RequestParams params) {
+        if (params == null) {
+            return "";
+        }
 
-	/**
-	 * 拼装Url
-	 * 
-	 * @param url
-	 * @param params
-	 * @return
-	 */
-	private static String getAbsoluteUrl(String url, RequestParams params) {
-		if (params == null) {
-			return "";
-		}
+        List<NameValuePair> paramsList = params.getQueryStringParams();
+        if (null != paramsList && paramsList.size() > 0) {
+            String paramStr = "";
+            for (int i = 0; i < paramsList.size(); i++) {
+                paramStr += "&" + paramsList.get(i);
+            }
+            return url + paramStr;
+        }
 
-		List<NameValuePair> paramsList = params.getQueryStringParams();
-		if (null != paramsList && paramsList.size() > 0) {
-			String paramStr = "";
-			for (int i = 0; i < paramsList.size(); i++) {
-				paramStr += "&" + paramsList.get(i);
-			}
-			return url + paramStr;
-		}
-
-		return url;
-	}
+        return url;
+    }
 }

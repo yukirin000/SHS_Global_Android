@@ -6,42 +6,40 @@
     <include
         android:id="@+id/my_love_car_title"
         layout="@layout/layout_title_bar"></include>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="高端车辆正在开放中，敬请期待"
-            android:textColor="#646464"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/call_telephone"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
+    <TextView
+        android:id="@+id/none_car"
+        android:visibility="gone"
         android:layout_centerInParent="true"
-        android:background="@drawable/round_call_button">
-       <ImageView
-           android:layout_marginLeft="30dp"
-           android:id="@+id/call_image"
-           android:src="@drawable/telephone"
-           android:layout_width="23dp"
-           android:layout_height="25dp" />
-        <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="呼叫管家"
-            android:textColor="@color/main_gold"
-            android:textSize="14sp" />
-    </LinearLayout>
+        android:text="暂无爱车"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ListView
+        android:id="@+id/my_car_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/my_love_car_title" />
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/call_telephone"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:layout_width="200dp"-->
+    <!--android:layout_height="45dp"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:background="@drawable/round_call_button">-->
+    <!--<ImageView-->
+    <!--android:layout_marginLeft="30dp"-->
+    <!--android:id="@+id/call_image"-->
+    <!--android:src="@drawable/telephone"-->
+    <!--android:layout_width="23dp"-->
+    <!--android:layout_height="25dp" />-->
+    <!--<TextView-->
+    <!--android:layout_marginLeft="20dp"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:text="呼叫管家"-->
+    <!--android:textColor="@color/main_gold"-->
+    <!--android:textSize="14sp" />-->
+    <!--</LinearLayout>-->
 </RelativeLayout>

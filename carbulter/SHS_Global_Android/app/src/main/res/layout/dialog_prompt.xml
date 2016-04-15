@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="提示"
+        android:textColor="@color/main_black"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="您还不是用户，请先成为用户"
+        android:textColor="@color/main_black"
+        android:textSize="19sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/keep_here"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="先看看"
+            android:textColor="#0011ff"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/register_menbers"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="成为会员"
+            android:textColor="#0011ff"
+            android:textSize="19sp" />
+    </LinearLayout>
+</LinearLayout>

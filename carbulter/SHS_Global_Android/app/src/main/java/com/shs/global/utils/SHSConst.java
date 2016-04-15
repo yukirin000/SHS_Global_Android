@@ -16,8 +16,8 @@ public class SHSConst {
     public static final String HTTP_LSIT="list";//反回列表
       //匹配手机号
     public static final String PHONENUMBER_PATTERN = "1[3|4|5|7|8|][0-9]{9}";
-    public static final String DOMIN = "http://www.pinweihuanqiu.com/BusinessServer/index.php/Home/MobileApi";
- //   public static final String DOMIN = "http://114.215.95.23/BusinessServer/index.php/Home/MobileApi";
+    //public static final String DOMIN = "http://www.pinweihuanqiu.com/BusinessServer/index.php/Home/MobileApi";
+  public static final String DOMIN = "http://114.215.95.23/BusinessServer/index.php/Home/MobileApi";
   // public static final String DOMIN = "http://192.168.0.104/BusinessServer/index.php/Home/MobileApi";
     //获取注册验证码
     public static final String  REGISTERSMS=DOMIN+"/registerSms";
@@ -35,4 +35,12 @@ public class SHSConst {
     public static  final  String GETSHOPLIST=DOMIN+"/getShopList";
     //商店详情
     public static  final  String GETSHOPDETAIL=DOMIN+"/getShopDetail";
+    //添加爱车
+    public static  final  String ADDCAR=DOMIN+"/addCar";
+    //我的爱车列表
+    public static  final  String MYCARS=DOMIN+"/myCars";
+    //车辆品牌列表
+    public static  final  String CARCATEGORY=DOMIN+"/carCategory";
+    //车辆品牌型号
+    public static  final  String CARCLASSIFY=DOMIN+"/carClassify";
 }
