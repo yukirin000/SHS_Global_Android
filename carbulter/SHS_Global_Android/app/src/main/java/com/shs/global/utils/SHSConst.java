@@ -4,9 +4,7 @@ package com.shs.global.utils;
  * Created by wenhai on 2016/2/23.
  */
 public class SHSConst {
-    /*
-    *     测试接口
-    * */
+    public static  final  String INFORM="inform";
     public static  final  String TAG="Global";
     public static final int STATUS_SUCCESS = 1;// 接口返回成功
     public static final int STATUS_FAIL = 0;// 接口返回失败;
@@ -43,4 +41,14 @@ public class SHSConst {
     public static  final  String CARCATEGORY=DOMIN+"/carCategory";
     //车辆品牌型号
     public static  final  String CARCLASSIFY=DOMIN+"/carClassify";
+    //车爱详情
+    public static  final  String CARINFO=DOMIN+"/carInfo";
+    //选择我的爱车
+    public static  final  String CHOICEMYCAR=DOMIN+"/choiceMyCar";
+    //服务中的订单列表
+    public static  final  String SERVICELIST=DOMIN+"/serviceList";
+    //已服务的订单列表
+    public static  final  String ALREADYSERVICELIST=DOMIN+"/alreadyServiceList";
+    //订单详情serviceDetails
+    public static  final  String SERVICEDETAILS=DOMIN+"/serviceDetails";
 }

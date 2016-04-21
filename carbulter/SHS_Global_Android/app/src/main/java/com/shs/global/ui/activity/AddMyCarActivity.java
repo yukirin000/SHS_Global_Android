@@ -120,7 +120,7 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
         }
         String carNum = editCarnum.getText().toString().trim();
         if (carNum.length() == 5) {
-            params.addBodyParameter("plate_number", masterName);
+            params.addBodyParameter("plate_number", carNum);
         } else {
             ToastUtil.show(this, "车牌号无效");
             return;
@@ -144,13 +144,13 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
                     case SHSConst.STATUS_SUCCESS:
                         String result = jsonResponse.getString(SHSConst.HTTP_RESULT);
                         Log.i("wx", result);
+                        finish();
                         break;
                     case SHSConst.STATUS_FAIL:
                         ToastUtil.show(AddMyCarActivity.this, "添加爱车失败");
                         break;
                 }
             }
-
             @Override
             public void onFailure(HttpException e, String arg1, String flag) {
                 super.onFailure(e, arg1, flag);
@@ -158,13 +158,10 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
             }
         }, null));
     }
-
-
     @Override
     public int setLayoutId() {
         return R.layout.activity_add_my_car;
     }
-
     @Override
     protected void setUpView() {
         setBarText("添加爱车");

@@ -55,7 +55,6 @@
                     android:id="@+id/my_car"
                     android:layout_width="match_parent"
                     android:layout_height="50dp">
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -80,98 +79,126 @@
                     <!--android:layout_alignParentBottom="true"-->
                     <!--layout="@layout/layout_specification"/>-->
                 </RelativeLayout>
-
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/treatment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/call_butler"
-                    android:layout_marginTop="25dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/list" />
-
+                    android:layout_height="50dp">
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="注册成为“品味•环球”尊贵的会员，您将享有平台内所有联盟商家提供的会员VIP礼遇，无需另外办理门店会员卡。
-                    "
-                        android:textColor="#272636"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/call_butler"
-                    android:layout_marginTop="18dp">
+                        android:text="会员礼遇"
+                        android:textColor="@color/back_font"
+                        android:textSize="15sp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/list" />
+                        android:layout_width="10dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/go" />
 
-                    <TextView
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical"
-                        android:text="豪车管家24小时电话问诊及资讯，专业的豪车管家将为您提供一切关于您爱车的最佳解决方案。
-                    "
-                        android:textColor="#272636"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="#e3e3e3" />
+                    <!--<include-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--layout="@layout/layout_specification"/>-->
+                </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/call_butler"
-                    android:layout_marginTop="18dp">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/call_butler"-->
+                    <!--android:layout_marginTop="25dp">-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/list" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="4dp"-->
+                        <!--android:src="@drawable/list" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical"
-                        android:text="会员卡价格享受爱车精洗项目，无需再办理门店会员卡。此礼遇适用于全平台联盟商家。
-                    "
-                        android:textColor="#272636"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:text="注册成为“品味•环球”尊贵的会员，您将享有平台内所有联盟商家提供的会员VIP礼遇，无需另外办理门店会员卡。-->
+                    <!--"-->
+                        <!--android:textColor="#272636"-->
+                        <!--android:textSize="14sp" />-->
+                <!--</LinearLayout>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/call_butler"
-                    android:layout_marginTop="18dp">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/call_butler"-->
+                    <!--android:layout_marginTop="18dp">-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/list" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="4dp"-->
+                        <!--android:src="@drawable/list" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical"
-                        android:text="豪车维修与保养将由专业的豪车管家为您一站式打理，轻松，高效的完成每一个环节 
-"
-                        android:textColor="#272636"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:text="豪车管家24小时电话问诊及资讯，专业的豪车管家将为您提供一切关于您爱车的最佳解决方案。-->
+                    <!--"-->
+                        <!--android:textColor="#272636"-->
+                        <!--android:textSize="14sp" />-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/call_butler"-->
+                    <!--android:layout_marginTop="18dp">-->
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="4dp"-->
+                        <!--android:src="@drawable/list" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:text="会员卡价格享受爱车精洗项目，无需再办理门店会员卡。此礼遇适用于全平台联盟商家。-->
+                    <!--"-->
+                        <!--android:textColor="#272636"-->
+                        <!--android:textSize="14sp" />-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/call_butler"-->
+                    <!--android:layout_marginTop="18dp">-->
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="4dp"-->
+                        <!--android:src="@drawable/list" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:text="豪车维修与保养将由专业的豪车管家为您一站式打理，轻松，高效的完成每一个环节 -->
+<!--"-->
+                        <!--android:textColor="#272636"-->
+                        <!--android:textSize="14sp" />-->
+                <!--</LinearLayout>-->
             </LinearLayout>
         </LinearLayout>
     </com.shs.global.ui.view.CustomerScrollView>

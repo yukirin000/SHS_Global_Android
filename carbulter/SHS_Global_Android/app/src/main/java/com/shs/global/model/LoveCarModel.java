@@ -71,8 +71,8 @@ public class LoveCarModel {
         if (object.containsKey("plate_number")) {
             setPlateNum(object.getString("plate_number"));
         }
-        if (object.containsKey("car_type")) {
-            setState(object.getInteger("car_type"));
+        if (object.containsKey("state")) {
+            setState(object.getInteger("state"));
         }
     }
 }

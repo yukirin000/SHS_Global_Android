@@ -40,7 +40,7 @@ public class BindNumActivity extends BaseActivity {
     @ViewInject(R.id.wechat_login)
     private ImageView wxLoginImage;
 
-    @OnClick(value = {R.id.next, R.id.wechat_login})
+    @OnClick(value = {R.id.next, R.id.wechat_login,R.id.tourist_login})
     public void viewCickListener(View view) {
         switch (view.getId()) {
             case R.id.next:
@@ -52,9 +52,19 @@ public class BindNumActivity extends BaseActivity {
 //            case R.id.find_pwd:
 //                findPwd();
 //                break;
+            case R.id.tourist_login:
+                touristLogin();
+                break;
             default:
                 break;
         }
+    }
+
+    private void touristLogin() {
+        Intent intent = new Intent(BindNumActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
     }
 
     private void findPwd() {
@@ -121,10 +131,9 @@ public class BindNumActivity extends BaseActivity {
                             startActivity(intent);
                         } else {
 
-                                Intent intent = new Intent(BindNumActivity.this, SecondLoginActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                intent.putExtra(INTENT_KEY, userphone);
-                                startActivity(intent);
+                            Intent intent = new Intent(BindNumActivity.this, SecondLoginActivity.class);
+                            intent.putExtra(INTENT_KEY, userphone);
+                            startActivity(intent);
 // else  if (isFindPwd){
 //                                Intent intent = new Intent(BindNumActivity.this, RegisterActivity.class);
 //                                intent.putExtra(INTENT_KEY, userphone);

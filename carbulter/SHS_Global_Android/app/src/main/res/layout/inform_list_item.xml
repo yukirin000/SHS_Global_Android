@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/car_plate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="粤B12345" />
+
+                <ImageView
+                    android:gravity="center_vertical"
+                    android:id="@+id/read_state"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/cosmetology"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="60dp"
+                android:id="@+id/car_state"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="审核通过" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

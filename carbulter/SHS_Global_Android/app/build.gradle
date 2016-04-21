@@ -25,6 +25,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:22.2.0'
     compile 'com.jiechic.library:xUtils:2.6.14'
     compile files('libs/jpush-android-2.1.0.jar.jar')
     compile 'com.github.bumptech.glide:glide:3.7.0'

@@ -45,14 +45,23 @@
         <activity android:name=".ui.activity.SecondLoginActivity"></activity>
         <activity android:name=".ui.activity.BindNumActivity"></activity>
         <!-- Members-->
+        <activity android:name=".ui.activity.MyCarDetailsActivity"></activity>
         <activity android:name=".ui.activity.AddMyCarActivity"></activity>
         <activity android:name=".ui.activity.MyLoveCarActivity"></activity>
         <activity android:name=".ui.activity.CarTypeActivity"></activity>
         <activity android:name=".ui.activity.CarTypeSubActivity"></activity>
+        <activity android:name=".ui.activity.MemberTreatmentActivity"></activity>
         <!-- Privilege-->
+        <activity android:name=".ui.activity.ChoiceMyCarActivity"></activity>
+        <activity android:name=".ui.activity.OnlineConsultantActivity"></activity>
         <activity android:name=".ui.activity.CarShopActivity"></activity>
         <activity android:name=".ui.activity.ShopHomePageActivity"></activity>
         <activity android:name=".ui.activity.ServiceActivity"></activity>
+        <!-- History-->
+        <activity android:name=".ui.activity.OrderDetailsActivity"></activity>
+        <!--butler -->
+        <activity android:name=".ui.activity.InformActivity"></activity>
+        <activity android:name=".ui.activity.AboutUsActivity"></activity>
         <!-- others-->
         <activity android:name=".ui.view.gallery.imageloader.GalleyActivity"></activity>
 
@@ -66,8 +75,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--定位服务-->
         <service android:name=".ui.service.LocationService" />
-
-
         <!-- Required SDK核心功能-->
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
@@ -168,7 +175,7 @@
             android:value="developer-default" />
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="64323ace631a71b5ade21733" />
+            android:value="a3387af8e9748171ad82d8e7" />
         <!-- </>值来自开发者平台取得的AppKey-->
         <!--极光推送内容注册结束-->
         <!--glide 图片加载库配置-->

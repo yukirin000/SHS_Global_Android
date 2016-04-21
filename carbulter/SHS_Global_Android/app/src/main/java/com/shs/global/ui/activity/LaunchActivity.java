@@ -34,14 +34,14 @@ public class LaunchActivity extends BaseActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (UserManager.getInstance().beforeLogin()) {
+//                if (UserManager.getInstance().beforeLogin()) {
                     Intent intent = new Intent(LaunchActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                } else {
-                    Intent intent = new Intent(LaunchActivity.this, BindNumActivity.class);
-                    startActivity(intent);
-                }
+//                } else {
+//                    Intent intent = new Intent(LaunchActivity.this, BindNumActivity.class);
+//                    startActivity(intent);
+//                }
                 finish();
             }
         }).start();

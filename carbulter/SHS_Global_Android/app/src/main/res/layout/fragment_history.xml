@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_white"
@@ -25,59 +26,71 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <RelativeLayout
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:layout_height="50dp"
+        android:background="#0000ff"
+        app:tabIndicatorColor="@color/main_white"
+        app:tabSelectedTextColor="@color/main_gold"
+        app:tabTextColor="@color/main_black"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/history_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:paddingRight="10dp">-->
 
-        <TextView
-            android:id="@+id/text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
-            android:text="APP正在开发中。。。"
-            android:textColor="@color/back_font"
-            android:textSize="17sp" />
+    <!--<TextView-->
+    <!--android:id="@+id/text1"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="80dp"-->
+    <!--android:text="APP正在开发中。。。"-->
+    <!--android:textColor="@color/back_font"-->
+    <!--android:textSize="17sp" />-->
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text1"
-            android:layout_centerHorizontal="true">
+    <!--<RelativeLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/text1"-->
+    <!--android:layout_centerHorizontal="true">-->
 
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="关注"
-                android:textColor="@color/back_font"
-                android:textSize="15sp" />
+    <!--<TextView-->
+    <!--android:id="@+id/text2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="15dp"-->
+    <!--android:text="关注"-->
+    <!--android:textColor="@color/back_font"-->
+    <!--android:textSize="15sp" />-->
 
-            <TextView
-                android:id="@+id/text3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/text2"
-                android:layout_toRightOf="@id/text2"
-                android:text="“品位环球”"
-                android:textColor="@color/back_font"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+    <!--<TextView-->
+    <!--android:id="@+id/text3"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignBottom="@id/text2"-->
+    <!--android:layout_toRightOf="@id/text2"-->
+    <!--android:text="“品位环球”"-->
+    <!--android:textColor="@color/back_font"-->
+    <!--android:textSize="21sp"-->
+    <!--android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/text4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/text3"
-                android:layout_marginTop="15dp"
-                android:layout_toRightOf="@id/text3"
-                android:text="公众号享受更多高端服务"
-                android:textColor="@color/back_font"
-                android:textSize="15sp" />
-        </RelativeLayout>
-    </RelativeLayout>
+    <!--<TextView-->
+    <!--android:id="@+id/text4"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignBottom="@id/text3"-->
+    <!--android:layout_marginTop="15dp"-->
+    <!--android:layout_toRightOf="@id/text3"-->
+    <!--android:text="公众号享受更多高端服务"-->
+    <!--android:textColor="@color/back_font"-->
+    <!--android:textSize="15sp" />-->
+    <!--</RelativeLayout>-->
+    <!--</RelativeLayout>-->
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.shs.global;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 
 import com.shs.global.control.UserManager;
@@ -25,7 +26,7 @@ public class SHSApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        applicationContext=this;
+        applicationContext = this;
         application = (SHSApplication) getApplicationContext();
         UserManager.init(application);
         //获取保存的本地数据
@@ -36,22 +37,12 @@ public class SHSApplication extends Application {
     private void initJpush() {
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
-
-        Set set=new HashSet();
-        set.add("zhong");
-        set.add("dui");
-        JPushInterface.setAliasAndTags(getApplicationContext(), "wea", set, new TagAliasCallback() {
-            @Override
-            public void gotResult(int i, String s, Set<String> set) {
-
-            }
-        });
+        Log.i("wea", JPushInterface.getRegistrationID(getApplicationContext()));
     }
 
     public static SHSApplication getInstance() {
         return application;
     }
-
 
 
 }

@@ -17,10 +17,12 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.shs.global.R;
 import com.shs.global.control.HttpManager;
+import com.shs.global.control.UserManager;
 import com.shs.global.helper.JsonRequestCallBack;
 import com.shs.global.helper.LoadDataHandler;
 import com.shs.global.model.ShopDetailModel;
 import com.shs.global.model.ShopServicesModel;
+import com.shs.global.ui.view.PromptAlertDialog;
 import com.shs.global.utils.DistanceUtil;
 import com.shs.global.utils.SHSConst;
 import com.shs.global.utils.ToastUtil;
@@ -64,19 +66,28 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
     private IntentFilter intentFilter;
     private AddressBroadcastReceiver broadcastReceiver;
 
-    @OnClick({R.id.call_butler})
+    @OnClick({R.id.buy})
     public void click(View view) {
         switch (view.getId()) {
-            case R.id.call_butler:
-                callButler();
+            case R.id.buy:
+                jumpChoice();
                 break;
         }
     }
-
-    private void callButler() {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4008693911"));
-        startActivity(intent);
+    private void jumpChoice() {
+       if (UserManager.getInstance().isUser()) {
+           Intent intent = new Intent(this, ChoiceMyCarActivity.class);
+           startActivity(intent);
+       }else {
+           PromptAlertDialog dialog=new PromptAlertDialog(this,"提示");
+           dialog.show();
+       }
     }
+
+//    private void callButler() {
+//        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4008693911"));
+//        startActivity(intent);
+//    }
 
     @Override
     public int setLayoutId() {
@@ -101,9 +112,9 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
         telephoneText.setText(model.getShopPhone());
 
         if (servicesModel!=null) {
-//            servicesText.setText(servicesModel.getServieceName());
-//            discountpriceText.setText(servicesModel.getDiscountPrice());
-//            originalpriceText.setText(servicesModel.getOriginalPrice());
+         //   servicesText.setText(servicesModel.getServieceName());
+            discountpriceText.setText("会员价："+servicesModel.getDiscountPrice());
+            originalpriceText.setText("原价："+servicesModel.getOriginalPrice());
         }
         if (!isLocation) {
             if (distance!=null) {

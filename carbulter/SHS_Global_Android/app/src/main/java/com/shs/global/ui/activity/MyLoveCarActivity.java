@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,12 +32,14 @@ import java.util.List;
  * Created by wenhai on 2016/3/25.
  */
 public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.OnClickListener {
+    public static final String CARID = "car_id";
     @ViewInject(R.id.my_car_list)
     private ListView myCarListView;
     private List<LoveCarModel> list;
     private SHSGlobalAdapter lcarAdapter;
     @ViewInject(R.id.none_car)
     private TextView noneText;
+
     @Override
     public int setLayoutId() {
         return R.layout.activity_my_love_car;
@@ -60,24 +63,32 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
         lcarAdapter = new SHSGlobalAdapter<LoveCarModel>(this, R.layout.my_love_car_list_item) {
             @Override
             protected void convert(SHSGlobalBaseAdapterHelper helper, LoveCarModel item) {
-               helper.setText(R.id.car_type,item.getCarType());
-                TextView textView= helper.getView(R.id.car_plate);
-                if(item.getState()==1){
+                helper.setText(R.id.car_type, item.getCarType());
+                TextView textView = helper.getView(R.id.car_plate);
+                if (item.getState() == 1) {
                     textView.setText("正在审核");
                     textView.setTextColor(Color.parseColor("#ff0000"));
-                }else {
+                } else {
                     textView.setText(item.getPlateNum());
                 }
             }
         };
-
+        myCarListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LoveCarModel model = (LoveCarModel) lcarAdapter.getItem(position);
+                Intent intent = new Intent(MyLoveCarActivity.this, MyCarDetailsActivity.class);
+                intent.putExtra(CARID, model.getCarID());
+                startActivity(intent);
+            }
+        });
     }
 
     private void getlistData() {
         RequestParams params = new RequestParams();
-        Log.i("wx",SHSConst.MYCARS);
-        params.addBodyParameter("user_id", UserManager.getInstance().getUserID()+"");
-        HttpManager.post(SHSConst.MYCARS,params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
+        params.addBodyParameter("user_id", UserManager.getInstance().getUserID() + "");
+        Log.i("wx", SHSConst.MYCARS + "?user_id=" + UserManager.getInstance().getUserID());
+        HttpManager.post(SHSConst.MYCARS, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
                 super.onSuccess(jsonResponse, flag);
@@ -85,15 +96,16 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
                         JSONArray result = jsonResponse.getJSONArray(SHSConst.HTTP_RESULT);
+                        Log.i("wx", result.toString());
                         for (int i = 0; i < result.size(); i++) {
                             LoveCarModel model = new LoveCarModel();
                             model.setContentWithJson(result.getJSONObject(i));
                             list.add(model);
                         }
-                        if(list.size()==0){
+                        if (list.size() == 0) {
                             noneText.setVisibility(View.VISIBLE);
                             myCarListView.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             noneText.setVisibility(View.GONE);
                             myCarListView.setVisibility(View.VISIBLE);
                             lcarAdapter.replaceAll(list);

@@ -7,6 +7,10 @@ import com.shs.global.utils.SHSConst;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 
 /**
  * Created by wenhai on 2016/2/29.
@@ -20,9 +24,10 @@ public class UserManager {
     private String passoword;
 
 
-    public static void init(Context context1){
-        context=context1;
+    public static void init(Context context1) {
+        context = context1;
     }
+
     public String getPassoword() {
         return passoword;
     }
@@ -32,7 +37,7 @@ public class UserManager {
         this.passoword = passoword;
     }
 
-    private static UserManager userManager;
+    private static volatile UserManager userManager;
 
     private UserManager() {
 
@@ -103,6 +108,13 @@ public class UserManager {
         edit.putInt("userid", userID);
         edit.putString("password", passoword);
         edit.commit();  //保存数据信息
+        JPushInterface.setAliasAndTags(context,"global"+userID, null, new TagAliasCallback() {
+            @Override
+            public void gotResult(int i, String s, Set<String> set) {
+
+            }
+        });
+
     }
 
     /**
@@ -125,6 +137,15 @@ public class UserManager {
         setUserName(share.getString("username", ""));
         setUserID(share.getInt("userid", -1));
         setPassoword(share.getString("password", ""));
+    }
+   /**
+    *判断是否是用户
+    */
+    public boolean isUser() {
+        SharedPreferences share = context.getSharedPreferences(SHSConst.TAG, context.MODE_PRIVATE);
+        if (share.getInt("userid", -1) == -1)
+            return false;
+        return true;
     }
 
     public boolean beforeLogin() {

@@ -160,6 +160,7 @@
                         <!--android:text="精洗"-->
                         <!--android:textSize="16sp" />-->
                         <TextView
+                            android:id="@+id/original_price"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
@@ -168,6 +169,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/discount_price"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_centerHorizontal="true"
@@ -177,53 +179,55 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/buy"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
                             android:gravity="center_vertical"
-                            android:text="即将开放"
+                            android:text="购买"
                             android:textColor="@color/main_gold"
                             android:textSize="14sp" />
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:visibility="gone"
-                        android:id="@+id/listroot"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal">
+                    <!--<RelativeLayout-->
+                        <!--android:visibility="gone"-->
+                        <!--android:id="@+id/listroot"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/services"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:gravity="center_vertical"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:text="精洗"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textSize="16sp" />&ndash;&gt;-->
 
                         <!--<TextView-->
-                        <!--android:id="@+id/services"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:text="精洗"-->
-                        <!--android:textSize="16sp" />-->
+                            <!--android:visibility="gone"-->
+                            <!--android:id="@+id/original_price"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--android:textColor="@color/back_font"-->
+                            <!--android:textSize="14sp" />-->
 
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/original_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:textColor="@color/back_font"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/discount_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_vertical"
-                            android:textColor="@color/back_font"
-                            android:textSize="14sp" />
-                    </RelativeLayout>
+                        <!--<TextView-->
+                            <!--android:visibility="gone"-->
+                            <!--android:id="@+id/discount_price"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_centerHorizontal="true"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--android:textColor="@color/back_font"-->
+                            <!--android:textSize="14sp" />-->
+                    <!--</RelativeLayout>-->
 
                 </LinearLayout>
 
                 <LinearLayout
+                     android:visibility="gone"
                     android:id="@+id/call_butler"
                     android:layout_width="200dp"
                     android:layout_height="45dp"

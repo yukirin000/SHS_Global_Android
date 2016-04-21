@@ -12,11 +12,13 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.shs.global.R;
+import com.shs.global.control.UserManager;
 import com.shs.global.ui.fragment.ButlerFragment;
 import com.shs.global.ui.fragment.HistoryFragment;
 import com.shs.global.ui.fragment.MenbersFragment;
 import com.shs.global.ui.fragment.PrivilegeFragment;
 import com.shs.global.ui.service.LocationService;
+import com.shs.global.ui.view.PromptAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +59,6 @@ public class MainActivity extends BaseActivity {
     protected void loadLayout(View v) {
 
     }
-
     @Override
     protected void setUpView() {
         viewList = new ArrayList<TextView>();
@@ -102,18 +103,28 @@ public class MainActivity extends BaseActivity {
                 transaction.hide(menbersFragment);
                 break;
             case R.id.menbers:
-                transaction.show(menbersFragment);
-                transaction.hide(butlerFragment);
-                transaction.hide(historyFragment);
-                transaction.hide(privilegeFragment);
-                changeView(R.id.menbers);
+                if(UserManager.getInstance().isUser()) {
+                    transaction.show(menbersFragment);
+                    transaction.hide(butlerFragment);
+                    transaction.hide(historyFragment);
+                    transaction.hide(privilegeFragment);
+                    changeView(R.id.menbers);
+                }else {
+                    PromptAlertDialog dialog=new PromptAlertDialog(this,"提示");
+                    dialog.show();
+                }
                 break;
             case R.id.history:
-                transaction.show(historyFragment);
-                transaction.hide(butlerFragment);
-                transaction.hide(privilegeFragment);
-                transaction.hide(menbersFragment);
-                changeView(R.id.history);
+                if(UserManager.getInstance().isUser()) {
+                    transaction.show(historyFragment);
+                    transaction.hide(butlerFragment);
+                    transaction.hide(privilegeFragment);
+                    transaction.hide(menbersFragment);
+                    changeView(R.id.history);
+                }else {
+                    PromptAlertDialog dialog=new PromptAlertDialog(this,"提示");
+                    dialog.show();
+                }
                 break;
             case R.id.privilege:
                 transaction.show(privilegeFragment);

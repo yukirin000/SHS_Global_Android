@@ -8,13 +8,13 @@
         layout="@layout/layout_title_bar"></include>
 
     <TextView
+        android:id="@+id/advisory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:gravity="center"
         android:layout_marginTop="250dp"
         android:text="更多详情咨询豪车管家"/>
-
 
     <!--<RelativeLayout-->
     <!--android:layout_width=""-->

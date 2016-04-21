@@ -2,6 +2,7 @@ package com.shs.global.ui.view;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.shs.global.R;
+import com.shs.global.ui.activity.BindNumActivity;
 
 /**
  * Created by wenhai on 2016/4/15.
@@ -24,22 +26,19 @@ public class PromptAlertDialog extends Dialog {
     // 取消按钮
     private String cacelButtonText;
 
-    public PromptAlertDialog(Context context, String title,
-                             String confirmButtonText, String cacelButtonText) {
+    public PromptAlertDialog(Context context, String title) {
         super(context, R.style.alert_dialog);
         this.context = context;
         this.title = title;
-        this.confirmButtonText = confirmButtonText;
-        this.cacelButtonText = cacelButtonText;
+//        this.confirmButtonText = confirmButtonText;
+//        this.cacelButtonText = cacelButtonText;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         init();
     }
-
     /***
      * 初始化
      */
@@ -54,8 +53,8 @@ public class PromptAlertDialog extends Dialog {
         TextView tvCancel = (TextView) view
                 .findViewById(R.id.register_menbers);
         tvTitle.setText(title);
-        tvConfirm.setText(confirmButtonText);
-        tvCancel.setText(cacelButtonText);
+//        tvConfirm.setText(confirmButtonText);
+//        tvCancel.setText(cacelButtonText);
         tvConfirm.setOnClickListener(new clickListener());
         tvCancel.setOnClickListener(new clickListener());
         Window dialogWindow = getWindow();
@@ -76,8 +75,11 @@ public class PromptAlertDialog extends Dialog {
             int id = v.getId();
             switch (id) {
                 case R.id.keep_here:
+                    PromptAlertDialog.this.dismiss();
                     break;
                 case R.id.register_menbers:
+                    Intent intent = new Intent(context, BindNumActivity.class);
+                    context.startActivity(intent);
                     break;
             }
         }
