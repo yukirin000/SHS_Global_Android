@@ -142,7 +142,6 @@ public class ServingFragment extends BaseFragment implements AbsListView.OnScrol
                         }
                         if (list.size() == 0) {
                             noneText.setVisibility(View.VISIBLE);
-                            servingListView.setVisibility(View.GONE);
                         } else {
                             noneText.setVisibility(View.GONE);
                             servingListView.setVisibility(View.VISIBLE);

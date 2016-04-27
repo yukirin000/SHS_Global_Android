@@ -48,6 +48,9 @@ public class PrivilegeFragment extends BaseFragment {
             case R.id.car_decoration:
                 Intent shopIntent = new Intent(getActivity(), CarShopActivity.class);
                 startActivity(shopIntent);
+                Intent serviceIntent = new Intent(getActivity(), LocationService.class);
+                getActivity().startService(serviceIntent);
+                Log.i("zwea", "启动服务");
                 break;
             case R.id.online_consult:
                 Intent onlineIntent = new Intent(getActivity(), OnlineConsultantActivity.class);
@@ -58,6 +61,8 @@ public class PrivilegeFragment extends BaseFragment {
                 Intent intent = new Intent(getActivity(), ServiceActivity.class);
                 startActivity(intent);
                 break;
+            default:
+
         }
     }
 

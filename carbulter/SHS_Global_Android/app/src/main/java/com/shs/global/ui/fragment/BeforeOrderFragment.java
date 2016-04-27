@@ -140,7 +140,6 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
                         }
                         if (list.size() == 0) {
                             noneText.setVisibility(View.VISIBLE);
-                            listView.setVisibility(View.GONE);
                         } else {
                             noneText.setVisibility(View.GONE);
                             listView.setVisibility(View.VISIBLE);

@@ -74,6 +74,8 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
     private RelativeLayout choice_type;
     @ViewInject(R.id.driving_license)
     private ImageView drivingImage;   //行驶证上传位置
+    @ViewInject( R.id.submit)
+    private TextView submitTextView;
     private IntentFilter intentFilter;
     //照片路径
     private String filepath;
@@ -97,6 +99,7 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
                 showChoiceImageAlert();
                 break;
             case R.id.submit:
+             //   submitTextView.setEnabled(false);
                 submit();
                 break;
             case R.id.choice_car_type:
@@ -131,13 +134,14 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
 //            return;
 //        }
         String carNum = editCarnum.getText().toString().trim();
-        String firstChat=carNum.substring(0,1);
         if (carNum.length() == 6) {
+            String firstChat=carNum.substring(0,1);
             Pattern p=  Pattern.compile("[a-zA-Z]");
             if (p.matcher(firstChat).matches()) {
                 params.addBodyParameter("plate_number", carNum);
             }else {
                 ToastUtil.show(this, "车牌格式错误");
+                return;
             }
         } else {
             ToastUtil.show(this, "车牌号无效");
@@ -150,13 +154,18 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
             params.addBodyParameter("car_id", detailsModel.getId());
             Log.i("wx", detailsModel.getCar_type());
         } else {
-            if (issub) {
-                //没有二级分类时候默认0001
-                params.addBodyParameter("car_type_code", model.getFirst_code() + "0001");
-                params.addBodyParameter("car_type", model.getName1());
-            } else {
-                params.addBodyParameter("car_type_code", model.getFirst_code() + model.getSecond_code());
-                params.addBodyParameter("car_type", model.getName1() + model.getName2());
+            if (model!=null) {
+                if (issub) {
+                    //没有二级分类时候默认0001
+                    params.addBodyParameter("car_type_code", model.getFirst_code() + "0001");
+                    params.addBodyParameter("car_type", model.getName1());
+                } else {
+                    params.addBodyParameter("car_type_code", model.getFirst_code() + model.getSecond_code());
+                    params.addBodyParameter("car_type", model.getName1() + model.getName2());
+                }
+            }else {
+                ToastUtil.show(this, "请选择车型");
+                return;
             }
         }
         params.addBodyParameter("user_id", UserManager.getInstance().getUserID() + "");
@@ -165,12 +174,17 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
         if (isReSubmit) {
             path = SHSConst.UPDATECAR;
             if (isUpdate){
-                Log.i("wx", isUpdate + "");
                 params.addBodyParameter("driving", file);
             }
         } else {
-            params.addBodyParameter("driving", file);
             path = SHSConst.ADDCAR;
+            if (file!=null) {
+                params.addBodyParameter("driving", file);
+            }else {
+                ToastUtil.show(this, "请上传行驶证");
+                return;
+            }
+
         }
         Log.i("wx", path);
         HttpManager.post(path, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
@@ -182,7 +196,7 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
                         String result = jsonResponse.getString(SHSConst.HTTP_RESULT);
-                        Log.i("wx", result);
+                       // submitTextView.setEnabled(false);
                         finish();
                         break;
                     case SHSConst.STATUS_FAIL:
