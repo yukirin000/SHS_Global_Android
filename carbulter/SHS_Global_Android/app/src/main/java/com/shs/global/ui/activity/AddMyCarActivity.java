@@ -99,7 +99,6 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
                 showChoiceImageAlert();
                 break;
             case R.id.submit:
-             //   submitTextView.setEnabled(false);
                 submit();
                 break;
             case R.id.choice_car_type:
@@ -187,6 +186,7 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
 
         }
         Log.i("wx", path);
+        submitTextView.setEnabled(false);
         HttpManager.post(path, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
@@ -196,7 +196,6 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
                         String result = jsonResponse.getString(SHSConst.HTTP_RESULT);
-                       // submitTextView.setEnabled(false);
                         finish();
                         break;
                     case SHSConst.STATUS_FAIL:
@@ -216,6 +215,7 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
                 ToastUtil.show(AddMyCarActivity.this, getString(R.string.net_error));
             }
         }, null));
+        submitTextView.setEnabled(false);
     }
 
     @Override

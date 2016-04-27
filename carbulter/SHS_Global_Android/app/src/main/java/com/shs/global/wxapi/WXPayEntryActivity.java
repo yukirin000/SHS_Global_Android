@@ -51,12 +51,14 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                 Intent intent=new Intent(this, MainActivity.class);
                 intent.putExtra("page",2);
                 startActivity(intent);
+                finish();
                 break;
             case CANCEL:
                 finish();
                 break;
             case -1:
                 ToastUtil.show(this,"请下载正版应用");
+                finish();
                 break;
         }
     }

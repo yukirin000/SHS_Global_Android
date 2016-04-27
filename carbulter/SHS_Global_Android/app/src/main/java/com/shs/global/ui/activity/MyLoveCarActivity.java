@@ -51,6 +51,12 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
     }
 
     @Override
+    public void onResume() {
+        getlistData();
+        super.onResume();
+    }
+
+    @Override
     protected void setUpView() {
 
         list = new ArrayList<>();
@@ -60,9 +66,10 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
                 R.id.img_btn_right_top);
         rightBtn.setImageResource(R.drawable.add);
         rightBtn.setOnClickListener(this);
-        getlistData();
         initListView();
     }
+
+
     private void initListView() {
         lcarAdapter = new SHSGlobalAdapter<LoveCarModel>(this, R.layout.my_love_car_list_item) {
             @Override
