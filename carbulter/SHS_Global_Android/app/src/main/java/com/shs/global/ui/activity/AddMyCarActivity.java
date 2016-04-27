@@ -5,6 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -30,6 +32,7 @@ import com.shs.global.helper.JsonRequestCallBack;
 import com.shs.global.helper.LoadDataHandler;
 import com.shs.global.model.CarShopModel;
 import com.shs.global.model.CarTypeModel;
+import com.shs.global.model.MyCarDetailsModel;
 import com.shs.global.ui.view.CustomSelectPhotoDialog;
 import com.shs.global.ui.view.gallery.imageloader.GalleyActivity;
 import com.shs.global.utils.AffirmInputUtils;
@@ -40,6 +43,9 @@ import com.shs.global.utils.SHSConst;
 import com.shs.global.utils.ToastUtil;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -55,13 +61,13 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
     public static final int ALBUM_SELECT = 2;// 相册选取
     private CustomSelectPhotoDialog selectDialog;
     @ViewInject(R.id.upload)
-    public TextView uploadText;//车型
+    public TextView uploadText;//行驶证
     @ViewInject(R.id.edit_name)
     private EditText editName;//姓名
     @ViewInject(R.id.edit_car)
     public TextView textCar;//车型
-    @ViewInject(R.id.edit_phone)
-    private EditText editphone;//手机号码
+    //    @ViewInject(R.id.edit_phone)
+//    private EditText editphone;//手机号码
     @ViewInject(R.id.edit_car_num)
     private EditText editCarnum;//车牌号
     @ViewInject(R.id.choice_car_type)
@@ -77,12 +83,17 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
     private String carCode;
     private File file;
     private CarTypeModel model;
+    private MyCarDetailsModel detailsModel;
     private boolean issub = false;
+    private boolean isReSubmit = false;
+    //是否更新了形式证
+    private boolean isUpdate = false;
 
     @OnClick(value = {R.id.travel_root, R.id.submit, R.id.choice_car_type})
     public void touch(View v) {
         switch (v.getId()) {
             case R.id.travel_root:
+                isUpdate=true;
                 showChoiceImageAlert();
                 break;
             case R.id.submit:
@@ -99,8 +110,9 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
         RequestParams params = new RequestParams();
         String masterName = editName.getText().toString().trim();
         if (AffirmInputUtils.checkNameChese(masterName)) {
-            if (masterName.length() > 2 && masterName.length() < 4) {
+            if (masterName.length() > 1 && masterName.length() < 5) {
                 params.addBodyParameter("name", masterName);
+                Log.i("wx", masterName);
             } else {
                 ToastUtil.show(this, "姓名无效");
                 return;
@@ -109,37 +121,64 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
             ToastUtil.show(this, "姓名必须为2-4个汉字");
             return;
         }
-        userphone = editphone.getText().toString().trim();
-        Pattern p = Pattern.compile(SHSConst.PHONENUMBER_PATTERN);
-        Matcher m = p.matcher(userphone);
-        if (m.matches()) {
-            params.addBodyParameter("mobile", userphone);
-        } else {
-            ToastUtil.show(this, "请输入合法的手机号码");
-            return;
-        }
+//        userphone = editphone.getText().toString().trim();
+//        Pattern p = Pattern.compile(SHSConst.PHONENUMBER_PATTERN);
+//        Matcher m = p.matcher(userphone);
+//        if (m.matches()) {
+//            params.addBodyParameter("mobile", userphone);
+//        } else {
+//            ToastUtil.show(this, "请输入合法的手机号码");
+//            return;
+//        }
         String carNum = editCarnum.getText().toString().trim();
-        if (carNum.length() == 5) {
-            params.addBodyParameter("plate_number", carNum);
+        String firstChat=carNum.substring(0,1);
+        if (carNum.length() == 6) {
+            Pattern p=  Pattern.compile("[a-zA-Z]");
+            if (p.matcher(firstChat).matches()) {
+                params.addBodyParameter("plate_number", carNum);
+            }else {
+                ToastUtil.show(this, "车牌格式错误");
+            }
         } else {
             ToastUtil.show(this, "车牌号无效");
             return;
         }
-        if (issub) {
-            //没有二级分类时候默认0001
-            params.addBodyParameter("car_type_code", model.getFirst_code() + "0001");
-            params.addBodyParameter("car_type", model.getName1());
+        if (isReSubmit) {
+            params.addBodyParameter("car_type_code", detailsModel.getCar_type_code());
+            Log.i("wx", detailsModel.getCar_type_code());
+            params.addBodyParameter("car_type", detailsModel.getCar_type());
+            params.addBodyParameter("car_id", detailsModel.getId());
+            Log.i("wx", detailsModel.getCar_type());
         } else {
-            params.addBodyParameter("car_type_code", model.getFirst_code() + model.getSecond_code());
-            params.addBodyParameter("car_type", model.getName1() + model.getName2());
+            if (issub) {
+                //没有二级分类时候默认0001
+                params.addBodyParameter("car_type_code", model.getFirst_code() + "0001");
+                params.addBodyParameter("car_type", model.getName1());
+            } else {
+                params.addBodyParameter("car_type_code", model.getFirst_code() + model.getSecond_code());
+                params.addBodyParameter("car_type", model.getName1() + model.getName2());
+            }
         }
         params.addBodyParameter("user_id", UserManager.getInstance().getUserID() + "");
-        params.addBodyParameter("driving", file);
-        HttpManager.post(SHSConst.ADDCAR, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
+        Log.i("wx", UserManager.getInstance().getUserID() + "");
+        String path;
+        if (isReSubmit) {
+            path = SHSConst.UPDATECAR;
+            if (isUpdate){
+                Log.i("wx", isUpdate + "");
+                params.addBodyParameter("driving", file);
+            }
+        } else {
+            params.addBodyParameter("driving", file);
+            path = SHSConst.ADDCAR;
+        }
+        Log.i("wx", path);
+        HttpManager.post(path, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
                 super.onSuccess(jsonResponse, flag);
                 int status = jsonResponse.getInteger(SHSConst.HTTP_STATUS);
+                Log.i("wx", jsonResponse.toString());
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
                         String result = jsonResponse.getString(SHSConst.HTTP_RESULT);
@@ -147,10 +186,16 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
                         finish();
                         break;
                     case SHSConst.STATUS_FAIL:
-                        ToastUtil.show(AddMyCarActivity.this, "添加爱车失败");
+                        if (isReSubmit) {
+                            ToastUtil.show(AddMyCarActivity.this, "提交爱车失败");
+                        } else {
+                            ToastUtil.show(AddMyCarActivity.this, "添加爱车失败");
+                        }
+
                         break;
                 }
             }
+
             @Override
             public void onFailure(HttpException e, String arg1, String flag) {
                 super.onFailure(e, arg1, flag);
@@ -158,16 +203,35 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
             }
         }, null));
     }
+
     @Override
     public int setLayoutId() {
         return R.layout.activity_add_my_car;
     }
+
     @Override
     protected void setUpView() {
-        setBarText("添加爱车");
+        detailsModel = (MyCarDetailsModel) getIntent().getSerializableExtra("data");
+        isReSubmit = getIntent().getBooleanExtra("isReSubmit", false);
+        if (isReSubmit) {
+            setBarText("提交爱车");
+            initView();
+        } else {
+            setBarText("添加爱车");
+        }
         intentFilter = new IntentFilter("cartype");
         broadcastReceiver = new TypeBroadcastReceiver();
         registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    private void initView() {
+        editName.setText(detailsModel.getName());
+        //  editphone.setText(detailsModel.getMobile());
+        Glide.with(AddMyCarActivity.this).load(detailsModel.getDriving_image()).into(drivingImage);
+        textCar.setText(detailsModel.getCar_type());
+        editCarnum.setText(detailsModel.getPlate_number().replace("粤B", ""));
+        uploadText.setVisibility(View.GONE);
+        // Glide.with(AddMyCarActivity.this).load(detailsModel.getDriving_image()).into(drivingImage);
     }
 
     private void showChoiceImageAlert() {
@@ -182,6 +246,7 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
                             Intent intentAlbum = new Intent(
                                     AddMyCarActivity.this,
                                     GalleyActivity.class);
+                            intentAlbum.putExtra(GalleyActivity.INTENT_KEY_ONE,true);
                             startActivityForResult(intentAlbum, ALBUM_SELECT);
                             //  rightLayout.setEnabled(false);
                             selectDialog.dismiss();
@@ -195,6 +260,7 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
                             tmpImageName = FileUtil.getPhotoFileName() + "";
                             File tmpFile = new File(FileUtil.TEMP_PATH
                                     + tmpImageName);
+                           Log.i("wx",tmpFile.getName());
                             intentCamera.putExtra(MediaStore.EXTRA_OUTPUT,
                                     Uri.fromFile(tmpFile));
                             startActivityForResult(intentCamera, TAKE_PHOTO);
@@ -229,6 +295,7 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
             switch (requestCode) {
                 case TAKE_PHOTO:// 当选择拍照时调用
                     // 图片压缩
+                    Log.i("wx","调用拍照");
                     int[] screenSize = getScreenSize();
                     if (FileUtil.tempToLocalPath(tmpImageName, screenSize[0], screenSize[1])) {
                         filepath = FileUtil.BIG_IMAGE_PATH + tmpImageName;
@@ -275,10 +342,16 @@ public class AddMyCarActivity extends BaseActivityWithTopBar {
 
                     break;
             }
-        } else {
-            // 恢复点击
-            rightLayout.setEnabled(true);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+            broadcastReceiver = null;
+        }
+        super.onDestroy();
     }
 
     public class TypeBroadcastReceiver extends BroadcastReceiver {

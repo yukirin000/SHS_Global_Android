@@ -2,10 +2,12 @@ package com.shs.global.model;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by wenhai on 2016/4/18.
  */
-public class MyCarDetailsModel {
+public class MyCarDetailsModel implements Serializable{
     //车辆ID
     private String id;
     //用户ID
@@ -22,6 +24,15 @@ public class MyCarDetailsModel {
     private String driving_image;
     //审核状态
     private int state;
+    private String car_type_code;
+
+    public String getCar_type_code() {
+        return car_type_code;
+    }
+
+    public void setCar_type_code(String car_type_code) {
+        this.car_type_code = car_type_code;
+    }
 
     public String getId() {
         return id;
@@ -111,6 +122,9 @@ public class MyCarDetailsModel {
         }
         if (object.containsKey("name")) {
             setName(object.getString("name"));
+        }
+        if (object.containsKey("car_type_code")) {
+            setCar_type_code(object.getString("car_type_code"));
         }
     }
 }

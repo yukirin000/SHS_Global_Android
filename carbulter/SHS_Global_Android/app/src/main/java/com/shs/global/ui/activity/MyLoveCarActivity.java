@@ -2,6 +2,7 @@ package com.shs.global.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,8 +38,12 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
     private ListView myCarListView;
     private List<LoveCarModel> list;
     private SHSGlobalAdapter lcarAdapter;
+
     @ViewInject(R.id.none_car)
     private TextView noneText;
+
+    @ViewInject(R.id.refresh)
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public int setLayoutId() {
@@ -58,19 +63,18 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
         getlistData();
         initListView();
     }
-
     private void initListView() {
         lcarAdapter = new SHSGlobalAdapter<LoveCarModel>(this, R.layout.my_love_car_list_item) {
             @Override
             protected void convert(SHSGlobalBaseAdapterHelper helper, LoveCarModel item) {
                 helper.setText(R.id.car_type, item.getCarType());
                 TextView textView = helper.getView(R.id.car_plate);
-                if (item.getState() == 1) {
-                    textView.setText("正在审核");
-                    textView.setTextColor(Color.parseColor("#ff0000"));
-                } else {
+//                if (item.getState() == 1) {
+//                    textView.setText("正在审核");
+//                    textView.setTextColor(Color.parseColor("#ff0000"));
+//                } else {
                     textView.setText(item.getPlateNum());
-                }
+//                }
             }
         };
         myCarListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,6 +84,13 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
                 Intent intent = new Intent(MyLoveCarActivity.this, MyCarDetailsActivity.class);
                 intent.putExtra(CARID, model.getCarID());
                 startActivity(intent);
+            }
+        });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getlistData();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
@@ -97,6 +108,7 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
                     case SHSConst.STATUS_SUCCESS:
                         JSONArray result = jsonResponse.getJSONArray(SHSConst.HTTP_RESULT);
                         Log.i("wx", result.toString());
+                        list.clear();
                         for (int i = 0; i < result.size(); i++) {
                             LoveCarModel model = new LoveCarModel();
                             model.setContentWithJson(result.getJSONObject(i));

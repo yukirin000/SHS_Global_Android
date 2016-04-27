@@ -4,9 +4,14 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
     <TextView
-        android:text="page2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:visibility="gone"
+        android:id="@+id/none_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        android:text="暂无订单"
+        android:textSize="20sp" />
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="wrap_content"

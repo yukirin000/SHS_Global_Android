@@ -108,13 +108,20 @@ public class UserManager {
         edit.putInt("userid", userID);
         edit.putString("password", passoword);
         edit.commit();  //保存数据信息
-        JPushInterface.setAliasAndTags(context,"global"+userID, null, new TagAliasCallback() {
+        //测试用的
+        JPushInterface.setAliasAndTags(context, "globalTest" + userID, null, new TagAliasCallback() {
             @Override
             public void gotResult(int i, String s, Set<String> set) {
 
             }
         });
-
+        //正式用的
+//        JPushInterface.setAliasAndTags(context,"global"+userID, null, new TagAliasCallback() {
+//            @Override
+//            public void gotResult(int i, String s, Set<String> set) {
+//
+//            }
+//        });
     }
 
     /**

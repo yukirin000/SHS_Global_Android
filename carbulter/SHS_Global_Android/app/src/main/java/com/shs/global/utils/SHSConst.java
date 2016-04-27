@@ -4,6 +4,8 @@ package com.shs.global.utils;
  * Created by wenhai on 2016/2/23.
  */
 public class SHSConst {
+    public static  final  String QRCODEPREFIX ="biz";
+    public static  final  String WXPAYAPPID="wx7941b7c16b724574";
     public static  final  String INFORM="inform";
     public static  final  String TAG="Global";
     public static final int STATUS_SUCCESS = 1;// 接口返回成功
@@ -51,4 +53,9 @@ public class SHSConst {
     public static  final  String ALREADYSERVICELIST=DOMIN+"/alreadyServiceList";
     //订单详情serviceDetails
     public static  final  String SERVICEDETAILS=DOMIN+"/serviceDetails";
+    //重新提交车辆updateCar
+    public static  final  String UPDATECAR=DOMIN+"/updateCar";
+    //创建订单
+    public static  final  String CREATEORDER=DOMIN+"/createOrder";
+
 }

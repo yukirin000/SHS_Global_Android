@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_white"
+    android:layout_height="match_parent">
+   <include layout="@layout/layout_title_bar"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_pading"
+        android:paddingRight="@dimen/activity_horizontal_pading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <TextView
+            android:textSize="14sp"
+            android:gravity="center"
+            android:text="商家"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_alignParentRight="true"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:text="海岸城店"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+            <TextView
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="联系电话"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_shop_phonenum"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="10086"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+            <TextView
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="服务项目"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_services"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="精洗"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+            <TextView
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="消费金额"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_pay_count"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="0.01"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+            <TextView
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="服务车辆"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_servie_car"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="兰博基尼"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+        <TextView
+            android:gravity="center"
+            android:textColor="@color/main_gold"
+            android:textSize="16sp"
+            android:text="提交"
+            android:id="@+id/submit_order"
+            android:background="@drawable/round_lable_border"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+    </LinearLayout>
+</LinearLayout>

@@ -57,6 +57,7 @@
         <activity android:name=".ui.activity.CarShopActivity"></activity>
         <activity android:name=".ui.activity.ShopHomePageActivity"></activity>
         <activity android:name=".ui.activity.ServiceActivity"></activity>
+        <activity android:name=".ui.activity.CreateOrderActivity"></activity>
         <!-- History-->
         <activity android:name=".ui.activity.OrderDetailsActivity"></activity>
         <!--butler -->
@@ -66,13 +67,17 @@
         <activity android:name=".ui.view.gallery.imageloader.GalleyActivity"></activity>
 
         <!-- 微信登录回调-->
-        <!--微信分享回调 -->
+        <!--<activity-->
+            <!--android:name=".wxapi.WXEntryActivity"-->
+            <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+            <!--android:exported="true"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" ></activity>-->
         <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:launchMode="singleTop">
+        </activity>
         <!--定位服务-->
         <service android:name=".ui.service.LocationService" />
         <!-- Required SDK核心功能-->
@@ -170,6 +175,7 @@
         </receiver>
 
         <!-- Required . Enable it you can get statistics data with channel -->
+
         <meta-data
             android:name="JPUSH_CHANNEL"
             android:value="developer-default" />

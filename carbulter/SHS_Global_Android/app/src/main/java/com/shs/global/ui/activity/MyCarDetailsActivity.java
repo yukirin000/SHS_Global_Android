@@ -1,5 +1,6 @@
 package com.shs.global.ui.activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,6 +38,13 @@ public class MyCarDetailsActivity extends BaseActivityWithTopBar {
     private ImageView drivingImageView;
    @ViewInject(R.id.car_state_root)
    private RelativeLayout relativeLayout;
+    @ViewInject(R.id.car_state)
+    private TextView carText;
+    //不需要审核了所以没有了重新提交
+//    @ViewInject(R.id.car_resubmit_root)
+//    private RelativeLayout resubmitrelativeLayout;
+//    @ViewInject(R.id.car_resubmit)
+//    private TextView resubmit;
     @Override
     public int setLayoutId() {
         return R.layout.activity_my_car_details;
@@ -46,21 +54,39 @@ public class MyCarDetailsActivity extends BaseActivityWithTopBar {
     protected void setUpView() {
         setBarText("我的爱车");
         String carID = getIntent().getStringExtra(MyLoveCarActivity.CARID);
-        Log.i("wx",carID);
+        Log.i("wx", carID);
         getData(carID);
+      /*  resubmitrelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 resubmitCar();
+            }
+        });*/
     }
-
+    private void resubmitCar() {
+        Intent intent=new Intent(MyCarDetailsActivity.this,AddMyCarActivity.class);
+        intent.putExtra("data",detailsModel);
+        intent.putExtra("isReSubmit",true);
+        startActivity(intent);
+    }
     private void initView() {
         nameTextView.setText(detailsModel.getName());
         phoneNumTextView.setText(detailsModel.getMobile());
         carNumTextView.setText(detailsModel.getPlate_number());
         carTypeTextView.setText(detailsModel.getCar_type());
         Glide.with(MyCarDetailsActivity.this).load(detailsModel.getDriving_image()).into(drivingImageView);
-        if (detailsModel.getState()==1) {
-            relativeLayout.setVisibility(View.VISIBLE);
-        }else {
+//        if (detailsModel.getState()==1) {
+//            relativeLayout.setVisibility(View.VISIBLE);
+//            resubmitrelativeLayout.setVisibility(View.GONE);
+//            carText.setText("正在审核");
+//        }else if(detailsModel.getState()==3){
+//            relativeLayout.setVisibility(View.VISIBLE);
+//            carText.setText("审核未通过");
+//            resubmitrelativeLayout.setVisibility(View.VISIBLE);
+//        }else {
             relativeLayout.setVisibility(View.GONE);
-        }
+            //resubmitrelativeLayout.setVisibility(View.GONE);
+//        }
     }
 
     private void getData(String carID) {

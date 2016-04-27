@@ -2,10 +2,12 @@ package com.shs.global.model;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by wenhai on 2016/4/5.
  */
-public class ShopServicesModel {
+public class ShopServicesModel implements Serializable {
     private String serviceID;
     private String servieceName;
     //原价

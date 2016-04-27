@@ -9,6 +9,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -40,6 +41,8 @@ public class ServingFragment extends BaseFragment implements AbsListView.OnScrol
     private ListView servingListView;
     @ViewInject(R.id.refresh_layout)
     private SwipeRefreshLayout swipeRefreshLayout;
+    @ViewInject(R.id.none_content)
+    private TextView noneText;
     private SHSGlobalAdapter orderedAdapter;
     private List<OrderModel> list;
    //是否是下拉刷新
@@ -78,7 +81,7 @@ public class ServingFragment extends BaseFragment implements AbsListView.OnScrol
                 Glide.with(ServingFragment.this).load(item.getShopSubImage()).into(orderImage);
                 helper.setText(R.id.shop_name, item.getShopName());
                 helper.setText(R.id.pay_money, item.getPayMoney());
-                helper.setText(R.id.order_date, DateUtils.dateStreamToCalendar(item.getDate()));
+                helper.setText(R.id.order_date,item.getDate());
                 helper.setVisible(R.id.is_use, true);
             }
         };
@@ -107,7 +110,7 @@ public class ServingFragment extends BaseFragment implements AbsListView.OnScrol
     private void getData() {
         RequestParams params = new RequestParams();
         params.addBodyParameter("user_id", UserManager.getInstance().getUserID() + "");
-        HttpManager.post(SHSConst.ALREADYSERVICELIST, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
+        HttpManager.post(SHSConst.SERVICELIST, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
                 super.onSuccess(jsonResponse, flag);
@@ -116,6 +119,8 @@ public class ServingFragment extends BaseFragment implements AbsListView.OnScrol
                     case SHSConst.STATUS_SUCCESS:
                         JSONObject result = jsonResponse.getJSONObject(SHSConst.HTTP_RESULT);
                         JSONArray JSONlist=result.getJSONArray(SHSConst.HTTP_LSIT);
+                        Log.i("wx", JSONlist.toString());
+                        list.clear();
                         for (int i = 0; i < JSONlist.size(); i++) {
                             OrderModel moder = new OrderModel();
                             moder.setContentWithJson(JSONlist.getJSONObject(i));
@@ -135,7 +140,15 @@ public class ServingFragment extends BaseFragment implements AbsListView.OnScrol
                             orderedAdapter.addAll(list);
                             isMore = false;
                         }
-                        servingListView.setAdapter(orderedAdapter);
+                        if (list.size() == 0) {
+                            noneText.setVisibility(View.VISIBLE);
+                            servingListView.setVisibility(View.GONE);
+                        } else {
+                            noneText.setVisibility(View.GONE);
+                            servingListView.setVisibility(View.VISIBLE);
+                            orderedAdapter.replaceAll(list);
+                            servingListView.setAdapter(orderedAdapter);
+                        }
                         isLoad = false;
                         break;
                     case SHSConst.STATUS_FAIL:

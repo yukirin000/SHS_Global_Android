@@ -11,10 +11,9 @@
         android:background="@color/main_black">
 
         <RelativeLayout
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-          >
+            android:layout_alignParentBottom="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -26,9 +25,69 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/serviece_listview"
+    <LinearLayout
+        android:id="@+id/view_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"></ListView>
+        android:orientation="vertical">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/car_decoration"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/cosmetology"
+                android:gravity="center"
+                android:text="豪车美容" />
+
+            <TextView
+                android:id="@+id/online_consult"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/cosmetology"
+                android:gravity="center"
+                android:text="在线问诊" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/online_insurance"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/cosmetology"
+                android:gravity="center"
+                android:text="保险咨询" />
+
+            <TextView
+                android:id="@+id/car_repair"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/cosmetology"
+                android:gravity="center"
+                android:text="保养维修" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--<ListView-->
+    <!--android:id="@+id/serviece_listview"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:divider="@null"></ListView>-->
 </LinearLayout>

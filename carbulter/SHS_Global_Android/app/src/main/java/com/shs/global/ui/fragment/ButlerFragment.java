@@ -52,7 +52,6 @@ public class ButlerFragment extends BaseFragment {
         }
 
     }
-
     private void jumpAboutUs() {
         Intent intent = new Intent(getActivity(), AboutUsActivity.class);
         startActivity(intent);

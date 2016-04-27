@@ -14,13 +14,13 @@ public class CarShopModel {
     private double longitude;
     //维度
     private double latitude;
-    private  String distance;
+    private  double distance=-1;
 
-    public String getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(String distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 

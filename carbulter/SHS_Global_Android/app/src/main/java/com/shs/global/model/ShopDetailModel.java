@@ -7,11 +7,13 @@ import android.content.Intent;
 import com.alibaba.fastjson.JSONObject;
 import com.shs.global.utils.DistanceUtil;
 
+import java.io.Serializable;
+
 /**
  * Created by wenhai on 2016/4/5.
  */
-public class ShopDetailModel {
-    private String id;
+public class ShopDetailModel implements Serializable{
+    private String id;//商店ID
     private String shopName;
     private String address;
     private String shopCover;

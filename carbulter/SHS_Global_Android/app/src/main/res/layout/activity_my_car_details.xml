@@ -135,5 +135,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
+        <!--<RelativeLayout-->
+            <!--android:visibility="gone"-->
+            <!--android:id="@+id/car_resubmit_root"-->
+            <!--android:layout_marginTop="100dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp">-->
+            <!--<TextView-->
+                <!--android:background="@drawable/round_resend_button"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#ff0000"-->
+                <!--android:text="重新提交"-->
+                <!--android:id="@+id/car_resubmit"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
+        <!--</RelativeLayout>-->
     </LinearLayout>
 </LinearLayout>

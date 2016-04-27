@@ -1,11 +1,14 @@
 package com.shs.global.ui.fragment;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -21,6 +24,7 @@ import com.shs.global.helper.LoadDataHandler;
 import com.shs.global.helper.SHSGlobalAdapter;
 import com.shs.global.helper.SHSGlobalBaseAdapterHelper;
 import com.shs.global.model.OrderModel;
+import com.shs.global.ui.activity.OrderDetailsActivity;
 import com.shs.global.utils.DateUtils;
 import com.shs.global.utils.SHSConst;
 import com.shs.global.utils.ToastUtil;
@@ -47,6 +51,8 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
     private ListView listView;
     @ViewInject(R.id.down_fresh)
     private SwipeRefreshLayout swipeRefreshLayout;
+    @ViewInject(R.id.none_content)
+    private TextView noneText;
     private SHSGlobalAdapter orderedAdapter;
    private List<OrderModel> list;
     @Override
@@ -71,11 +77,20 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
                 Glide.with(BeforeOrderFragment.this).load(item.getShopSubImage()).into(orderImage);
                 helper.setText(R.id.shop_name, item.getShopName());
                 helper.setText(R.id.pay_money,item.getPayMoney());
-                helper.setText(R.id.order_date, DateUtils.dateStreamToCalendar(item.getDate()));
+                helper.setText(R.id.order_date, item.getDate());
                 helper.setVisible(R.id.is_use,false);
             }
         };
         listView.setOnScrollListener(this);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                OrderModel model = (OrderModel) orderedAdapter.getItem(position);
+                Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+                intent.putExtra("order_id", model.getOrderID());
+                startActivity(intent);
+            }
+        });
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -92,7 +107,7 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
     private void getData() {
         RequestParams params = new RequestParams();
         params.addBodyParameter("user_id", UserManager.getInstance().getUserID() + "");
-        HttpManager.post(SHSConst.SERVICELIST, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
+        HttpManager.post(SHSConst.ALREADYSERVICELIST, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
                 super.onSuccess(jsonResponse, flag);
@@ -101,6 +116,8 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
                     case SHSConst.STATUS_SUCCESS:
                         JSONObject result = jsonResponse.getJSONObject(SHSConst.HTTP_RESULT);
                         JSONArray JSONlist=result.getJSONArray(SHSConst.HTTP_LSIT);
+                        Log.i("wx",JSONlist.toString());
+                        list.clear();
                         for (int i = 0; i < JSONlist.size(); i++) {
                             OrderModel moder = new OrderModel();
                             moder.setContentWithJson(JSONlist.getJSONObject(i));
@@ -121,7 +138,15 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
                             isMore = false;
                         //orderedAdapter.setSelection(lastItem);
                         }
-                        listView.setAdapter(orderedAdapter);
+                        if (list.size() == 0) {
+                            noneText.setVisibility(View.VISIBLE);
+                            listView.setVisibility(View.GONE);
+                        } else {
+                            noneText.setVisibility(View.GONE);
+                            listView.setVisibility(View.VISIBLE);
+                            orderedAdapter.replaceAll(list);
+                            listView.setAdapter(orderedAdapter);
+                        }
                         isLoad = false;
                         break;
                     case SHSConst.STATUS_FAIL:

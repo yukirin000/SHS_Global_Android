@@ -38,29 +38,29 @@
                 android:textColorHint="@color/main_hint_gary" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp">-->
 
-            <TextView
-                android:id="@+id/phone_label"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="电话"
-                android:textColor="@color/main_black" />
+            <!--<TextView-->
+                <!--android:id="@+id/phone_label"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:text="电话"-->
+                <!--android:textColor="@color/main_black" />-->
 
-            <EditText
-                android:maxLength="11"
-                android:inputType="number"
-                android:id="@+id/edit_phone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/phone_label"
-                android:gravity="right"
-                android:hint="必填"
-                android:textColorHint="@color/main_hint_gary" />
-        </RelativeLayout>
+            <!--<EditText-->
+                <!--android:maxLength="11"-->
+                <!--android:inputType="number"-->
+                <!--android:id="@+id/edit_phone"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_toRightOf="@id/phone_label"-->
+                <!--android:gravity="right"-->
+                <!--android:hint="必填"-->
+                <!--android:textColorHint="@color/main_hint_gary" />-->
+        <!--</RelativeLayout>-->
 
         <RelativeLayout
             android:id="@+id/choice_car_num"
@@ -76,7 +76,7 @@
                 android:textColor="@color/main_black" />
 
             <EditText
-                android:maxLength="5"
+                android:maxLength="6"
                 android:digits="0123456789abcdefghigklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM"
                 android:id="@+id/edit_car_num"
                 android:layout_width="match_parent"

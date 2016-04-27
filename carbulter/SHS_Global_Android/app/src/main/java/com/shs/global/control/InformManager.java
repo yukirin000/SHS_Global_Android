@@ -47,12 +47,13 @@ public class InformManager {
 
         SharedPreferences.Editor editor= share.edit();
         editor.putInt(COUNT, informList.size());
-         for (int i=0;i<informList.size();i++){
-             editor.putString(CARID+i,informList.get(i).getCarID());
-             editor.putString(USERID+i,informList.get(i).getUserID());
-             editor.putString(PLATENUM+i,informList.get(i).getPlateNum());
-             editor.putInt(READSTATE + i, informList.get(i).getReadState());
-             editor.putInt(CARSTATE+i,informList.get(i).getCarState());
+        int size=informList.size();
+         for (int i=(size-1);i>0;i--){
+             editor.putString(CARID+(size-1-i),informList.get(i).getCarID());
+             editor.putString(USERID+(size-1-i),informList.get(i).getUserID());
+             editor.putString(PLATENUM+(size-1-i),informList.get(i).getPlateNum());
+             editor.putInt(READSTATE +(size-1-i), informList.get(i).getReadState());
+             editor.putInt(CARSTATE+(size-1-i),informList.get(i).getCarState());
          }
         editor.commit();
     }
@@ -67,13 +68,13 @@ public class InformManager {
         if (size==-1) {
             return informData;
         }else {
-            for (int i=0;i<size;i++){
+            for (int i=size;i>0;i--){
                InformModel model=new InformModel();
-                model.setCarID(share.getString(CARID+i,""));
-                model.setUserID(share.getString(USERID + i, ""));
-                model.setPlateNum(share.getString(PLATENUM + i, ""));
-                model.setReadState(share.getInt(READSTATE + i, -1));
-                model.setCarState(share.getInt(CARSTATE + i, -1));
+                model.setCarID(share.getString(CARID+(i-1),""));
+                model.setUserID(share.getString(USERID + (i-1), ""));
+                model.setPlateNum(share.getString(PLATENUM + (i-1), ""));
+                model.setReadState(share.getInt(READSTATE + (i-1), -1));
+                model.setCarState(share.getInt(CARSTATE + (i-1), -1));
                 informData.add(model);
             }
             return informData;

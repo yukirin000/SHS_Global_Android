@@ -77,6 +77,8 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
     private void jumpChoice() {
        if (UserManager.getInstance().isUser()) {
            Intent intent = new Intent(this, ChoiceMyCarActivity.class);
+           intent.putExtra("shop",model);
+           intent.putExtra("good", servicesModel);
            startActivity(intent);
        }else {
            PromptAlertDialog dialog=new PromptAlertDialog(this,"提示");

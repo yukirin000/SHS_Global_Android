@@ -6,6 +6,9 @@ import android.util.Log;
 
 
 import com.shs.global.control.UserManager;
+import com.shs.global.utils.SHSConst;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.util.HashSet;
 import java.util.Set;

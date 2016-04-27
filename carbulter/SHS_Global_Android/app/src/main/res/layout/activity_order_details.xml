@@ -7,6 +7,7 @@
     <include layout="@layout/layout_title_bar" />
 
     <com.shs.global.ui.view.CustomerScrollView
+        android:id="@+id/order_num_qrcode"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -49,8 +50,8 @@
 
                 <ImageView
                     android:id="@+id/order_qrcode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/pictures_no" />

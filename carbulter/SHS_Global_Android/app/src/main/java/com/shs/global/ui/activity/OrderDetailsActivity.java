@@ -1,6 +1,9 @@
 package com.shs.global.ui.activity;
 
+import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -13,14 +16,16 @@ import com.shs.global.control.HttpManager;
 import com.shs.global.helper.JsonRequestCallBack;
 import com.shs.global.helper.LoadDataHandler;
 import com.shs.global.model.OrderDetailsModel;
+import com.shs.global.ui.view.ShowQrcodePopupWindow;
+import com.shs.global.utils.QRCodeUtil;
 import com.shs.global.utils.SHSConst;
 import com.shs.global.utils.ToastUtil;
 
 /**
  * Created by wenhai on 2016/4/19.
  */
-public class OrderDetailsActivity extends BaseActivityWithTopBar{
-   @ViewInject(R.id.order_num)
+public class OrderDetailsActivity extends BaseActivityWithTopBar {
+    @ViewInject(R.id.order_num)
     private TextView textOrderNum;
     @ViewInject(R.id.service_shop)
     private TextView textServiceShop;
@@ -34,21 +39,50 @@ public class OrderDetailsActivity extends BaseActivityWithTopBar{
     private TextView textCarType;
     @ViewInject(R.id.use_state)
     private TextView textState;
+    @ViewInject(R.id.order_qrcode)
+    private ImageView qrcodeImage;
+    private OrderDetailsModel model;
+    private Bitmap qrcodeBitmap;
 
     @Override
     public int setLayoutId() {
         return R.layout.activity_order_details;
     }
+
     @Override
     protected void setUpView() {
-     String  orderID = getIntent().getStringExtra("order_id");
+        String orderID = getIntent().getStringExtra("order_id");
         setBarText("订单详情");
         getData(orderID);
-        initView();
-    }
-    private void initView() {
 
     }
+
+    private void initView() {
+        textOrderNum.setText(model.getOut_trade_no());
+        textServiceShop.setText(model.getShop_name());
+        textPhoneNum.setText(model.getShop_phone());
+        textServices.setText(model.getGoods_name());
+        textPay.setText(model.getTotal_fee());
+        textCarType.setText(model.getCar_type());
+        if ("1".equals(model.getState())) {
+            textState.setText("服务中");
+        } else if ("2".equals(model.getState())) {
+            textState.setText("已使用");
+        } else {
+            textState.setText("已失效");
+        }
+        qrcodeBitmap = QRCodeUtil.createQRImage(SHSConst.QRCODEPREFIX + model.getOut_trade_no(), 400, 400, null);
+                qrcodeImage.setImageBitmap(qrcodeBitmap);
+        qrcodeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowQrcodePopupWindow popupWindow=new ShowQrcodePopupWindow(OrderDetailsActivity.this);
+                popupWindow.setGroupBitmap(qrcodeBitmap);
+                popupWindow.showPopupWindow(v,false);
+            }
+        });
+    }
+
     private void getData(String orderID) {
         RequestParams params = new RequestParams();
         params.addBodyParameter("order_id", orderID);
@@ -59,8 +93,11 @@ public class OrderDetailsActivity extends BaseActivityWithTopBar{
                 int status = jsonResponse.getInteger(SHSConst.HTTP_STATUS);
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
-                        String result = jsonResponse.getString(SHSConst.HTTP_RESULT);
-                        OrderDetailsModel model = (OrderDetailsModel) JSONArray.parse(result);
+                        JSONArray result = jsonResponse.getJSONArray(SHSConst.HTTP_RESULT);
+                        JSONObject details = result.getJSONObject(0);
+                        model = new OrderDetailsModel();
+                        model.jsonParse(details);
+                        initView();
                         break;
                     case SHSConst.STATUS_FAIL:
                         ToastUtil.show(OrderDetailsActivity.this, "获取订单详情失败");

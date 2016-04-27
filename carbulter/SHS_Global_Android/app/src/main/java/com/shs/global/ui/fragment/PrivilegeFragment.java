@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.shs.global.R;
 import com.shs.global.helper.SHSGlobalAdapter;
 import com.shs.global.helper.SHSGlobalBaseAdapterHelper;
@@ -27,10 +29,37 @@ import java.util.List;
  * Created by wenhai on 2016/3/24.
  */
 public class PrivilegeFragment extends BaseFragment {
-    @ViewInject(R.id.serviece_listview)
-    private ListView listview;
+//    @ViewInject(R.id.serviece_listview)
+//    private ListView listview;
+    @ViewInject(R.id.car_repair)
+    private TextView repairText;//保养维修
+    @ViewInject(R.id.car_decoration)
+    private TextView decorationText;//豪车美容
+    @ViewInject(R.id.online_consult)
+    private TextView consultText;//在线问诊
+    @ViewInject(R.id.online_insurance)
+    private TextView insuranceText;//保险咨询
     private List<PrivilegeModel> data;
 
+    @OnClick(value = {R.id.car_repair, R.id.car_decoration, R.id.online_consult, R.id.online_insurance})
+    public void touch(View view) {
+        switch (view.getId()) {
+
+            case R.id.car_decoration:
+                Intent shopIntent = new Intent(getActivity(), CarShopActivity.class);
+                startActivity(shopIntent);
+                break;
+            case R.id.online_consult:
+                Intent onlineIntent = new Intent(getActivity(), OnlineConsultantActivity.class);
+                startActivity(onlineIntent);
+                break;
+            case R.id.car_repair:
+            case  R.id.online_insurance:
+                Intent intent = new Intent(getActivity(), ServiceActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
 
     @Override
     public int setLayoutId() {
@@ -90,26 +119,26 @@ public class PrivilegeFragment extends BaseFragment {
             }
         };
         adapter.addAll(data);
-        listview.setAdapter(adapter);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    Intent shopIntent = new Intent(getActivity(), CarShopActivity.class);
-                    startActivity(shopIntent);
-
-                } else if (position == 1) {
-                    Intent shopIntent = new Intent(getActivity(), OnlineConsultantActivity.class);
-                    startActivity(shopIntent);
-                } else {
-                    Intent intent = new Intent(getActivity(), ServiceActivity.class);
-                    startActivity(intent);
-                }
-                Intent serviceIntent = new Intent(getActivity(), LocationService.class);
-                getActivity().startService(serviceIntent);
-                Log.i("zwea", "启动服务");
-            }
-        });
+//        listview.setAdapter(adapter);
+//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                if (position == 0) {
+//                    Intent shopIntent = new Intent(getActivity(), CarShopActivity.class);
+//                    startActivity(shopIntent);
+//
+//                } else if (position == 1) {
+//                    Intent shopIntent = new Intent(getActivity(), OnlineConsultantActivity.class);
+//                    startActivity(shopIntent);
+//                } else {
+//                    Intent intent = new Intent(getActivity(), ServiceActivity.class);
+//                    startActivity(intent);
+//                }
+//                Intent serviceIntent = new Intent(getActivity(), LocationService.class);
+//                getActivity().startService(serviceIntent);
+//                Log.i("zwea", "启动服务");
+//            }
+//        });
     }
 
     private int getDrawableId(String name) throws NoSuchFieldException {

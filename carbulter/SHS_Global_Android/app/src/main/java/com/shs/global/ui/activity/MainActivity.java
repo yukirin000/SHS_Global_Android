@@ -59,14 +59,19 @@ public class MainActivity extends BaseActivity {
     protected void loadLayout(View v) {
 
     }
+
     @Override
     protected void setUpView() {
+        int page=getIntent().getIntExtra("page",-1);
         viewList = new ArrayList<TextView>();
         viewList.add(privilegeTextview);
         viewList.add(historyTextview);
         viewList.add(menbersTextview);
         viewList.add(bulerTextview);
         initView();
+        if (page==2){
+            changeFragment(R.id.history);
+        }
     }
 
     private void initView() {
@@ -93,48 +98,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(value = {R.id.butler, R.id.menbers, R.id.history, R.id.privilege})
     private void clickEvent(View view) {
-        FragmentTransaction transaction = manager.beginTransaction();
-        switch (view.getId()) {
-            case R.id.butler:
-                changeView(R.id.butler);
-                transaction.show(butlerFragment);
-                transaction.hide(privilegeFragment);
-                transaction.hide(historyFragment);
-                transaction.hide(menbersFragment);
-                break;
-            case R.id.menbers:
-                if(UserManager.getInstance().isUser()) {
-                    transaction.show(menbersFragment);
-                    transaction.hide(butlerFragment);
-                    transaction.hide(historyFragment);
-                    transaction.hide(privilegeFragment);
-                    changeView(R.id.menbers);
-                }else {
-                    PromptAlertDialog dialog=new PromptAlertDialog(this,"提示");
-                    dialog.show();
-                }
-                break;
-            case R.id.history:
-                if(UserManager.getInstance().isUser()) {
-                    transaction.show(historyFragment);
-                    transaction.hide(butlerFragment);
-                    transaction.hide(privilegeFragment);
-                    transaction.hide(menbersFragment);
-                    changeView(R.id.history);
-                }else {
-                    PromptAlertDialog dialog=new PromptAlertDialog(this,"提示");
-                    dialog.show();
-                }
-                break;
-            case R.id.privilege:
-                transaction.show(privilegeFragment);
-                transaction.hide(butlerFragment);
-                transaction.hide(historyFragment);
-                transaction.hide(menbersFragment);
-                changeView(R.id.privilege);
-                break;
-        }
-        transaction.commit();
+      changeFragment(view.getId());
     }
 
     private void changeView(int id) {
@@ -153,12 +117,59 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+
+    private void changeFragment(int id) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        switch (id) {
+            case R.id.butler:
+                changeView(R.id.butler);
+                transaction.show(butlerFragment);
+                transaction.hide(privilegeFragment);
+                transaction.hide(historyFragment);
+                transaction.hide(menbersFragment);
+                break;
+            case R.id.menbers:
+                if (UserManager.getInstance().isUser()) {
+                    transaction.show(menbersFragment);
+                    transaction.hide(butlerFragment);
+                    transaction.hide(historyFragment);
+                    transaction.hide(privilegeFragment);
+                    changeView(R.id.menbers);
+                } else {
+                    PromptAlertDialog dialog = new PromptAlertDialog(this, "提示");
+                    dialog.show();
+                }
+                break;
+            case R.id.history:
+                if (UserManager.getInstance().isUser()) {
+                    transaction.show(historyFragment);
+                    transaction.hide(butlerFragment);
+                    transaction.hide(privilegeFragment);
+                    transaction.hide(menbersFragment);
+                    changeView(R.id.history);
+                } else {
+                    PromptAlertDialog dialog = new PromptAlertDialog(this, "提示");
+                    dialog.show();
+                }
+                break;
+            case R.id.privilege:
+                transaction.show(privilegeFragment);
+                transaction.hide(butlerFragment);
+                transaction.hide(historyFragment);
+                transaction.hide(menbersFragment);
+                changeView(R.id.privilege);
+                break;
+        }
+        transaction.commit();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Intent intent = new Intent(this, LocationService.class);
         stopService(intent);
     }
+
     /**
      * 重写返回操作
      */

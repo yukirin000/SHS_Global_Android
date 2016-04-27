@@ -1,5 +1,8 @@
 package com.shs.global.model;
 
+
+import com.alibaba.fastjson.JSONObject;
+
 /**
  * Created by wenhai on 2016/4/19.
  */
@@ -95,4 +98,26 @@ public class OrderDetailsModel {
 
     //车辆类型
     private String car_type;
+    public void jsonParse(JSONObject jsonObject){
+        if (jsonObject.containsKey("id"))
+            setId(jsonObject.getString("id"));
+        if (jsonObject.containsKey("out_trade_no"))
+            setOut_trade_no(jsonObject.getString("out_trade_no"));
+        if (jsonObject.containsKey("product_id"))
+            setProduct_id(jsonObject.getString("product_id"));
+        if (jsonObject.containsKey("state"))
+            setState(jsonObject.getString("state"));
+        if (jsonObject.containsKey("shop_name"))
+            setShop_name(jsonObject.getString("shop_name"));
+        if (jsonObject.containsKey("shop_phone"))
+            setShop_phone(jsonObject.getString("shop_phone"));
+        if (jsonObject.containsKey("goods_name"))
+            setGoods_name(jsonObject.getString("goods_name"));
+        if (jsonObject.containsKey("total_fee"))
+            setTotal_fee(jsonObject.getString("total_fee"));
+        if (jsonObject.containsKey("car_type"))
+            setCar_type(jsonObject.getString("car_type"));
+
+
+    }
 }

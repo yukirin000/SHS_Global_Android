@@ -1,7 +1,9 @@
 package com.shs.global.ui.activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,6 +20,8 @@ import com.shs.global.helper.LoadDataHandler;
 import com.shs.global.helper.SHSGlobalAdapter;
 import com.shs.global.helper.SHSGlobalBaseAdapterHelper;
 import com.shs.global.model.LoveCarModel;
+import com.shs.global.model.ShopDetailModel;
+import com.shs.global.model.ShopServicesModel;
 import com.shs.global.utils.SHSConst;
 import com.shs.global.utils.ToastUtil;
 
@@ -28,6 +32,8 @@ import java.util.List;
  * Created by wenhai on 2016/4/18.
  */
 public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
+    private ShopDetailModel shop;//商店
+    private ShopServicesModel good;//商品
     @ViewInject(R.id.choice_car_list)
     private ListView choiceListView;
     @ViewInject(R.id.none_content)
@@ -43,6 +49,8 @@ public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
     @Override
     protected void setUpView() {
         setBarText("选择我的爱车");
+        shop= (ShopDetailModel) getIntent().getSerializableExtra("shop");
+        good= (ShopServicesModel) getIntent().getSerializableExtra("good");
         data=new ArrayList<>();
         getData();
         initListView();
@@ -56,7 +64,25 @@ public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
                 helper.setText(R.id.car_plate, item.getPlateNum());
             }
         };
+        choiceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                jumpOrderView(position);
+            }
+        });
     }
+
+    private void jumpOrderView(int position) {
+        LoveCarModel model = (LoveCarModel) adapter.getItem(position);
+        Intent orderIntent = new Intent(ChoiceMyCarActivity.this, CreateOrderActivity.class);
+        orderIntent.putExtra("shop", shop);
+        orderIntent.putExtra("good", good);
+        orderIntent.putExtra("cartype", model.getCarType());
+        orderIntent.putExtra("carid", model.getCarID());
+        startActivity(orderIntent);
+        finish();
+    }
+
     private void getData() {
         RequestParams params = new RequestParams();
         params.addBodyParameter("user_id", UserManager.getInstance().getUserID() + "");

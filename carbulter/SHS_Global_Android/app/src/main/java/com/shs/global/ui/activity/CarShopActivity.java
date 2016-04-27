@@ -30,6 +30,8 @@ import com.shs.global.utils.SHSConst;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -103,7 +105,7 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                 Glide.with(CarShopActivity.this).load(item.getShopImage()).into(image);
                 helper.setText(R.id.shop_address, item.getShopAddress());
                 if (isLocation) {
-                    if (item.getDistance() != null) {
+                    if (item.getDistance() != -1) {
                         helper.setText(R.id.distance, item.getDistance() + "km");
                     } else if (currentlong != 0) {
                         helper.setText(R.id.distance, DistanceUtil.gps2m(item.getLatitude(), item.getLongitude(), currentlat, currentlong) + "km");
@@ -223,10 +225,16 @@ public class CarShopActivity extends BaseActivityWithTopBar {
                 currentlong = intent.getDoubleExtra("long", 0.00);
                 isLocation = true;
                 for (CarShopModel model : list) {
-                    model.setDistance(DistanceUtil.gps2m(model.getLatitude(), model.getLongitude(), currentlat, currentlong) + "");
+                    model.setDistance(DistanceUtil.gps2m(model.getLatitude(), model.getLongitude(), currentlat, currentlong) );
                 }
                 if (shopAdapter != null)
-                    shopAdapter.notifyDataSetChanged();
+                    Collections.sort(list, new Comparator<CarShopModel>() {
+                        @Override
+                        public int compare(CarShopModel lhs, CarShopModel rhs) {
+                            return (lhs.getDistance() < rhs.getDistance() ? -1 : (lhs.getDistance() ==  rhs.getDistance() ? 0 : 1));
+                        }
+                    });
+                shopAdapter.replaceAll(list);
                 //  initlistview();
             }
         }

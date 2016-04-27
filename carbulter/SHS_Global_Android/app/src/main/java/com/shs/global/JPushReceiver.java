@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.shs.global.control.InformManager;
 import com.shs.global.model.InformModel;
+import com.shs.global.ui.activity.InformActivity;
 import com.shs.global.ui.activity.MainActivity;
 import com.shs.global.utils.SHSConst;
 
@@ -45,7 +46,7 @@ public class JPushReceiver  extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
             //打开自定义的Activity
-            Intent i = new Intent(context,MainActivity.class);
+            Intent i = new Intent(context,InformActivity.class);
             i.putExtras(bundle);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
             context.startActivity(i);
