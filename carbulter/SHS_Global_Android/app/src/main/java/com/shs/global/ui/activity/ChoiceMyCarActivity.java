@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,6 +41,7 @@ public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
     private TextView noneText;
     private List<LoveCarModel> data;
     private SHSGlobalAdapter adapter;
+    private ImageView rightBtn;
 
     @Override
     public int setLayoutId() {
@@ -52,8 +54,13 @@ public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
         shop= (ShopDetailModel) getIntent().getSerializableExtra("shop");
         good= (ShopServicesModel) getIntent().getSerializableExtra("good");
         data=new ArrayList<>();
-        getData();
         initListView();
+    }
+
+    @Override
+    public void onResume() {
+        getData();
+        super.onResume();
     }
 
     private void initListView() {
@@ -71,6 +78,18 @@ public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
             }
         });
     }
+    private void addRightBtn(){
+        rightBtn = addRightImgBtn(R.layout.right_image_button, R.id.layout_top_btn_root_view,
+                R.id.img_btn_right_top);
+        rightBtn.setImageResource(R.drawable.add);
+        rightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(ChoiceMyCarActivity.this, AddMyCarActivity.class);
+                startActivity(intent1);
+            }
+        });
+    }
 
     private void jumpOrderView(int position) {
         LoveCarModel model = (LoveCarModel) adapter.getItem(position);
@@ -80,12 +99,11 @@ public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
         orderIntent.putExtra("cartype", model.getCarType());
         orderIntent.putExtra("carid", model.getCarID());
         startActivity(orderIntent);
-        finish();
     }
-
     private void getData() {
         RequestParams params = new RequestParams();
         params.addBodyParameter("user_id", UserManager.getInstance().getUserID() + "");
+        data.clear();
         HttpManager.post(SHSConst.CHOICEMYCAR, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {
@@ -101,9 +119,13 @@ public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
                             data.add(model);
                         }
                         if (data.size() == 0) {
+                            addRightBtn();
                             noneText.setVisibility(View.VISIBLE);
                             choiceListView.setVisibility(View.GONE);
                         } else {
+                            if (rightBtn!=null){
+                                rightBtn.setVisibility(View.GONE);
+                            }
                             noneText.setVisibility(View.GONE);
                             choiceListView.setVisibility(View.VISIBLE);
                             adapter.replaceAll(data);

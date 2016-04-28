@@ -163,8 +163,10 @@ public class RegisterActivity extends BaseActivityWithTopBar {
                             hideLoading();
                             JSONObject result = jsonResponse
                                     .getJSONObject(SHSConst.HTTP_RESULT);
-                            userID = result.getIntValue("id");
+                            result.toString();
+                            userID =  Integer.parseInt(result.getString("user_id"));
                             token = result.getString("login_token");
+                            Log.i("wx","找回密码成功用户ID为："+ userID);
                             // 设置用户实例
                             saveLoginInfo();
                             // 设置用户实例
@@ -333,11 +335,12 @@ public class RegisterActivity extends BaseActivityWithTopBar {
                         super.onSuccess(jsonResponse, flag);
                         int status = jsonResponse
                                 .getInteger(SHSConst.HTTP_STATUS);
+                        Log.i("wx", "注册成功用户ID为：" + jsonResponse.toString());
                         if (status == SHSConst.STATUS_SUCCESS) {
                             hideLoading();
                             JSONObject result = jsonResponse
                                     .getJSONObject(SHSConst.HTTP_RESULT);
-                            userID = result.getIntValue("id");
+                            userID =  Integer.parseInt(result.getString("user_id"));
                             token = result.getString("login_token");
                             // 设置用户实例
                             saveLoginInfo();

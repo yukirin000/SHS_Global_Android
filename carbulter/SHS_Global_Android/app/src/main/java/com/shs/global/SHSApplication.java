@@ -6,6 +6,7 @@ import android.util.Log;
 
 
 import com.shs.global.control.UserManager;
+import com.shs.global.utils.FileUtil;
 import com.shs.global.utils.SHSConst;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -30,11 +31,14 @@ public class SHSApplication extends Application {
     public void onCreate() {
         super.onCreate();
         applicationContext = this;
+
         application = (SHSApplication) getApplicationContext();
         UserManager.init(application);
         //获取保存的本地数据
         UserManager.getInstance().find();
         initJpush();
+        //初始化临时文件路径
+        FileUtil.makeDirs();
     }
 
     private void initJpush() {

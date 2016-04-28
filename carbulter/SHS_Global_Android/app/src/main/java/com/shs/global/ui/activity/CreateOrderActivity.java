@@ -51,6 +51,12 @@ public class CreateOrderActivity  extends BaseActivityWithTopBar{
     }
 
     @Override
+    public void onResume() {
+        submitText.setEnabled(true);
+        super.onResume();
+    }
+
+    @Override
     protected void setUpView() {
        setBarText("订单详情");
         api = WXAPIFactory.createWXAPI(this, SHSConst.WXPAYAPPID);
@@ -121,6 +127,5 @@ public class CreateOrderActivity  extends BaseActivityWithTopBar{
          boolean b= api.sendReq(req);
          Log.i("pay",b+"");
          submitText.setEnabled(false);
-         finish();
      }
 }

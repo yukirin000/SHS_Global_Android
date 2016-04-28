@@ -84,7 +84,7 @@ public class CarTypeActivity extends BaseActivityWithTopBar {
                         listView.setAdapter(adapter);
                         break;
                     case SHSConst.STATUS_FAIL:
-                        ToastUtil.show(CarTypeActivity.this, "获取爱车列表失败");
+                        ToastUtil.show(CarTypeActivity.this, "获取车型列表失败");
                         break;
                 }
             }

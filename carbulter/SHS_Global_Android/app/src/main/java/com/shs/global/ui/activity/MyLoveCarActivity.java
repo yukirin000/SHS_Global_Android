@@ -153,7 +153,6 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
 //                startActivity(intent);
 //                break;
             case R.id.img_btn_right_top:
-                Log.i("wx", "click");
                 Intent intent1 = new Intent(this, AddMyCarActivity.class);
                 startActivity(intent1);
                 break;
