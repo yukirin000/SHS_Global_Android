@@ -60,8 +60,11 @@ public class OrderModel {
         if (object.containsKey("shop_name")) {
             setShopName(object.getString("shop_name"));
         }
-        if (object.containsKey("add_date")) {
-            setDate(object.getString("add_date"));
+        if (object.containsKey("pay_date")) {
+            setDate(object.getString("pay_date"));
+        }
+        if (object.containsKey("use_date")) {
+            setDate(object.getString("use_date"));
         }
         if (object.containsKey("shop_image_thumb")) {
             setShopSubImage(object.getString("shop_image_thumb"));

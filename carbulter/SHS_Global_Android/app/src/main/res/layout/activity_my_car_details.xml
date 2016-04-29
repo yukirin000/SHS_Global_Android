@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_backgroup_gary"
     android:orientation="vertical">
    <include layout="@layout/layout_title_bar"/>
     <LinearLayout
@@ -9,57 +10,73 @@
         android:layout_height="match_parent"
         android:layout_below="@id/title_bar"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_pading"
-        android:paddingRight="@dimen/activity_horizontal_pading">
-
+        >
         <RelativeLayout
+            android:background="@color/main_white"
             android:layout_width="match_parent"
             android:layout_height="50dp">
-
             <TextView
+                android:layout_marginLeft="15dp"
                 android:id="@+id/name_label"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="姓名"
-                android:textColor="@color/main_black" />
-
+                android:textColor="@color/back_font" />
             <TextView
+                android:textSize="14sp"
+                android:layout_marginRight="15dp"
+                android:textColor="@color/light_black_font"
                 android:layout_alignParentRight="true"
                 android:id="@+id/text_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 />
+            <View
+                android:paddingLeft="@dimen/activity_horizontal_pading"
+                android:layout_alignParentBottom="true"
+                android:background="@color/cut_off_colcors"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
         </RelativeLayout>
 
         <RelativeLayout
+            android:background="@color/main_white"
             android:layout_width="match_parent"
             android:layout_height="50dp">
-
             <TextView
+                android:layout_marginLeft="@dimen/activity_horizontal_pading"
                 android:id="@+id/phone_label"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="电话"
                 android:textColor="@color/main_black" />
-
             <TextView
+                android:textSize="14sp"
+                android:layout_marginRight="15dp"
                 android:layout_alignParentRight="true"
                 android:id="@+id/text_phone_num"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 />
+            <View
+                android:paddingLeft="@dimen/activity_horizontal_pading"
+                android:layout_alignParentBottom="true"
+                android:background="@color/cut_off_colcors"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
         </RelativeLayout>
 
         <RelativeLayout
+            android:background="@color/main_white"
             android:id="@+id/choice_car_num"
             android:layout_width="match_parent"
             android:layout_height="50dp">
-
             <TextView
+                android:layout_marginLeft="@dimen/activity_horizontal_pading"
                 android:id="@+id/car_num"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -67,20 +84,30 @@
                 android:text="车牌"
                 android:textColor="@color/main_black" />
             <TextView
+                android:textSize="14sp"
+                android:layout_marginRight="@dimen/activity_horizontal_pading"
                 android:layout_alignParentRight="true"
                 android:id="@+id/text_car_num"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 />
+            <View
+                android:paddingLeft="@dimen/activity_horizontal_pading"
+                android:layout_alignParentBottom="true"
+                android:background="@color/cut_off_colcors"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
         </RelativeLayout>
 
         <RelativeLayout
+            android:background="@color/main_white"
             android:id="@+id/choice_car_type"
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
             <TextView
+                android:layout_marginLeft="@dimen/activity_horizontal_pading"
                 android:id="@+id/car_label"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -88,20 +115,30 @@
                 android:text="车型"
                 android:textColor="@color/main_black" />
             <TextView
+                android:textSize="14sp"
+                android:layout_marginRight="15dp"
                 android:layout_alignParentRight="true"
                 android:id="@+id/text_car_type"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                /> />
+                />
+            <View
+                android:paddingLeft="@dimen/activity_horizontal_pading"
+                android:layout_alignParentBottom="true"
+                android:background="@color/cut_off_colcors"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
         </RelativeLayout>
 
         <RelativeLayout
+            android:background="@color/main_white"
             android:id="@+id/travel_root"
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
             <TextView
+                android:layout_marginLeft="15dp"
                 android:id="@+id/travel_label"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -109,17 +146,26 @@
                 android:text="行驶证"
                 android:textColor="@color/main_black" />
             <ImageView
+                android:layout_marginRight="15dp"
                 android:layout_alignParentRight="true"
                 android:id="@+id/driving_license"
                 android:layout_width="46dp"
                 android:layout_height="46dp" />
             <ImageView
+                android:scaleType="fitXY"
+                android:layout_marginRight="15dp"
                 android:id="@+id/dividing_image"
-                android:layout_width="46dp"
-                android:layout_height="match_parent"
+                android:layout_width="38dp"
+                android:layout_height="27dp"
                 android:layout_alignParentRight="true"
-                android:gravity="right|center_vertical"
-                android:textColorHint="@color/main_hint_gary" />
+                 android:layout_centerVertical="true"
+                 />
+            <View
+                android:paddingLeft="@dimen/activity_horizontal_pading"
+                android:layout_alignParentBottom="true"
+                android:background="@color/cut_off_colcors"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
         </RelativeLayout>
         <RelativeLayout
             android:visibility="gone"

@@ -8,6 +8,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -51,8 +52,8 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
     private ListView listView;
     @ViewInject(R.id.down_fresh)
     private SwipeRefreshLayout swipeRefreshLayout;
-    @ViewInject(R.id.none_content)
-    private TextView noneText;
+    @ViewInject(R.id.none_order_root)
+    private RelativeLayout noneText;
     private SHSGlobalAdapter orderedAdapter;
    private List<OrderModel> list;
     @Override
@@ -78,7 +79,8 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
                 helper.setText(R.id.shop_name, item.getShopName());
                 helper.setText(R.id.pay_money,item.getPayMoney());
                 helper.setText(R.id.order_date, item.getDate());
-                helper.setVisible(R.id.is_use,false);
+                helper.setVisible(R.id.is_use, false);
+                helper.setText(R.id.is_use,"已使用");
             }
         };
         listView.setOnScrollListener(this);
@@ -107,6 +109,7 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
     private void getData() {
         RequestParams params = new RequestParams();
         params.addBodyParameter("user_id", UserManager.getInstance().getUserID() + "");
+        params.addBodyParameter("page",pageIndex+"");
         HttpManager.post(SHSConst.ALREADYSERVICELIST, params, new JsonRequestCallBack<String>(new LoadDataHandler<String>() {
             @Override
             public void onSuccess(JSONObject jsonResponse, String flag) {

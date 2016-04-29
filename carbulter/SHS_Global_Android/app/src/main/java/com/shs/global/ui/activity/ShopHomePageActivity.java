@@ -32,7 +32,7 @@ import com.shs.global.utils.ToastUtil;
  */
 public class ShopHomePageActivity extends BaseActivityWithTopBar {
     //是否定位成功
-    private boolean isLocation=false;
+    private boolean isLocation = false;
     //当前定位纬度
     private double currentlat;
     //当前定位经度
@@ -57,13 +57,14 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
     private TextView addressText;
     @ViewInject(R.id.shop_telephone_num)
     private TextView telephoneText;
-//    @ViewInject(R.id.services)
+    //    @ViewInject(R.id.services)
 //    private TextView servicesText;
     @ViewInject(R.id.original_price)
     private TextView originalpriceText;
     @ViewInject(R.id.discount_price)
     private TextView discountpriceText;
     private IntentFilter intentFilter;
+    private ImageView rightBtn;
     private AddressBroadcastReceiver broadcastReceiver;
 
     @OnClick({R.id.buy})
@@ -74,22 +75,36 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
                 break;
         }
     }
+
     private void jumpChoice() {
-       if (UserManager.getInstance().isUser()) {
-           Intent intent = new Intent(this, ChoiceMyCarActivity.class);
-           intent.putExtra("shop",model);
-           intent.putExtra("good", servicesModel);
-           startActivity(intent);
-       }else {
-           PromptAlertDialog dialog=new PromptAlertDialog(this,"提示");
-           dialog.show();
-       }
+        if (UserManager.getInstance().isUser()) {
+            Intent intent = new Intent(this, ChoiceMyCarActivity.class);
+            intent.putExtra("shop", model);
+            intent.putExtra("good", servicesModel);
+            startActivity(intent);
+        } else {
+            PromptAlertDialog dialog = new PromptAlertDialog(this, "提示");
+            dialog.show();
+        }
     }
 
 //    private void callButler() {
 //        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4008693911"));
 //        startActivity(intent);
 //    }
+
+  private  void addRightBtn() {
+        rightBtn = addRightImgBtn(R.layout.right_image_button, R.id.layout_top_btn_root_view,
+                R.id.img_btn_right_top);
+        rightBtn.setImageResource(R.drawable.btn_telephone);
+        rightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4008693911"));
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public int setLayoutId() {
@@ -99,8 +114,9 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
     @Override
     protected void setUpView() {
         setBarText(getString(R.string.shop_home));
-        distance=getIntent().getStringExtra("distance");
+        distance = getIntent().getStringExtra("distance");
         id = getIntent().getStringExtra("shopID");
+        addRightBtn();
         intentFilter = new IntentFilter("locationAction");
         broadcastReceiver = new AddressBroadcastReceiver();
         registerReceiver(broadcastReceiver, intentFilter);
@@ -112,16 +128,15 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
         shopNameText.setText(model.getShopName());
         addressText.setText(model.getAddress());
         telephoneText.setText(model.getShopPhone());
-
-        if (servicesModel!=null) {
-         //   servicesText.setText(servicesModel.getServieceName());
-            discountpriceText.setText("会员价："+servicesModel.getDiscountPrice());
-            originalpriceText.setText("原价："+servicesModel.getOriginalPrice());
+        if (servicesModel != null) {
+            //   servicesText.setText(servicesModel.getServieceName());
+            discountpriceText.setText("￥" + servicesModel.getDiscountPrice());
+            originalpriceText.setText("原价：￥" + servicesModel.getOriginalPrice());
         }
         if (!isLocation) {
-            if (distance!=null) {
+            if (distance != null) {
                 distanceText.setText(distance + "km");
-            }else {
+            } else {
                 distanceText.setText("正在定位...");
             }
         }
@@ -139,12 +154,12 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
                 switch (status) {
                     case SHSConst.STATUS_SUCCESS:
                         //商店详情
-                        JSONObject  result=jsonResponse.getJSONObject(SHSConst.HTTP_RESULT);
+                        JSONObject result = jsonResponse.getJSONObject(SHSConst.HTTP_RESULT);
                         JSONObject shopDetail = result.getJSONObject("shop");
                         model = new ShopDetailModel();
                         model.setContentWithJson(shopDetail);
                         //服务项目
-                        if(result.containsKey("good")) {
+                        if (result.containsKey("good")) {
                             JSONObject services = result.getJSONObject("good");
                             servicesModel = new ShopServicesModel();
                             servicesModel.setContentWithJson(services);
@@ -179,7 +194,7 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
                 currentlat = intent.getDoubleExtra("lat", 0.00);
                 currentlong = intent.getDoubleExtra("long", 0.00);
                 //  initlistview();
-                isLocation=true;
+                isLocation = true;
                 if (isLocation) {
                     distanceText.setText(DistanceUtil.gps2m(model.getLatitude(), model.getLongitude(), currentlat, currentlong) + "km");
                 }

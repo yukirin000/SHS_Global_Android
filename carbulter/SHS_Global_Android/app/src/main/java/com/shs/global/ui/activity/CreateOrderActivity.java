@@ -58,7 +58,7 @@ public class CreateOrderActivity  extends BaseActivityWithTopBar{
 
     @Override
     protected void setUpView() {
-       setBarText("订单详情");
+       setBarText("提交订单");
         api = WXAPIFactory.createWXAPI(this, SHSConst.WXPAYAPPID);
         api.registerApp(SHSConst.WXPAYAPPID);
         init();

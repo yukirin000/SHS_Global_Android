@@ -5,23 +5,30 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp">
-
         <TextView
+            android:textColor="@color/back_font"
+            android:textSize="15sp"
             android:id="@+id/car_type"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="奔驰S级" />
-
         <TextView
+            android:textSize="15sp"
+            android:textColor="@color/back_font"
             android:id="@+id/car_plate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
             android:text="粤B12345" />
+        <View
+            android:layout_alignParentBottom="true"
+            android:background="@color/cut_off_colcors"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
     </RelativeLayout>
 </RelativeLayout>

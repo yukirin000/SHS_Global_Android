@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
     <include layout="@layout/layout_title_bar"/>
     <LinearLayout
+        android:background="@color/main_white"
         android:paddingLeft="@dimen/activity_horizontal_pading"
         android:paddingRight="@dimen/activity_horizontal_pading"
         android:orientation="vertical"
@@ -13,20 +14,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="30dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/list" />
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:src="@drawable/list" />-->
 
         <TextView
+            android:lineSpacingExtra="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
-            android:text="注册成为“品味•环球”尊贵的会员，您将享有平台内所有联盟商家提供的会员VIP礼遇，无需另外办理门店会员卡。
+            android:text="1.注册成为“品味•环球”尊贵的会员，您将享有平台内所有联盟商家提供的会员VIP礼遇，无需另外办理门店会员卡。 "
+            android:textColor="#272636"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp">
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:src="@drawable/list" />-->
+
+        <TextView
+            android:lineSpacingExtra="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="2.豪车管家24小时电话问诊及资讯，专业的豪车管家将为您提供一切关于您爱车的最佳解决方案。
                     "
             android:textColor="#272636"
             android:textSize="14sp" />
@@ -37,19 +61,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/list" />
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:src="@drawable/list" />-->
 
         <TextView
+            android:lineSpacingExtra="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
-            android:text="豪车管家24小时电话问诊及资讯，专业的豪车管家将为您提供一切关于您爱车的最佳解决方案。
-                    "
+            android:text="3.会员卡价格享受爱车精洗项目，无需再办理门店会员卡。此礼遇适用于全平台联盟商家。 "
             android:textColor="#272636"
             android:textSize="14sp" />
     </LinearLayout>
@@ -59,41 +83,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/list" />
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:src="@drawable/list" />-->
 
         <TextView
+            android:lineSpacingExtra="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
-            android:text="会员卡价格享受爱车精洗项目，无需再办理门店会员卡。此礼遇适用于全平台联盟商家。
-                    "
-            android:textColor="#272636"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/list" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical"
-            android:text="豪车维修与保养将由专业的豪车管家为您一站式打理，轻松，高效的完成每一个环节 
-"
+            android:text="4.豪车维修与保养将由专业的豪车管家为您一站式打理，轻松，高效的完成每一个环节 "
             android:textColor="#272636"
             android:textSize="14sp" />
     </LinearLayout>

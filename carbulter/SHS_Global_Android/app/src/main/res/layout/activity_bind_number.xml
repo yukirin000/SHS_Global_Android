@@ -84,22 +84,33 @@
             <!--android:layout_below="@id/next"-->
             <!--android:text="@string/find_password" />-->
         </RelativeLayout>
-
+       <RelativeLayout
+           android:layout_marginBottom="82dp"
+           android:layout_alignParentBottom="true"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
         <TextView
+            android:textSize="15sp"
+            android:textColor="@color/main_gold"
             android:id="@+id/tourist_login"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
             android:text="先看看"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
+           <View
+               android:background="@color/main_gold"
+               android:layout_alignRight="@id/tourist_login"
+               android:layout_alignLeft="@+id/tourist_login"
+               android:layout_below="@+id/tourist_login"
+               android:layout_width="42dp"
+               android:layout_height="2dp"/>
+       </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="190dp"
             android:layout_alignParentBottom="true"
             android:background="@color/backgroup_gary"
             android:visibility="gone">
-
             <RelativeLayout
                 android:id="@+id/other_login_root"
                 android:layout_width="match_parent"

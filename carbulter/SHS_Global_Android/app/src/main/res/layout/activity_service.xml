@@ -11,9 +11,9 @@
         android:id="@+id/advisory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:gravity="center"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="150dp"
         android:text="更多详情咨询豪车管家"/>
 
     <!--<RelativeLayout-->
@@ -180,8 +180,7 @@
         android:id="@+id/call_telephone"
         android:layout_width="200dp"
         android:layout_height="45dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"
+      android:layout_centerInParent="true"
         android:background="@drawable/round_call_button"
         android:gravity="center_vertical"
         android:orientation="horizontal">

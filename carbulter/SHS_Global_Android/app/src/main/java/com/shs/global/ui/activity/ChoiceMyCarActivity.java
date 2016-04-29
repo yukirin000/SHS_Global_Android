@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -37,8 +38,8 @@ public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
     private ShopServicesModel good;//商品
     @ViewInject(R.id.choice_car_list)
     private ListView choiceListView;
-    @ViewInject(R.id.none_content)
-    private TextView noneText;
+    @ViewInject(R.id.none_car_root)
+    private RelativeLayout noneText;
     private List<LoveCarModel> data;
     private SHSGlobalAdapter adapter;
     private ImageView rightBtn;

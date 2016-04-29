@@ -1,28 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/light_backgroup_gary"
     android:layout_height="match_parent">
 
     <include
         android:id="@+id/my_love_car_title"
-        layout="@layout/layout_title_bar"></include>
-    <TextView
-        android:id="@+id/none_car"
+        layout="@layout/layout_title_bar" />
+
+    <RelativeLayout
         android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:text="暂无爱车"
+        android:id="@+id/none_car_root"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/none_car_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pro_car" />
+
+        <TextView
+            android:textColor="#646464"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/none_car_image"
+            android:id="@+id/none_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无爱车"
+          />
+    </RelativeLayout>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
-        android:layout_below="@+id/my_love_car_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <ListView
-        android:id="@+id/my_car_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_below="@+id/my_love_car_title">
+
+        <ListView
+            android:scrollbars="none"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:id="@+id/my_car_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </android.support.v4.widget.SwipeRefreshLayout>
     <!--<LinearLayout-->
     <!--android:id="@+id/call_telephone"-->

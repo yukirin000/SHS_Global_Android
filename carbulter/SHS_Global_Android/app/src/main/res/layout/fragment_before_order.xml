@@ -2,23 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_backgroup_gary"
     android:orientation="vertical">
 
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/none_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:gravity="center"
-        android:text="暂无订单"
-        android:textSize="20sp" />
+    <include android:id="@+id/none_layout" layout="@layout/none_order_layout"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/down_fresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <ListView
+            android:scrollbars="none"
+            android:divider="@null"
             android:id="@+id/order_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

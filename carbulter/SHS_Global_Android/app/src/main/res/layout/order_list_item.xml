@@ -1,46 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <RelativeLayout
-        android:paddingRight="@dimen/activity_horizontal_pading"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:paddingLeft="@dimen/activity_horizontal_pading">
+        android:layout_height="130dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/item_bg"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp">
+
         <com.shs.global.ui.view.RoundImageView
             android:id="@+id/shop_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/pictures_no" />
-
+            android:layout_marginLeft="20dp"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            app:rect_adius="33dp" />
+        <!--<ImageView-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
         <TextView
             android:id="@+id/shop_name"
-            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="-3dp"
             android:layout_toRightOf="@id/shop_image"
-            android:gravity="center_vertical"
             android:text="XXXXX店"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/is_use"
-            android:layout_alignParentRight="true"
-            android:text="可以使用"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/main_white" />
+
         <TextView
             android:id="@+id/pay_money"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:text="50元"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/shop_name"
+            android:layout_alignLeft="@+id/shop_name"
+            android:layout_marginBottom="10dp"
+            android:text="50元"
+            android:textColor="@color/main_gold"
+            android:textSize="28sp" />
+
         <TextView
             android:id="@+id/order_date"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="时间"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/shop_name"
+            android:layout_below="@+id/shop_name"
+            android:layout_marginTop="14dp"
+            android:text="时间"
+            android:textColor="@color/main_white"
+            android:textSize="13sp" />
     </RelativeLayout>
-</LinearLayout>
+
+    <TextView
+        android:textSize="11sp"
+        android:gravity="center"
+        android:id="@+id/is_use"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/round_order_state"
+        android:text="可使用"
+        android:textColor="@color/main_white" />
+</RelativeLayout>

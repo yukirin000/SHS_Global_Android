@@ -31,33 +31,32 @@ import java.util.List;
 public class PrivilegeFragment extends BaseFragment {
 //    @ViewInject(R.id.serviece_listview)
 //    private ListView listview;
-    @ViewInject(R.id.car_repair)
+    @ViewInject(R.id.tv_car_repair)
     private TextView repairText;//保养维修
-    @ViewInject(R.id.car_decoration)
+    @ViewInject(R.id.car_beautician_tv)
     private TextView decorationText;//豪车美容
-    @ViewInject(R.id.online_consult)
+    @ViewInject(R.id.car_consult_tv)
     private TextView consultText;//在线问诊
-    @ViewInject(R.id.online_insurance)
+    @ViewInject(R.id.tv_insurance)
     private TextView insuranceText;//保险咨询
     private List<PrivilegeModel> data;
 
-    @OnClick(value = {R.id.car_repair, R.id.car_decoration, R.id.online_consult, R.id.online_insurance})
+    @OnClick(value = {R.id.car_beautician_root, R.id.car_consult_root, R.id.online_insurance_root, R.id.car_repair_root})
     public void touch(View view) {
         switch (view.getId()) {
-
-            case R.id.car_decoration:
+            case R.id.car_beautician_root:
                 Intent shopIntent = new Intent(getActivity(), CarShopActivity.class);
                 startActivity(shopIntent);
                 Intent serviceIntent = new Intent(getActivity(), LocationService.class);
                 getActivity().startService(serviceIntent);
                 Log.i("zwea", "启动服务");
                 break;
-            case R.id.online_consult:
+            case R.id.car_consult_root:
                 Intent onlineIntent = new Intent(getActivity(), OnlineConsultantActivity.class);
                 startActivity(onlineIntent);
                 break;
-            case R.id.car_repair:
-            case  R.id.online_insurance:
+            case R.id.car_repair_root:
+            case  R.id.online_insurance_root:
                 Intent intent = new Intent(getActivity(), ServiceActivity.class);
                 startActivity(intent);
                 break;

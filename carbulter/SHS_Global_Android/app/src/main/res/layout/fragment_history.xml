@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_white"
+    android:background="@color/light_backgroup_gary"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -26,14 +26,44 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tablayout_title"
+    <!--<android.support.design.widget.TabLayout-->
+    <!--android:id="@+id/tablayout_title"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:background="#0000ff"-->
+    <!--app:tabIndicatorColor="@color/main_white"-->
+    <!--app:tabSelectedTextColor="@color/main_gold"-->
+    <!--app:tabTextColor="@color/main_black"/>-->
+    <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#0000ff"
-        app:tabIndicatorColor="@color/main_white"
-        app:tabSelectedTextColor="@color/main_gold"
-        app:tabTextColor="@color/main_black"/>
+        android:layout_height="35dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/tab_text1"
+            android:background="@drawable/round_select_left_pre"
+            android:gravity="center"
+            android:textColor="@color/main_white"
+            android:textSize="13sp"
+            android:text="服务中"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tab_text2"
+            android:textColor="#3a3a3a"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:text="已服务"
+            android:background="@drawable/round_select_right_normal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/history_pager"
         android:layout_width="match_parent"

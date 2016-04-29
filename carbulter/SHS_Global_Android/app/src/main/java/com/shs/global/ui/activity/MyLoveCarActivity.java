@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -39,8 +40,8 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
     private List<LoveCarModel> list;
     private SHSGlobalAdapter lcarAdapter;
 
-    @ViewInject(R.id.none_car)
-    private TextView noneText;
+    @ViewInject(R.id.none_car_root)
+    private RelativeLayout noneroot;
 
     @ViewInject(R.id.refresh)
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -122,10 +123,10 @@ public class MyLoveCarActivity extends BaseActivityWithTopBar implements View.On
                             list.add(model);
                         }
                         if (list.size() == 0) {
-                            noneText.setVisibility(View.VISIBLE);
+                            noneroot.setVisibility(View.VISIBLE);
                             myCarListView.setVisibility(View.GONE);
                         } else {
-                            noneText.setVisibility(View.GONE);
+                            noneroot.setVisibility(View.GONE);
                             myCarListView.setVisibility(View.VISIBLE);
                             lcarAdapter.replaceAll(list);
                             myCarListView.setAdapter(lcarAdapter);

@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_horizontal_pading">15dp</dimen>
     <dimen name="activity_vertical_padin">15dp</dimen>
+    <dimen name="main_usual_font_size">15sp</dimen>
+    <dimen name="little_min_font_size">14sp</dimen>
 </resources>
