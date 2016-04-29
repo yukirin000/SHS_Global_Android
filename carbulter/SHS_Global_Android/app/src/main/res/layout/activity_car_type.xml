@@ -5,6 +5,7 @@
     android:orientation="vertical">
     <include layout="@layout/layout_title_bar" />
     <ListView
+        android:scrollbars="none"
         android:id="@+id/type_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

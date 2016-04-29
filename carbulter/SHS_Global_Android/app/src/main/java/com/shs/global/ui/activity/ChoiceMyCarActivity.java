@@ -48,7 +48,6 @@ public class ChoiceMyCarActivity extends BaseActivityWithTopBar {
     public int setLayoutId() {
         return R.layout.activity_choice_my_car;
     }
-
     @Override
     protected void setUpView() {
         setBarText("选择我的爱车");

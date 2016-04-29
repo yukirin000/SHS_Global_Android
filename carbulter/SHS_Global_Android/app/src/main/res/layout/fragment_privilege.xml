@@ -3,7 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <RelativeLayout
+        android:background="@color/main_black"
+        android:id="@+id/home_action_bar"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/privilege"
+                android:textColor="@color/main_white"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </RelativeLayout>
     <ScrollView
+        android:layout_below="@+id/home_action_bar"
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,9 +37,14 @@
         <ImageView
             android:id="@+id/home_cover"
             android:layout_width="match_parent"
-            android:layout_height="265dp"
+            android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/home_bg" />
+        <View
+            android:layout_marginTop="3dp"
+            android:background="@color/cut_off_colcors"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="143dp">
@@ -172,22 +198,5 @@
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="match_parent"-->
     <!--android:divider="@null"></ListView>-->
-    <RelativeLayout
-        android:id="@+id/home_action_bar"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="64dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_alignParentBottom="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/privilege"
-                android:textColor="@color/main_white"
-                android:textSize="16sp" />
-        </RelativeLayout>
-    </RelativeLayout>
+
 </RelativeLayout>
