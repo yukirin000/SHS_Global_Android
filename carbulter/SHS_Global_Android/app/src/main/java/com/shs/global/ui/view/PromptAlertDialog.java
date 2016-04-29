@@ -39,6 +39,7 @@ public class PromptAlertDialog extends Dialog {
         super.onCreate(savedInstanceState);
         init();
     }
+
     /***
      * 初始化
      */

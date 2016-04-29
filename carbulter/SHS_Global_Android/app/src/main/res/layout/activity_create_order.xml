@@ -33,7 +33,6 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="海岸城店"
                 android:textColor="@color/light_black_font"
                 android:textSize="14sp" />
 
@@ -45,6 +44,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/call_shop_root"
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
@@ -62,7 +62,6 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="10086"
                 android:textColor="@color/light_black_font"
                 android:textSize="14sp" />
 
@@ -91,7 +90,6 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="精洗"
                 android:textColor="@color/light_black_font"
                 android:textSize="14sp" />
 
@@ -120,7 +118,6 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="0.01"
                 android:textColor="@color/light_black_font"
                 android:textSize="14sp" />
 
@@ -149,7 +146,6 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="兰博基尼"
                 android:textColor="@color/light_black_font"
                 android:textSize="14sp" />
 

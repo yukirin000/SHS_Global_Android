@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -52,7 +53,8 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
 
     @ViewInject(R.id.distance)
     private TextView distanceText;
-
+   @ViewInject(R.id.call_shop_root)
+   private   RelativeLayout callShopRoot;
     @ViewInject(R.id.shop_address)
     private TextView addressText;
     @ViewInject(R.id.shop_telephone_num)
@@ -67,15 +69,18 @@ public class ShopHomePageActivity extends BaseActivityWithTopBar {
     private ImageView rightBtn;
     private AddressBroadcastReceiver broadcastReceiver;
 
-    @OnClick({R.id.buy})
+    @OnClick(value = {R.id.buy,R.id.call_shop_root})
     public void click(View view) {
         switch (view.getId()) {
             case R.id.buy:
                 jumpChoice();
                 break;
+            case R.id.call_shop_root:
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" +telephoneText.getText().toString()));
+                startActivity(intent);
+                break;
         }
     }
-
     private void jumpChoice() {
         if (UserManager.getInstance().isUser()) {
             Intent intent = new Intent(this, ChoiceMyCarActivity.class);

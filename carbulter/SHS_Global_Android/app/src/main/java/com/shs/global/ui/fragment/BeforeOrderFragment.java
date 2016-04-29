@@ -79,7 +79,7 @@ public class BeforeOrderFragment extends BaseFragment implements AbsListView.OnS
                 helper.setText(R.id.shop_name, item.getShopName());
                 helper.setText(R.id.pay_money,item.getPayMoney());
                 helper.setText(R.id.order_date, item.getDate());
-                helper.setVisible(R.id.is_use, false);
+              //  helper.setVisible(R.id.is_use, false);
                 helper.setText(R.id.is_use,"已使用");
             }
         };

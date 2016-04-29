@@ -1,6 +1,8 @@
 package com.shs.global.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +13,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.shs.global.R;
 import com.shs.global.control.HttpManager;
 import com.shs.global.helper.JsonRequestCallBack;
@@ -43,7 +46,15 @@ public class OrderDetailsActivity extends BaseActivityWithTopBar {
     private ImageView qrcodeImage;
     private OrderDetailsModel model;
     private Bitmap qrcodeBitmap;
-
+    @OnClick(value = {R.id.call_shop_root})
+    public void click(View view) {
+        switch (view.getId()) {
+            case R.id.call_shop_root:
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + textPhoneNum.getText().toString()));
+                startActivity(intent);
+                break;
+        }
+    }
     @Override
     public int setLayoutId() {
         return R.layout.activity_order_details;

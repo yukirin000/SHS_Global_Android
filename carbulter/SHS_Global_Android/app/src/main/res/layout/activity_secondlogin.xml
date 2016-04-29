@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="45dp"
             android:layout_marginTop="64dp"
             android:background="@color/main_white"
             android:orientation="vertical">
@@ -23,13 +23,12 @@
             <EditText
                 android:id="@+id/user_password"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="45dp"
                 android:background="@null"
                 android:hint="   请输入密码"
                 android:inputType="textPassword"
                 android:textColorHint="#c1c1c1"
                 android:textSize="14sp" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
